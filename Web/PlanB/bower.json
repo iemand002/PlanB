@@ -1,0 +1,11 @@
+{
+  "name": "PlanB",
+  "description": "Project inspraak stad Antwerpen",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor/bower_dl",
+    "test",
+    "tests"
+  ]
+}

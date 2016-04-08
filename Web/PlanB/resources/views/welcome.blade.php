@@ -4,6 +4,7 @@
         <title>Laravel</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        {!! Html::style("css/app.css") !!}
 
         <style>
             html, body {
@@ -41,5 +42,7 @@
                 <div class="title">Laravel 5</div>
             </div>
         </div>
+        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+        <i class="fa fa-camera-retro fa-lg"></i>
     </body>
 </html>
