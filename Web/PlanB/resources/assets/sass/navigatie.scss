@@ -1,0 +1,10 @@
+$navbar-height:150px;
+body{
+  padding-top:$navbar-height;
+}
+.navbar{
+  height: $navbar-height;
+}
+.nav-logo{
+  height: 75px;
+}

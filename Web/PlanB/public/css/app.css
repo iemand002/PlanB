@@ -7824,4 +7824,13 @@ button.close {
 .fa-percent:before {
   content: ""; }
 
+body {
+  padding-top: 150px; }
+
+.navbar {
+  height: 150px; }
+
+.nav-logo {
+  height: 75px; }
+
 /*# sourceMappingURL=app.css.map */
