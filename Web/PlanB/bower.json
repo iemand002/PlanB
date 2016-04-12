@@ -7,5 +7,10 @@
     "vendor/bower_dl",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.37",
+    "jquery": "^2.2.3",
+    "font-awesome": "^4.6.1"
+  }
 }

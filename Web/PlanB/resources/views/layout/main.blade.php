@@ -12,6 +12,9 @@
     <title>@yield('pagetitle') - Inspraak in Antwerpen</title>
 
     {!! Html::style('css/app.css') !!}
+    {{--    @if(Auth::user()->admin)--}}
+    {!! Html::style('css/admin.css') !!}
+    {{--@endif--}}
     @yield('css')
 
             <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -37,6 +40,9 @@
 @include('layout.footer')
 
 {!! Html::script('js/all.js') !!}
+{{--        @if(Auth::user()->admin)--}}
+{!! Html::script('js/admin.js') !!}
+{{--@endif--}}
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {{--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>--}}
 @yield('js')
