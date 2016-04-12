@@ -1,0 +1,34 @@
+
+footer {
+  background-color: $foot-default-bg;
+  color: $foot-default-color;
+  margin-top: 20px;
+  &.inverse {
+    background-color: $foot-inverse-bg;
+    color: $foot-inverse-color;
+  }
+}
+
+.foot-logo {
+  height: $foot-height;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: $foot-height+20;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  min-height: $foot-height;
+}

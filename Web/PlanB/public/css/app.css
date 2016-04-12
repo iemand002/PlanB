@@ -7825,12 +7825,41 @@ button.close {
   content: ""; }
 
 body {
-  padding-top: 150px; }
+  padding-top: 155px; }
 
-.navbar {
-  height: 150px; }
+@media (max-width: 767px) {
+  body {
+    padding-top: 85px; } }
 
 .nav-logo {
   height: 75px; }
+
+footer {
+  background-color: #f8f8f8;
+  color: #777;
+  margin-top: 20px; }
+  footer.inverse {
+    background-color: #222;
+    color: #9d9d9d; }
+
+.foot-logo {
+  height: 55px; }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 75px; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  min-height: 55px; }
 
 /*# sourceMappingURL=app.css.map */

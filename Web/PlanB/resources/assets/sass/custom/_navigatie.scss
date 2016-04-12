@@ -1,0 +1,13 @@
+body {
+  padding-top: $navbar-padding-top + 20;
+}
+
+@media (max-width: $screen-xs-max) {
+  body {
+    padding-top: $nav-logo-height+10;
+  }
+}
+
+.nav-logo {
+  height: $nav-logo-height;
+}

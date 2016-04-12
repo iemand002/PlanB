@@ -1,37 +1,38 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-        <div class="col-md-1">
-            {!! Html::image('images/A_logo_RGB.svg','Antwerpen logo',['class'=>'nav-logo']) !!}
-        </div>
-        <div class="col-md-8">
-            <a class="navbar-brand center-block" href="#">Project naam</a>
-        </div>
-        <div class="col-md-3">
-            <div class="col-md-4">
-                <div class="row">Login</div>
-                <div class="row">Registreer</div>
+        {!! Html::image('images/A_logo_RGB.svg','Antwerpen logo',['class'=>'nav-logo']) !!}
+
+        <a class="" href="#">Inspraak in Antwerpen</a>
+
+        <div class="pull-right hidden-xs">
+            <div class="col-sm-7">
+                <ul class="nav nav-pills nav-stacked text-right">
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Registreer</a></li>
+                </ul>
             </div>
-            <div class="col-md-8">
-                img
+            <div class="col-sm-5">
+                <i class="fa fa-user fa-5x"></i>
             </div>
         </div>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="true" aria-controls="navbar">
+            <span class="sr-only">Toggle menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
     </div>
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle menu</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <nav id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 {{--<li class="active"><a href="#">Home</a></li>--}}
                 <li><a href="#about">Projecten</a></li>
                 <li><a href="#contact">Kaart</a></li>
+                <li role="separator" class="divider visible-xs-block"></li>
+                <li><a href="#" class="visible-xs-block">Login</a></li>
+                <li><a href="#" class="visible-xs-block">Registreer</a></li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </nav><!--/.nav-collapse -->
     </div>
 </nav>

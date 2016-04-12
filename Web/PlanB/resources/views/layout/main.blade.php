@@ -9,7 +9,7 @@
     <meta name="author" content="">
     {{--<link rel="icon" href="../../favicon.ico">--}}
 
-    <title>@yield('pagetitle')</title>
+    <title>@yield('pagetitle') - Inspraak in Antwerpen</title>
 
     {!! Html::style('css/app.css') !!}
     @yield('css')
