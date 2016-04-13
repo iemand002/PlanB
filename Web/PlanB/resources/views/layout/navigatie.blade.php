@@ -27,7 +27,8 @@
         <nav id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 {{--<li class="active"><a href="#">Home</a></li>--}}
-                <li><a href="#about">Projecten</a></li>
+                <li><a href="{{route('projecten.index')}}" @if($active='projecten')class="active"@endif>Projecten</a>
+                </li>
                 <li><a href="#contact">Kaart</a></li>
                 <li role="separator" class="divider visible-xs-block"></li>
                 <li><a href="#" class="visible-xs-block">Login</a></li>

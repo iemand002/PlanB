@@ -27,6 +27,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('welcome');
     });
+    Route::get('projecten',['as'=>'projecten.index','uses'=>'ProjectController@index']);
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'ProjectController@create']);
         Route::post('/project', ['as' => 'project.store', 'uses' => 'ProjectController@store']);

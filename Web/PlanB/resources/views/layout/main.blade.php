@@ -30,8 +30,9 @@
 <body>
 
 @include('layout.navigatie')
-
 <div class="container">
+    @include('partials.success')
+    @include('errors.list')
 
     @yield('content')
 

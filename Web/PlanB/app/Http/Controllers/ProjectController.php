@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectRequest;
+use App\Project;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +17,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projecten = Project::all();
+        $active='projecten';
+        return view('project.index', compact('projecten','active'));
     }
 
     /**
@@ -31,18 +35,24 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        //
+        $project = new Project();
+        $project->naam = $request->input('naam');
+        $project->publish_from = $request->input('publish_from');
+        $project->publish_till = $request->input('publish_till');
+        $project->save();
+
+        return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -53,7 +63,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -64,8 +74,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -76,7 +86,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
