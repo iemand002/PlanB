@@ -3,9 +3,17 @@
 namespace App;
 
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model {
+class Project extends Model implements SluggableInterface
+{
+	use SluggableTrait;
+
+	protected $sluggable = [
+		'build_from' => 'naam',
+	];
 
 	protected $table = 'projecten';
 	public $timestamps = true;
