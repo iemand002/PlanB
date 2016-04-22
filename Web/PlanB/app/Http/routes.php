@@ -24,7 +24,6 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-<<<<<<< HEAD
 	Route::get('/', function () {
 		return view('welcome');
 	});
@@ -51,30 +50,5 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('projecten','APIController@getProjecten');
         Route::get('thema/{id}','APIController@getProjectenOpThema');
 	});
-=======
-    Route::get('/', function () {
-        return view('welcome');
-    });
-    Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
-    Route::get('project/{project}', ['as' => 'project.show', 'uses' => 'ProjectController@show']);
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'Admin\ProjectController@create']);
-        Route::post('/project', ['as' => 'project.store', 'uses' => 'Admin\ProjectController@store']);
-        Route::get('projecten', ['as' => 'admin.projecten.index', 'uses' => 'Admin\ProjectController@index']);
-
-        Route::get('/project/{project}/milestone/nieuw', ['as' => 'admin.milestone.create', 'uses' => 'Admin\MilestoneController@create']);
-        Route::post('/project/{project}/milestone/', ['as' => 'admin.milestone.store', 'uses' => 'Admin\MilestoneController@store']);
-
-        Route::get('/thema/nieuw', ['as' => 'admin.thema.create', 'uses' => 'Admin\ThemaController@create']);
-        Route::post('/thema/', ['as' => 'admin.thema.store', 'uses' => 'Admin\ThemaController@store']);
-
-    });
-    Route::group(['prefix' => 'api'], function () {
-        Route::get('project/{id}', 'APIController@getProject');
-        Route::get('themas', 'APIController@getAlleThemas');
-        Route::get('projecten', 'APIController@getProjecten');
-        Route::get('thema/{id}', 'APIController@getProjectenOpThema');
-    });
->>>>>>> origin/master
 
 });
