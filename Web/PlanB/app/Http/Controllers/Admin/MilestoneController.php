@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Milestone;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+
+use App\Http\Controllers\Controller;
 
 class MilestoneController extends Controller
 {
@@ -23,9 +26,10 @@ class MilestoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($project)
     {
-        //
+
+        return view('admin.milestone.create', compact('project'));
     }
 
     /**
@@ -34,9 +38,29 @@ class MilestoneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $project)
     {
-        //
+        $milestone = new Milestone();
+
+        $milestone->naam = $request->input('naam');
+        $milestone->locatie = $request->input('locatie');
+        $milestone->beschrijving = $request->input('beschrijving');
+        $milestone->locatie = $request->input('locatie');
+        $milestone->afbeelding = $request->input('afbeelding');
+        $milestone->likes = 0;
+        $milestone->dislikes = 0;
+        $milestone->project_id = $project->id;
+        $milestone->thema_id = 1;
+        
+
+
+
+
+        // $milestone->locatie = $request->input('locatie');
+
+        $milestone->save();
+
+        return redirect()->back()->with(['success' => 'Project "' . $milestone->naam . '" is opgeslagen']);
     }
 
     /**

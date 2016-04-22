@@ -35,6 +35,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('projecten', ['as' => 'admin.projecten.index', 'uses' => 'Admin\ProjectController@index']);
 
         Route::get('/project/{project}/milestone/nieuw',['as'=>'admin.milestone.create','uses'=>'Admin\MilestoneController@create']);
+        Route::post('/project/{project}/milestone/',['as'=>'admin.milestone.store','uses'=>'Admin\MilestoneController@store']);
+
     });
     Route::group(['prefix' => 'api'], function () {
         Route::get('project/{id}', 'APIController@getProject');
