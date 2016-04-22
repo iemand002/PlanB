@@ -11,7 +11,7 @@ class Milestone extends Model {
 
 	public function thema()
 	{
-		return $this->hasOne('App\Thema');
+		return $this->belongsTo('App\Thema');
 	}
 
 	public function project()

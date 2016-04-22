@@ -27,13 +27,16 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::get('projecten',['as'=>'projecten.index','uses'=>'ProjectController@index']);
+    Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'Admin\ProjectController@create']);
         Route::post('/project', ['as' => 'project.store', 'uses' => 'Admin\ProjectController@store']);
-        Route::get('projecten',['as'=>'admin.projecten.index','uses'=>'Admin\ProjectController@index']);
+        Route::get('projecten', ['as' => 'admin.projecten.index', 'uses' => 'Admin\ProjectController@index']);
+
+        Route::get('/project/{project}/milestone/nieuw',['as'=>'admin.milestone.create','uses'=>'Admin\MilestoneController@create']);
     });
-    Route::group(['prefix'=>'api'],function(){
-       Route::get('project/{id}','APIController@getProject');
+    Route::group(['prefix' => 'api'], function () {
+        Route::get('project/{id}', 'APIController@getProject');
+        Route::get('themas', 'APIController@getAlleThemas');
     });
 });
