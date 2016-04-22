@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProjectRequest;
-use App\Project;
-use App\Thema;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ProjectController extends Controller
+use App\Thema;
+
+class ThemaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projecten = Project::all();
-        $themas = Thema::all();
-
-        return view('admin.project.index', compact('projecten', 'themas'));
+        //
     }
 
     /**
@@ -32,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.project.create');
+        return view('admin.thema.create');
     }
 
     /**
@@ -41,15 +37,14 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectRequest $request)
+    public function store(Request $request)
     {
-        $project = new Project();
-        $project->naam = $request->input('naam');
-        $project->publish_from = $request->input('publish_from');
-        $project->publish_till = $request->input('publish_till');
-        $project->save();
+        $thema = new Thema();
+        $thema->naam = $request->input('naam');
+        $thema->beschrijving = $request->input('beschrijving');
+        $thema->save();
 
-        return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
+        return redirect()->back()->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
     }
 
     /**

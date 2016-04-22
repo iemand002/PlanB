@@ -60,7 +60,7 @@ class MilestoneController extends Controller
 
         $milestone->save();
 
-        return redirect()->back()->with(['success' => 'Project "' . $milestone->naam . '" is opgeslagen']);
+        return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
     }
 
     /**

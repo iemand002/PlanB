@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProjectRequest;
-use App\Project;
-use App\Thema;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Vraag;
 
-class ProjectController extends Controller
+class VraagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projecten = Project::all();
-        $themas = Thema::all();
-
-        return view('admin.project.index', compact('projecten', 'themas'));
+        //
     }
 
     /**
@@ -30,9 +25,9 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($project, $milestone)
     {
-        return view('admin.project.create');
+        return view('admin.vraag.create', compact('project', 'milestone'));
     }
 
     /**
@@ -41,16 +36,16 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectRequest $request)
+    public function store(Request $request, $project, $milestone)
     {
-        $project = new Project();
-        $project->naam = $request->input('naam');
-        $project->publish_from = $request->input('publish_from');
-        $project->publish_till = $request->input('publish_till');
-        $project->save();
+        $vraag = new Vraag();
 
-        return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
-    }
+        $vraag->vraag = $request->input('vraag');
+        $vraag->milestone_id = $milestone->id;
+
+        $vraag->save();
+
+        return redirect()->back()->with(['success' => 'Vraag "' . $vraag->vraag . '" is opgeslagen']);    }
 
     /**
      * Display the specified resource.
