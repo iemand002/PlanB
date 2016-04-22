@@ -39,4 +39,9 @@ class Project extends Model implements SluggableInterface
 		return $this->hasMany('App\Milestone');
 	}
 
+	public function thema()
+	{
+		return $this->belongsTo('App\Thema');
+	}
+
 }
