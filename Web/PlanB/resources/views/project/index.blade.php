@@ -1,9 +1,12 @@
 @extends('layout.main')
 @section('pagetitle')
-    Alle projecten
+Alle projecten
 @endsection
 @section('content')
-    <pre>
-        <?php print_r($projecten)?>
-    </pre>
+<div>
+	@foreach ($projecten as $project)
+	<h1>{{ $project->naam }}</h1>
+	<p>{{ $project->created_at }}</p>
+</div>
+@endforeach
 @endsection

@@ -18,7 +18,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projecten = Project::all();
-        $active='projecten';
+        $active = 'projecten';
         return view('project.index', compact('projecten','active'));
     }
 
