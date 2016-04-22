@@ -29,7 +29,11 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::get('projecten',['as'=>'projecten.index','uses'=>'ProjectController@index']);
     Route::group(['prefix' => 'admin'], function () {
-        Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'ProjectController@create']);
-        Route::post('/project', ['as' => 'project.store', 'uses' => 'ProjectController@store']);
+        Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'Admin\ProjectController@create']);
+        Route::post('/project', ['as' => 'project.store', 'uses' => 'Admin\ProjectController@store']);
+        Route::get('projecten',['as'=>'admin.projecten.index','uses'=>'Admin\ProjectController@index']);
+    });
+    Route::group(['prefix'=>'api'],function(){
+       Route::get('project/{id}','APIController@getProject');
     });
 });
