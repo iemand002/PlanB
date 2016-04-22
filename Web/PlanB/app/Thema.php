@@ -9,9 +9,9 @@ class Thema extends Model {
 	protected $table = 'themas';
 	public $timestamps = true;
 
-	public function milestones()
+	public function projecten()
 	{
-		return $this->belongsToMany('App\Milestone');
+		return $this->hasMany('App\Project');
 	}
 
 }

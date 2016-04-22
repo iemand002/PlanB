@@ -17,11 +17,6 @@ class Milestone extends Model implements SluggableInterface
 	protected $table = 'milestones';
 	public $timestamps = true;
 
-	public function thema()
-	{
-		return $this->belongsTo('App\Thema');
-	}
-
 	public function project()
 	{
 		return $this->belongsTo('App\Project');

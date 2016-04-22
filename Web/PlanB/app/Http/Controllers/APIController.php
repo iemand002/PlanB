@@ -11,11 +11,19 @@ use App\Http\Requests;
 
 class APIController extends Controller
 {
-    function getProject($id){
-        return Milestone::where('project_id',$id)->orderBy('created_at','desc')->with('project')->with('thema')->first();
+    function getProject($projectid){
+        return Milestone::where('project_id',$projectid)->orderBy('created_at','desc')->with('project')->with('project.thema')->first();
     }
     
     function getAlleThemas(){
         return Thema::all();
+    }
+    
+    function getProjectenOpThema($themaid){
+        return Project::where('thema_id',$themaid)->with('milestones')->get();
+    }
+    
+    function getProjecten(){
+        return Project::with('thema')->get();
     }
 }
