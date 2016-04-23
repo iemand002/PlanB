@@ -20,12 +20,15 @@ elixir(function(mix) {
     // mix.copy('bower_components/eonasdan-bootstrap-datetimepicker/src/sass', 'resources/assets/sass');
     // mix.copy('bower_components/moment/min/moment.min.js', 'resources/assets/js/moment.min.js');
     // mix.copy('bower_components/moment/locale/nl.js', 'resources/assets/js/moment-nl.js');
+    // mix.copy('bower_components/datatables/media/js/jquery.dataTables.js', 'resources/assets/js/datatables');
+    // mix.copy('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css', 'resources/assets/sass/datatables/dataTables.bootstrap.scss');
+    // mix.copy('bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js', 'resources/assets/js/datatables');
 
     mix.sass('app.scss');
-    mix.sass('bootstrap-datetimepicker-build.scss','public/css/admin.css');
+    mix.sass('admin.scss');
 
     mix.scripts(['jquery.min.js','bootstrap.min.js']);
-    mix.scripts(['moment.min.js','moment-nl.js','bootstrap-datetimepicker.min.js'],'public/js/admin.js');
+    mix.scripts(['moment.min.js','moment-nl.js','bootstrap-datetimepicker.min.js','datatables/jquery.dataTables.js','datatables/dataTables.bootstrap.js'],'public/js/admin.js');
     
     mix.browserSync({
         proxy: 'planb.int'

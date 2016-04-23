@@ -1,6 +1,9 @@
 body {
   padding-top: $navbar-padding-top + 20;
 }
+body#blank{
+  padding-top: 0;
+}
 
 @media (max-width: $screen-xs-max) {
   body {

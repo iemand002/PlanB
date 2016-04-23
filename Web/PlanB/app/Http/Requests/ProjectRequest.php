@@ -27,6 +27,16 @@ class ProjectRequest extends Request
             'naam'=>'required|max:250',
             'publish_from'=>'required|date_format:d/m/Y H:i:s',
             'publish_till'=>'required|date_format:d/m/Y H:i:s',
+            'thema_id'=>'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'thema_id.required'=>'Kies een thema!',
+            'publish_from.required'=>trans('validation.required',['attribute'=>trans('project.publish.vanaf')]),
+            'publish_till.required'=>trans('validation.required',['attribute'=>trans('project.publish.tot')])
         ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Requests\MilestoneRequest;
 use App\Milestone;
 
 use Illuminate\Http\Request;
@@ -38,26 +39,16 @@ class MilestoneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $project)
+    public function store(MilestoneRequest $request, $project)
     {
         $milestone = new Milestone();
-
         $milestone->naam = $request->input('naam');
         $milestone->locatie = $request->input('locatie');
         $milestone->beschrijving = $request->input('beschrijving');
-        $milestone->locatie = $request->input('locatie');
         $milestone->afbeelding = $request->input('afbeelding');
         $milestone->likes = 0;
         $milestone->dislikes = 0;
         $milestone->project_id = $project->id;
-        $milestone->thema_id = 1;
-        
-
-
-
-
-        // $milestone->locatie = $request->input('locatie');
-
         $milestone->save();
 
         return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);

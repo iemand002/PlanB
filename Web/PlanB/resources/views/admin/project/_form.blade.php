@@ -17,6 +17,12 @@
     </div>
 </div>
 <div class="form-group">
+    {!! Form::label('thema_id', trans("project.thema"), ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('thema_id',$themas,null,['id'=>'thema_id','class'=>'form-control','placeholder'=>trans("project.thema-desc")]) !!}
+    </div>
+</div>
+<div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">{{$submitbuttonText}}</button>
     </div>

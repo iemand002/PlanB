@@ -7918,6 +7918,9 @@ button.close {
 body {
   padding-top: 155px; }
 
+body#blank {
+  padding-top: 0; }
+
 @media (max-width: 767px) {
   body {
     padding-top: 85px; } }

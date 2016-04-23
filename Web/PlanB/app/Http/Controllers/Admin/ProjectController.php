@@ -32,7 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.project.create');
+        $themas = Thema::lists('naam','id');
+        return view('admin.project.create',compact('themas'));
     }
 
     /**

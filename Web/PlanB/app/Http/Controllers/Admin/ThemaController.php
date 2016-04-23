@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ThemaRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -37,7 +38,7 @@ class ThemaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThemaRequest $request)
     {
         $thema = new Thema();
         $thema->naam = $request->input('naam');
