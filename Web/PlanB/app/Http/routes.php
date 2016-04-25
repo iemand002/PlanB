@@ -30,7 +30,12 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
 	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show']);
 	Route::group(['prefix' => 'admin'], function () {
-		Route::get('/', ['as' => 'admin', 'uses' => 'Admin\ProjectController@index']);
+		Route::get('/', ['as' => 'admin', function(){
+			$projecten=\App\Project::all();
+			$themas=\App\Thema::all();
+			$active='projecten';
+			return view('admin.admin',compact('projecten','themas','active'));
+		}]);
 
 		// Projecten
 		Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'Admin\ProjectController@create']);
