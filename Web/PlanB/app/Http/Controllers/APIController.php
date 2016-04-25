@@ -26,4 +26,16 @@ class APIController extends Controller
     function getProjecten(){
         return Project::with('thema')->get();
     }
+    
+    function likeMilestone($milestoneid){
+        $milestone=Milestone::find($milestoneid);
+        $milestone->likes+=1;
+        $milestone->save;
+    }
+    
+    function dislikeMilestone($milestoneid){
+        $milestone=Milestone::find($milestoneid);
+        $milestone->dislikes+=1;
+        $milestone->save;
+    }
 }

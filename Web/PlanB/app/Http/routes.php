@@ -67,6 +67,8 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('themas', 'APIController@getAlleThemas');
         Route::get('projecten','APIController@getProjecten');
         Route::get('thema/{id}','APIController@getProjectenOpThema');
+		Route::post('like/{milestone_id}', 'APIController@likeMilestone');
+		Route::post('dislike/{milestone_id}', 'APIController@dislikeMilestone');
 	});
 
 });
