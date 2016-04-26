@@ -5,6 +5,12 @@
     </div>
 </div>
 <div class="form-group">
+    {!! Form::label('beschrijving', trans("project.beschrijving"), ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::textarea('beschrijving',null,['id'=>'beschrijving','class'=>'form-control','placeholder'=>trans("project.beschrijving")]) !!}
+    </div>
+</div>
+<div class="form-group">
     {!! Form::label('publish_from', trans("project.publish.vanaf"), ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         {!! Form::text('publish_from',null,['id'=>'publish_from','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}

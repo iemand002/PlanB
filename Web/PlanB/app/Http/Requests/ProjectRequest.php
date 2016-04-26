@@ -25,6 +25,7 @@ class ProjectRequest extends Request
     {
         return [
             'naam'=>'required|max:250',
+            'beschrijving'=>'required|min:10',
             'publish_from'=>'required|date_format:d/m/Y H:i:s',
             'publish_till'=>'required|date_format:d/m/Y H:i:s',
             'thema_id'=>'required'
