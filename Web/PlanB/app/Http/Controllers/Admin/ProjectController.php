@@ -54,8 +54,8 @@ class ProjectController extends Controller
         $project->publish_from = $request->input('publish_from');
         $project->publish_till = $request->input('publish_till');
         $project->save();
-        
-        $milestone=new Milestone();
+
+        $milestone = new Milestone();
         $milestone->naam = $request->input('naam');
         $milestone->locatie = $request->input('locatie');
         $milestone->beschrijving = $request->input('beschrijving');
@@ -85,9 +85,12 @@ class ProjectController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($project)
     {
-        //
+        $themas = Thema::lists('naam', 'id');
+        $project->projectnaam = $project->naam;
+        $project->projectbeschrijving = $project->beschrijving;
+        return view('admin.project.edit', compact('project', 'themas'));
     }
 
     /**
@@ -99,7 +102,14 @@ class ProjectController extends Controller
      */
     public function update(ProjectUpdateRequest $request, $project)
     {
-        //
+        $project->naam = $request->input('projectnaam');
+        $project->beschrijving = $request->input('projectbeschrijving');
+        $project->thema_id = $request->input('thema_id');
+        $project->publish_from = $request->input('publish_from');
+        $project->publish_till = $request->input('publish_till');
+        $project->save();
+
+        return redirect(route('admin'))->with(['success' => 'Project "' . $project->naam . '" is gewijzigd']);
     }
 
     /**

@@ -40,7 +40,9 @@ Route::group(['middleware' => ['web']], function () {
 
 		// Projecten
 		Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'Admin\ProjectController@create']);
+		Route::get('/project/{project}', ['as' => 'admin.project.edit', 'uses' => 'Admin\ProjectController@edit']);
 		Route::post('/project', ['as' => 'project.store', 'uses' => 'Admin\ProjectController@store']);
+		Route::patch('/project/{project}', ['as' => 'admin.project.update', 'uses' => 'Admin\ProjectController@update']);
 		Route::get('/projecten', ['as' => 'admin.projecten.index', 'uses' => 'Admin\ProjectController@index']);
 
 		// Milestones

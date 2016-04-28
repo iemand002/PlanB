@@ -14,15 +14,21 @@ class ThemaSeeder extends Seeder
     {
         Thema::create([
             'naam' => 'Natuur',
-            'beschrijving' => ''
+            'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
+            minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
+            id illo nobis qui.'
         ]);
         Thema::create([
             'naam' => 'Infrastructuur',
-            'beschrijving' => ''
+            'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
+            minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
+            id illo nobis qui.'
         ]);
         Thema::create([
             'naam' => 'Mobiliteit',
-            'beschrijving' => ''
+            'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
+            minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
+            id illo nobis qui.'
         ]);
 //        Thema::create([
 //            'naam'=>'',

@@ -20,8 +20,8 @@ Projecten
 			<div class="projectBeschrijving col-sm-8">
 				<p>{{ $project->beschrijving }}</p>
 				<p>Looptijd project:</p>
-				<p>van: {{ $project->publish_from->format('d-m-Y') }}</p>
-				<p>tot: {{ $project->publish_till->format('d-m-Y') }}</p>
+				<p>van: {{ $project->publish_from }}</p>
+				<p>tot: {{ $project->publish_till }}</p>
 			</div>
 		</div>
 

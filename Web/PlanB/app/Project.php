@@ -28,6 +28,15 @@ class Project extends Model implements SluggableInterface
 	{
 		return $this->attributes['publish_till'] = Carbon::createFromFormat('d/m/Y H:i:s', $date)->format('Y-m-d H:i:s');
 	}
+	public function getPublishFromAttribute($date)
+	{
+		return $this->attributes['publish_from'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
+	}
+
+	public function getPublishTillAttribute($date)
+	{
+		return $this->attributes['publish_till'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
+	}
 
 	public function gebruikers()
 	{

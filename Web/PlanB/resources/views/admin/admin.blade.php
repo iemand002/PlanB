@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{ $project->naam }}</td>
                     <td>verwijderen</td>
-                    <td>aanpassen</td>
+                    <td><a href="{{route('admin.project.edit',$project->slug)}}">Wijzigen</a></td>
                     <td><a href="{{ route('admin.milestone.create', $project->slug) }}">Milestone toevoegen</a></td>
                     <td></td>
                 </tr>
