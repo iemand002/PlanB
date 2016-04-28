@@ -7957,3 +7957,42 @@ footer {
   min-height: 55px; }
 
 /*# sourceMappingURL=app.css.map */
+
+.pRight {
+  float: right;
+}
+
+.pLeft {
+  float: left;
+}
+
+.project {
+  border: solid 1px black;
+  width: 49%;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.projectAfbeelding {
+
+  border: solid 1px black;
+
+  float: left;
+  width: 25%;
+}
+
+.projectBeschrijving {
+
+  border: solid 1px black;
+
+  float: left;
+  width: 40%;
+}
+
+.projectMilestones {
+  float: left;
+  border: solid 1px black;
+  width: 35%;
+  padding: 5px;
+}

@@ -30,6 +30,7 @@ class ProjectController extends Controller
      */
     public function show($project)
     {
-        return $project;
+        $milestones = $project->milestones;
+        return view('project.show', compact('project', 'milestones'));
     }
 }

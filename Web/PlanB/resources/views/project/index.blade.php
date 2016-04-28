@@ -4,15 +4,19 @@ Alle projecten
 @endsection
 @section('content')
 <div>
-	@foreach ($projecten as $project)
-	<h1>{{ $project->naam }}</h1>
-	<p>{{ $project->created_at }}</p>
-		<pre>
-			<?php print_r($project->toArray())?>
-		</pre>
-		<pre>
-			<?php print_r($project->milestones->toArray())?>
-		</pre>
-</div>
-@endforeach
+	@foreach ($projecten as $k => $project)
+	
+
+	@if ($k % 2 == 0)
+	<div class="project pLeft">
+		@else
+		<div class="project pRight">
+			@endif
+			<a href="{{ route('project.show', $project->slug) }}"><h1>{{ $project->naam }}</h1></a>
+			<p>{{ $project->beschrijving }}</p>
+			<p>Aangemaakt op: {{ date("d-m-Y", $project->created_at = time() ) }}</p>
+		</div>
+		@endforeach
+
+	</div>
 @endsection
