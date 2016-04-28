@@ -12,18 +12,19 @@ Projecten
 
 <h1>{{ $project->naam }}</h1>
 <div class="row">
-</div>
-<div class="row">
 	<div class="col-sm-8">
-		<div class="projectAfbeelding col-sm-4">
-			{!! Html::image('/img/'.$project->milestones[0]->afbeelding,'',['class'=>'projectImage']) !!}
+		<div class="row">
+			<div class="projectAfbeelding col-sm-4">
+				{!! Html::image('/img/'.$project->milestones[0]->afbeelding,'',['class'=>'projectImage']) !!}
+			</div>
+			<div class="projectBeschrijving col-sm-8">
+				<p>{{ $project->beschrijving }}</p>
+				<p>Looptijd project:</p>
+				<p>van: {{ $project->publish_from->format('d-m-Y') }}</p>
+				<p>tot: {{ $project->publish_till->format('d-m-Y') }}</p>
+			</div>
 		</div>
-		<div class="projectBeschrijving col-sm-8">
-			<p>{{ $project->beschrijving }}</p>
-			<p>Looptijd project:</p>
-			<p>van: {{ $project->publish_from->format('d-m-Y') }}</p>
-			<p>tot: {{ $project->publish_till->format('d-m-Y') }}</p>
-		</div>
+
 	</div>
 
 	<div class="col-sm-4">
