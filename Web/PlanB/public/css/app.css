@@ -7975,24 +7975,25 @@ footer {
 }
 
 .projectAfbeelding {
-
-  border: solid 1px black;
-
   float: left;
-  width: 25%;
+  width: 30%;
 }
 
 .projectBeschrijving {
-
-  border: solid 1px black;
-
+  padding-left: 5px;
+  padding-right: 5px;
   float: left;
-  width: 40%;
+  width: 45%;
 }
 
 .projectMilestones {
   float: left;
   border: solid 1px black;
-  width: 35%;
-  padding: 5px;
+  width: 25%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.projectImage {
+  width: 100%;
 }

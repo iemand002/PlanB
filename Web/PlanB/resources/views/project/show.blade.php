@@ -14,7 +14,7 @@
 
     <div>
         <div class="projectAfbeelding">
-            {!! Form::image('/img/'.$project->milestones[0]->afbeelding) !!}
+            {!! Html::image('/img/'.$project->milestones[0]->afbeelding,'',['class'=>'projectImage']) !!}
         </div>
         <div class="projectBeschrijving">
             <p>{{ $project->beschrijving }}</p>
@@ -27,9 +27,7 @@
             @foreach ($project->milestones as $milestone)
                 <h3>{{ $milestone->naam }}</h3>
                 <p>{{ $milestone->beschrijving }}</p>
-                <p>Looptijd milestone:</p>
-                <p>van: </p>
-                <p>tot: </p>
+                <p>Aangemakt op: {{ $milestone->created_at->format('d-m-Y') }}</p>
             @endforeach
         </div>
     </div>
