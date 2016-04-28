@@ -42,14 +42,7 @@ class MilestoneController extends Controller
     public function store(MilestoneRequest $request, $project)
     {
         $milestone = new Milestone();
-        $milestone->naam = $request->input('naam');
-        $milestone->locatie = $request->input('locatie');
-        $milestone->beschrijving = $request->input('beschrijving');
-        $milestone->afbeelding = $request->input('afbeelding');
-        $milestone->likes = 0;
-        $milestone->dislikes = 0;
-        $milestone->project_id = $project->id;
-        $milestone->save();
+        $this->saveMilestone($request, $project, $milestone);
 
         return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
     }
@@ -97,5 +90,22 @@ class MilestoneController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param MilestoneRequest $request
+     * @param $project
+     * @param $milestone
+     */
+    public function saveMilestone(MilestoneRequest $request, $project, $milestone)
+    {
+        $milestone->naam = $request->input('naam');
+        $milestone->locatie = $request->input('locatie');
+        $milestone->beschrijving = $request->input('beschrijving');
+        $milestone->afbeelding = $request->input('afbeelding');
+        $milestone->likes = 0;
+        $milestone->dislikes = 0;
+        $milestone->project_id = $project->id;
+        $milestone->save();
     }
 }

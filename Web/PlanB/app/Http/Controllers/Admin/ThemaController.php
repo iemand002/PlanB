@@ -35,61 +35,60 @@ class ThemaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(ThemaRequest $request)
     {
         $thema = new Thema();
-        $thema->naam = $request->input('naam');
-        $thema->beschrijving = $request->input('beschrijving');
-        $thema->save();
+        $this->saveThema($request, $thema);
 
         return redirect()->back()->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($thema)
     {
-        //
+        return view('admin.thema.edit', compact('thema'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ThemaRequest $request, $thema)
     {
-        //
+        $this->saveThema($request, $thema);
+        return redirect(route('admin'))->with(['success' => 'Thema "' . $thema->naam . '" is gewijzigd']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param ThemaRequest $request
+     * @param $thema
+     */
+    private function saveThema(ThemaRequest $request, $thema)
+    {
+        $thema->naam = $request->input('naam');
+        $thema->beschrijving = $request->input('beschrijving');
+        $thema->save();
     }
 }

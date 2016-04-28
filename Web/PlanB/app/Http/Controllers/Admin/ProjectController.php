@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProjectRequest;
+use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
+use App\Milestone;
 use App\Project;
 use App\Thema;
 use Illuminate\Http\Request;
@@ -42,15 +45,25 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectRequest $request)
+    public function store(ProjectStoreRequest $request)
     {
         $project = new Project();
-        $project->naam = $request->input('naam');
-        $project->beschrijving = $request->input('beschrijving');
+        $project->naam = $request->input('projectnaam');
+        $project->beschrijving = $request->input('projectbeschrijving');
         $project->thema_id = $request->input('thema_id');
         $project->publish_from = $request->input('publish_from');
         $project->publish_till = $request->input('publish_till');
         $project->save();
+        
+        $milestone=new Milestone();
+        $milestone->naam = $request->input('naam');
+        $milestone->locatie = $request->input('locatie');
+        $milestone->beschrijving = $request->input('beschrijving');
+        $milestone->afbeelding = $request->input('afbeelding');
+        $milestone->likes = 0;
+        $milestone->dislikes = 0;
+        $milestone->project_id = $project->id;
+        $milestone->save();
 
         return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
     }
@@ -84,7 +97,7 @@ class ProjectController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectUpdateRequest $request, $project)
     {
         //
     }
@@ -99,4 +112,5 @@ class ProjectController extends Controller
     {
         //
     }
+
 }

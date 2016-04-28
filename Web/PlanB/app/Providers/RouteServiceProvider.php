@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Milestone;
 use App\Project;
+use App\Thema;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -33,6 +34,9 @@ class RouteServiceProvider extends ServiceProvider
         });
         $router->bind('milestone',function($slug){
             return Milestone::where('slug',$slug)->first();
+        });
+        $router->bind('thema',function($id){
+            return Thema::findOrFail($id);
         });
     }
 

@@ -14,7 +14,8 @@
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">{{$submitbuttonText}}</button>
+        <button type="submit" class="btn btn-success">{{$submitbuttonText}}</button>
+        <a href="{{URL::previous()}}" type="button" class="btn btn-default">Annuleer</a>
     </div>
 </div>
 

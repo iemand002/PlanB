@@ -61,7 +61,7 @@
                 <tr>
                     <td>{{ $thema->naam }}</td>
                     <td>verwijderen</td>
-                    <td>aanpassen</td>
+                    <td><a href="{{route('admin.thema.edit',$thema->id)}}">Wijzigen</a></td>
                 </tr>
             @endforeach
         </table>

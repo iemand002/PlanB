@@ -1,13 +1,13 @@
 <div class="form-group">
     {!! Form::label('naam', trans("project.naam"), ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::text('naam',null,['id'=>'naam','class'=>'form-control','placeholder'=>trans("project.naam")]) !!}
+        {!! Form::text('projectnaam',null,['id'=>'naam','class'=>'form-control','placeholder'=>trans("project.naam")]) !!}
     </div>
 </div>
 <div class="form-group">
     {!! Form::label('beschrijving', trans("project.beschrijving"), ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::textarea('beschrijving',null,['id'=>'beschrijving','class'=>'form-control','placeholder'=>trans("project.beschrijving")]) !!}
+        {!! Form::textarea('projectbeschrijving',null,['id'=>'beschrijving','class'=>'form-control','placeholder'=>trans("project.beschrijving")]) !!}
     </div>
 </div>
 <div class="form-group">
@@ -28,12 +28,14 @@
         {!! Form::select('thema_id',$themas,null,['id'=>'thema_id','class'=>'form-control','placeholder'=>trans("project.thema-desc")]) !!}
     </div>
 </div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">{{$submitbuttonText}}</button>
+@if(isset($submitbuttonText))
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">{{$submitbuttonText}}</button>
+        </div>
     </div>
-</div>
-@section('js-sub')
+@endif
+@section('js-sub2')
     <script>
         $(function () {
             $('.datetimepicker').datetimepicker({

@@ -29,6 +29,7 @@ Route::group(['middleware' => ['web']], function () {
 	});
 	Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
 	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show']);
+	Route::get('project2/{project}',['as'=>'project.show2','uses'=>'ProjectController@show2']);
 	Route::group(['prefix' => 'admin'], function () {
 		Route::get('/', ['as' => 'admin', function(){
 			$projecten=\App\Project::all();
@@ -49,6 +50,8 @@ Route::group(['middleware' => ['web']], function () {
 		// Themas
 		Route::get('/thema/nieuw',['as'=>'admin.thema.create','uses'=>'Admin\ThemaController@create']);
 		Route::post('/thema/',['as'=>'admin.thema.store','uses'=>'Admin\ThemaController@store']);
+		Route::get('thema/{thema}/edit',['as'=>'admin.thema.edit','uses'=>'Admin\ThemaController@edit']);
+		Route::patch('thema/{thema}',['as'=>'admin.thema.update','uses'=>'Admin\ThemaController@update']);
 
 		// Vragen
 		Route::get('/project/{project}/{milestone}/vraag/nieuw',['as'=>'admin.vraag.create','uses'=>'Admin\VraagController@create']);
