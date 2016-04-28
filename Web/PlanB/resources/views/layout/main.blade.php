@@ -12,6 +12,7 @@
     <title>@yield('pagetitle') - {{trans('common.sitenaam')}}</title>
 
     {!! Html::style('css/app.css') !!}
+    {!! Html::style('css/kristof.css') !!}
     {{--    @if(Auth::user()->admin)--}}
     {!! Html::style('css/admin.css') !!}
     {{--@endif--}}

@@ -7956,19 +7956,14 @@ footer {
   /* Set the fixed height of the footer here */
   min-height: 55px; }
 
-/*# sourceMappingURL=app.css.map */
-
-
-
 .projectMilestones {
-  border: solid 1px black;
-}
+  border: solid 1px black; }
 
 .projectImage {
-  width: 100%;
-}
+  width: 100%; }
 
 .projectVragen {
   border: solid 1px black;
-  height: 150px;
-}
+  height: 150px; }
+
+/*# sourceMappingURL=app.css.map */
