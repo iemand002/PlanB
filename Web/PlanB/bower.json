@@ -13,6 +13,8 @@
     "jquery": "^2.2.3",
     "font-awesome": "^4.6.1",
     "datatables": "^1.10.11",
-    "datatables-plugins": "^1.10.11"
+    "datatables-plugins": "^1.10.11",
+    "tink-theme-stad": "^1.12.1",
+    "tink-core": "^1.12.4"
   }
 }

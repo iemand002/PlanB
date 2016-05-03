@@ -7,10 +7,16 @@ footer {
     background-color: $foot-inverse-bg;
     color: $foot-inverse-color;
   }
+  .pull-right {
+    //margin-right: -15px;
+    line-height: $foot-height;
+  }
 }
 
 .foot-logo {
   height: $foot-height;
+  //margin-left: -15px;
+  padding-right: 2px;
 }
 
 /* Sticky footer styles
@@ -23,6 +29,8 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: $foot-height+20;
+  position: static;
+  height: auto;
 }
 
 footer {
@@ -30,5 +38,5 @@ footer {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  min-height: $foot-height;
+  height: $foot-height;
 }

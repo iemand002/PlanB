@@ -1,7 +1,10 @@
-@import "custom/variables";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "custom/fonts-antwerpen";
 @import "bower_components/font-awesome/scss/font-awesome";
-@import "custom/navigatie";
-@import "custom/footer";
-@import "custom/project";
+@import "bower_components/tink-theme-stad/dist/stad/variables";
+@import "tink/variables";
+@import "bootstrap/variables";
+@import "custom/extra-variables";
+@import "bootstrap/bootstrap";
+@import "tink/tink";
+@import "custom/custom";
 

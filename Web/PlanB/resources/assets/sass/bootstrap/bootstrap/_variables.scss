@@ -373,8 +373,6 @@ $navbar-default-color:             #777 !default;
 $navbar-default-bg:                #f8f8f8 !default;
 $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
-$navbar-padding-top:               135px;
-
 // Navbar links
 $navbar-default-link-color:                #777 !default;
 $navbar-default-link-hover-color:          #333 !default;
@@ -394,8 +392,6 @@ $navbar-default-toggle-hover-bg:           #ddd !default;
 $navbar-default-toggle-icon-bar-bg:        #888 !default;
 $navbar-default-toggle-border-color:       #ddd !default;
 
-// Navbar logo
-$nav-logo-height:                          75px;
 
 //=== Inverted navbar
 // Reset inverted navbar basics
@@ -876,16 +872,3 @@ $dl-horizontal-offset:        $component-offset-horizontal !default;
 $dl-horizontal-breakpoint:    $grid-float-breakpoint !default;
 //** Horizontal line color.
 $hr-border:                   $gray-lighter !default;
-
-
-//== Footer
-//
-//##
-
-$foot-height:                 55px;
-$foot-default-bg:             $navbar-default-bg;
-$foot-default-color:          $navbar-default-color;
-
-// inverse
-$foot-inverse-bg:             $navbar-inverse-bg;
-$foot-inverse-color:          $navbar-inverse-color;
