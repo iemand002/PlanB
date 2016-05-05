@@ -1,7 +1,8 @@
 body {
-  padding-top: $navbar-padding-top + 20;
+  padding-top: $navbar-padding-top;
 }
-body#blank{
+
+body#blank {
   padding-top: 0;
 }
 
@@ -13,4 +14,8 @@ body#blank{
 
 .nav-logo {
   height: $nav-logo-height;
+}
+
+.navbar-brand {
+  padding: 1px 10px 0 0;
 }

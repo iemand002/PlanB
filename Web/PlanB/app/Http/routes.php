@@ -24,12 +24,12 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/', function () {
+	Route::get('/', ['as'=>'home',function () {
 		return view('welcome');
-	});
+	}]);
 	Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
-	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show']);
-	Route::get('project2/{project}',['as'=>'project.show2','uses'=>'ProjectController@show2']);
+	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show2']);
+	Route::get('project2/{project}',['as'=>'project.show2','uses'=>'ProjectController@show']);
 	Route::group(['prefix' => 'admin'], function () {
 		Route::get('/', ['as' => 'admin', function(){
 			$projecten=\App\Project::all();
