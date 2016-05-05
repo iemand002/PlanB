@@ -10,24 +10,28 @@
 
 @section('content')
     <h1>Projecten</h1>
-    <a href="{{ route('project.create') }}">Project toevoegen</a>
+    <a href="{{ route('project.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Project toevoegen</a>
     <div class="table-responsive">
         <table class="table table-hover">
             @foreach ($projecten as $project)
                 <tr>
                     <td>{{ $project->naam }}</td>
                     <td>verwijderen</td>
-                    <td><a href="{{route('admin.project.edit',$project->slug)}}">Wijzigen</a></td>
-                    <td><a href="{{ route('admin.milestone.create', $project->slug) }}">Milestone toevoegen</a></td>
+                    <td><a href="{{route('admin.project.edit',$project->slug)}}" class="btn btn-xs btn-warning"><i
+                                    class="fa fa-pencil"></i> Wijzigen</a></td>
+                    <td><a href="{{ route('admin.milestone.create', $project->slug) }}" class="btn btn-xs btn-success"><i
+                                    class="fa fa-plus"></i> Milestone toevoegen</a></td>
                     <td></td>
                 </tr>
                 @foreach($project->milestones as $milestone)
                     <tr>
                         <th>Milestone:</th>
                         <td>{{$milestone->naam}}</td>
-                        <td><a href="{{ route('admin.vraag.create', [$project->slug,$milestone->slug]) }}">Vraag
+                        <td><a href="{{ route('admin.vraag.create', [$project->slug,$milestone->slug]) }}"
+                               class="btn btn-xs btn"><i class="fa fa-question"></i> Vraag
                                 toevoegen</a></td>
-                        <td></td>
+                        <td><a href="{{route('admin.milestone.edit',[$project->slug,$milestone->slug])}}"
+                               class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Wijzig</a></td>
                         <td></td>
                     </tr>
                     @foreach($milestone->vragen as $vraag)
@@ -54,14 +58,15 @@
     </div>
 
     <h1>Themas</h1>
-    <a href="{{ route('admin.thema.create') }}">Thema Toevoegen</a>
+    <a href="{{ route('admin.thema.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Thema Toevoegen</a>
     <div class="table-responsive">
         <table class="table table-hover">
             @foreach ($themas as $thema)
                 <tr>
                     <td>{{ $thema->naam }}</td>
                     <td>verwijderen</td>
-                    <td><a href="{{route('admin.thema.edit',$thema->id)}}">Wijzigen</a></td>
+                    <td><a href="{{route('admin.thema.edit',$thema->id)}}" class="btn btn-xs btn-warning"><i
+                                    class="fa fa-pencil"></i> Wijzigen</a></td>
                 </tr>
             @endforeach
         </table>
