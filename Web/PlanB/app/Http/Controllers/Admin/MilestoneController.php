@@ -64,9 +64,9 @@ class MilestoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($project,$milestone)
     {
-        //
+        return view('admin.milestone.edit',compact('project','milestone'));
     }
 
     /**
@@ -76,9 +76,11 @@ class MilestoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MilestoneRequest $request, $project,$milestone)
     {
-        //
+        $this->saveMilestone($request,$project,$milestone);
+
+        return redirect(route('admin'))->with(['success'=>'Milestone "'.$milestone->naam.'" van project "'.$project->naam.'" is gewijzigd']);
     }
 
     /**
@@ -103,8 +105,6 @@ class MilestoneController extends Controller
         $milestone->locatie = $request->input('locatie');
         $milestone->beschrijving = $request->input('beschrijving');
         $milestone->afbeelding = $request->input('afbeelding');
-        $milestone->likes = 0;
-        $milestone->dislikes = 0;
         $milestone->project_id = $project->id;
         $milestone->save();
     }

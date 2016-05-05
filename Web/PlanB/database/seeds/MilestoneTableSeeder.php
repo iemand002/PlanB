@@ -18,7 +18,7 @@ class MilestoneTableSeeder extends Seeder
             'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
             minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
             id illo nobis qui.',
-            'afbeelding' => 'Grote_Markt_Antwerpen.jpg',
+            'afbeelding' => '/Grote_Markt_Antwerpen.jpg',
             'project_id' => 1,
             'likes' => 25,
             'dislikes' => 12
@@ -29,7 +29,7 @@ class MilestoneTableSeeder extends Seeder
             'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
             minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
             id illo nobis qui.',
-            'afbeelding' => 'Grote_Markt_Antwerpen.jpg',
+            'afbeelding' => '/Grote_Markt_Antwerpen.jpg',
             'project_id' => 1,
             'likes' => 50,
             'dislikes' => 9
@@ -40,7 +40,7 @@ class MilestoneTableSeeder extends Seeder
             'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
             minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
             id illo nobis qui.',
-            'afbeelding' => 'Grote_Markt_Antwerpen.jpg',
+            'afbeelding' => '/Grote_Markt_Antwerpen.jpg',
             'project_id' => 2,
             'likes' => 18,
             'dislikes' => 1

@@ -15,7 +15,8 @@
             <div class="row">
                 <div class="projectAfbeelding">
                     @if($project->milestones->count()!=0)
-                        {!! Html::image('/img/'.$project->milestones[0]->afbeelding,'',['class'=>'projectImage']) !!}
+                        <img src="{{(strpos($project->milestones[0]->afbeelding,'http')===0?'':'/img').$project->milestones[0]->afbeelding}}"
+                             alt="" class='projectImage'>
                     @else
                         {!! Html::image('/images/dummy.png','',['class'=>'projectImage']) !!}
                     @endif
