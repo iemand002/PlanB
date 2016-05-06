@@ -28,11 +28,20 @@ Projecten
                 <p>{{$project->milestones[0]->beschrijving}}</p>
             </div>
         </div>
-        <div class="row">
+<!--         <div class="row">
             <div class="projectVragen col-sm-12">
-                <h1>Vragen</h1>
+            <h1>Vragen</h1>
+
+                @foreach ($project->milestones[2]->vragen as $vraag)
+                    <h3>{{ $vraag->vraag }}</h3>
+                    @foreach ($project->milestones[2]->vragen[$vraag->id]->antwoorden as $antwoord)
+
+                        <p>{{ $antwoord->antwoord }}</p>
+
+                    @endforeach
+                @endforeach
             </div>
-        </div>
+        </div> -->
 
     </div>
 
