@@ -45,7 +45,7 @@ class Project extends Model implements SluggableInterface
 
 	public function milestones()
 	{
-		return $this->hasMany('App\Milestone');
+		return $this->hasMany('App\Milestone')->orderBy('id','desc');;
 	}
 
 	public function thema()
