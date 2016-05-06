@@ -29,6 +29,7 @@
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
         </div>
 <!--         <div class="row">
             <div class="projectVragen col-sm-12">
@@ -67,6 +68,29 @@
                     </div>
                 </div>
             </div>
+=======
+            <div class="row">
+                <div class="projectVragen col-sm-12">
+                    <h1>Vragen</h1>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Projectinfo</h2>
+                    <h3>{{$project->naam}}</h3>
+                    <div>{{$project->beschrijving}}</div>
+                    <div>
+                        <p>Looptijd project:</p>
+                        <p>van: {{ $project->publish_from }}</p>
+                        <p>tot: {{ $project->publish_till }}</p>
+                    </div>
+                </div>
+            </div>
+>>>>>>> parent of cd4eebd... Tink - Tijdlijn
             <div class="row">
                 <div class="projectMilestones col-sm-12">
                     <h2>Milestones</h2>
