@@ -1,7 +1,7 @@
 @extends('layout.blank')
 @section('pagetitle')
     {{trans('upload.file_manager')}}
-    @endsection
+@endsection
 @section('content')
     <div class="container-fluid">
 
@@ -10,22 +10,29 @@
             <div class="col-md-6">
                 <h3 class="pull-left">{{trans('upload.uploads')}} </h3>
                 <div class="pull-left">
-                    <ul class="breadcrumb">
+                    <div class="breadcrumbs" aria-label="breadcrumbs">
                         @foreach ($breadcrumbs as $path => $disp)
-                            <?php $link = route('upload.picker') . "?folder=" . $path;
-                            if (isset($_GET['CKEditor']))
-                                $link .= "&CKEditor=my-editor&CKEditorFuncNum=0";
-                            if (isset($_GET['id']))
-                                $link .= "&id=" . $_GET['id'];
-                            if (isset($_GET['count']))
-                                $link .= "&count=" . $_GET['count'];
-                            if (isset($_GET['add']))
-                                $link .= "&add=true";
-                            ?>
-                            <li><a href="{{$link}}">{{ $disp }}</a></li>
+                            <ol>
+                                <?php $link = route('upload.picker') . "?folder=" . $path;
+                                if (isset($_GET['CKEditor']))
+                                    $link .= "&CKEditor=my-editor&CKEditorFuncNum=0";
+                                if (isset($_GET['id']))
+                                    $link .= "&id=" . $_GET['id'];
+                                if (isset($_GET['count']))
+                                    $link .= "&count=" . $_GET['count'];
+                                if (isset($_GET['add']))
+                                    $link .= "&add=true";
+                                ?>
+                                <li><a href="{{$link}}">{{ $disp }}</a>
+                                    @endforeach
+                                    <ol>
+                                        <li class="is-current">{{ $folderName }}</li>
+                                    </ol>
+                                    @foreach($breadcrumbs as $path)
+                                </li>
+                            </ol>
                         @endforeach
-                        <li class="active">{{ $folderName }}</li>
-                    </ul>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 text-right">
@@ -45,87 +52,87 @@
 
                 @include('errors.list')
                 @include('partials.success')
-
-                <table id="uploads-table" class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th>{{trans('form.name')}}</th>
-                        <th>{{trans('form.type')}}</th>
-                        <th>{{trans('form.date')}}</th>
-                        <th>{{trans('form.Size')}}</th>
-                        <th data-sortable="false">{{trans('upload.actions')}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {{-- The Subfolders --}}
-                    @foreach ($subfolders as $path => $name)
+                <div class="table-responsive">
+                    <table id="uploads-table" class="table table-striped table-bordered">
+                        <thead>
                         <tr>
-                            <td>
-                                <?php $link = route('upload.picker') . "?folder=" . $path;
-                                if (isset($_GET['CKEditor']))
-                                    $link .= "&CKEditor=my-editor&CKEditorFuncNum=0";
-                                if (isset($_GET['id']))
-                                    $link .= "&id=" . $_GET['id'];
-                                if (isset($_GET['count']))
-                                    $link .= "&count=" . $_GET['count'];
-                                if (isset($_GET['add']))
-                                    $link .= "&add=true";
-                                ?>
-                                <a href="{{$link}}">
-                                    <i class="fa fa-folder fa-lg fa-fw"></i>
-                                    {{ $name }}
-                                </a>
-                            </td>
-                            <td>{{trans('form.folder')}}</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>
-                                <button type="button" class="btn btn-xs btn-danger"
-                                        onclick="delete_folder('{{ $name }}')">
-                                    <i class="fa fa-times-circle fa-lg"></i>
-                                    {{trans('common.delete')}}
-                                </button>
-                            </td>
+                            <th>{{trans('upload.name')}}</th>
+                            <th>{{trans('upload.type')}}</th>
+                            <th>{{trans('upload.date')}}</th>
+                            <th>{{trans('upload.Size')}}</th>
+                            <th data-sortable="false">{{trans('upload.actions')}}</th>
                         </tr>
-                    @endforeach
+                        </thead>
+                        <tbody>
 
-                    {{-- The Files --}}
-                    @foreach ($files as $file)
-                        <tr>
-                            <td>
-                                <a href="javascript:useFile('{{ $file['name'] }}')">
-                                    @if (is_image($file['mimeType']))
-                                        <i class="fa fa-file-image-o fa-lg fa-fw"></i>
-                                    @else
-                                        <i class="fa fa-file-o fa-lg fa-fw"></i>
-                                    @endif
-                                    {{ $file['name'] }}
-                                </a>
-                            </td>
-                            <td>{{ $file['mimeType'] or 'Unknown' }}</td>
-                            <td>{{ $file['modified']->format('j-M-y g:ia') }}</td>
-                            <td>{{ human_filesize($file['size']) }}</td>
-                            <td>
-                                <button type="button" class="btn btn-xs btn-danger"
-                                        onclick="delete_file('{{ $file['name'] }}')">
-                                    <i class="fa fa-times-circle fa-lg"></i>
-                                    {{trans('common.delete')}}
-                                </button>
-                                @if (is_image($file['mimeType']))
-                                    <button type="button" class="btn btn-xs btn-success"
-                                            onclick="preview_image('{{ $file['webPath'] }}')">
-                                        <i class="fa fa-eye fa-lg"></i>
-                                        {{trans('upload.preview')}}
+                        {{-- The Subfolders --}}
+                        @foreach ($subfolders as $path => $name)
+                            <tr>
+                                <td>
+                                    <?php $link = route('upload.picker') . "?folder=" . $path;
+                                    if (isset($_GET['CKEditor']))
+                                        $link .= "&CKEditor=my-editor&CKEditorFuncNum=0";
+                                    if (isset($_GET['id']))
+                                        $link .= "&id=" . $_GET['id'];
+                                    if (isset($_GET['count']))
+                                        $link .= "&count=" . $_GET['count'];
+                                    if (isset($_GET['add']))
+                                        $link .= "&add=true";
+                                    ?>
+                                    <a href="{{$link}}">
+                                        <i class="fa fa-folder fa-lg fa-fw"></i>
+                                        {{ $name }}
+                                    </a>
+                                </td>
+                                <td>{{trans('form.folder')}}</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-danger"
+                                            onclick="delete_folder('{{ $name }}')">
+                                        <i class="fa fa-times-circle fa-lg"></i>
+                                        {{trans('common.delete')}}
                                     </button>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
+                                </td>
+                            </tr>
+                        @endforeach
 
-                    </tbody>
-                </table>
+                        {{-- The Files --}}
+                        @foreach ($files as $file)
+                            <tr>
+                                <td>
+                                    <a href="javascript:useFile('{{ $file['name'] }}')">
+                                        @if (is_image($file['mimeType']))
+                                            <i class="fa fa-file-image-o fa-lg fa-fw"></i>
+                                        @else
+                                            <i class="fa fa-file-o fa-lg fa-fw"></i>
+                                        @endif
+                                        {{ $file['name'] }}
+                                    </a>
+                                </td>
+                                <td>{{ $file['mimeType'] or 'Unknown' }}</td>
+                                <td>{{ $file['modified']->format('j-M-y g:ia') }}</td>
+                                <td>{{ human_filesize($file['size']) }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-danger"
+                                            onclick="delete_file('{{ $file['name'] }}')">
+                                        <i class="fa fa-times-circle fa-lg"></i>
+                                        {{trans('common.delete')}}
+                                    </button>
+                                    @if (is_image($file['mimeType']))
+                                        <button type="button" class="btn btn-xs btn-success"
+                                                onclick="preview_image('{{ $file['webPath'] }}')">
+                                            <i class="fa fa-eye fa-lg"></i>
+                                            {{trans('upload.preview')}}
+                                        </button>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
 
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -159,7 +166,11 @@
 
         // Startup code
         $(function () {
-            $("#uploads-table").DataTable();
+            $("#uploads-table").DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Dutch.json"
+                }
+            });
         });
 
         function useFile(file) {
@@ -171,15 +182,15 @@
 
             if (window.opener || getUrlParam('CKEditor')) {
 
-                var folder = (getUrlParam('folder') != null) ? getUrlParam('folder') + (getUrlParam('folder')==='/'?'':'/') : '/';
+                var folder = (getUrlParam('folder') != null) ? getUrlParam('folder') + (getUrlParam('folder') === '/' ? '' : '/') : '/';
                 if (getUrlParam('CKEditor')) {
                     // use CKEditor 3.0 + integration method
                     if (window.opener) {
                         // Popup
-                        window.opener.CKEDITOR.tools.callFunction(getUrlParam('CKEditorFuncNum'), '/img'+folder+file);
+                        window.opener.CKEDITOR.tools.callFunction(getUrlParam('CKEditorFuncNum'), '/img' + folder + file);
                     } else {
                         // Modal (in iframe)
-                        parent.CKEDITOR.tools.callFunction(getUrlParam('CKEditorFuncNum'), '/img'+folder+file);
+                        parent.CKEDITOR.tools.callFunction(getUrlParam('CKEditorFuncNum'), '/img' + folder + file);
                         parent.CKEDITOR.tools.callFunction(getUrlParam('CKEditorCleanUpFuncNum'));
                     }
                 } else {

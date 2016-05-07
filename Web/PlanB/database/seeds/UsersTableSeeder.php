@@ -1,9 +1,9 @@
 <?php
 
-use App\Gebruiker;
+use App\User;
 use Illuminate\Database\Seeder;
 
-class GebruikersTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,22 +12,22 @@ class GebruikersTableSeeder extends Seeder
      */
     public function run()
     {
-        Gebruiker::create([
+        User::create([
             'email'=>'ruud.lamers@live.nl',
-            'wachtwoord'=>bcrypt('password'),
+            'password'=>bcrypt('password'),
             'admin'=>true,
-            'voornaam'=>'Ruud',
-            'familienaam'=>'Lamers',
+            'name'=>'Ruud',
+            'surname'=>'Lamers',
             'geslacht'=>'man',
             'geboortedatum'=>'1993-07-07'
         ]);
         
 //        Gebruiker::create([
 //            'email'=>'',
-//            'wachtwoord'=>bcrypt('password'),
+//            'password'=>bcrypt('password'),
 //            'admin'=>true,
-//            'voornaam'=>'',
-//            'familienaam'=>'',
+//            'name'=>'',
+//            'surname'=>'',
 //            'geslacht'=>'',
 //            'geboortedatum'=>''
 //        ]);

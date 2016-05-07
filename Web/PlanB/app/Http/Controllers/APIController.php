@@ -33,9 +33,9 @@ class APIController extends Controller
 
     function getProjecten()
     {
-        return json_encode(Project::with(array('thema' => function ($query) {
+        return json_encode(['projecten'=>Project::with(array('thema' => function ($query) {
             $query->select('id', 'naam');
-        }))->get());
+        }))->get()]);
     }
 
     function likeMilestone($milestoneid)

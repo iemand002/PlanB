@@ -27,14 +27,32 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/', ['as'=>'home',function () {
 		return view('welcome');
 	}]);
+
+	// Authentication Routes...
+	$this->get('login', ['as'=>'auth.login','uses'=>'Auth\AuthController@showLoginForm']);
+	$this->post('login', 'Auth\AuthController@login');
+	$this->get('logout', ['as'=>'auth.logout','uses'=>'Auth\AuthController@logout']);
+
+	// Registration Routes...
+	$this->get('register', ['as'=>'auth.register','uses'=>'Auth\AuthController@showRegistrationForm']);
+	$this->post('register', 'Auth\AuthController@register');
+
+	// Password Reset Routes...
+	$this->get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+	$this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+	$this->post('password/reset', 'Auth\PasswordController@reset');
+
+	Route::get('/home', 'HomeController@index');
+
 	Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
 	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show2']);
 	Route::get('project2/{project}',['as'=>'project.show2','uses'=>'ProjectController@show']);
-	Route::group(['prefix' => 'admin'], function () {
+
+	Route::group(['prefix' => 'admin','middleware'=>'auth.admin'], function () {
 		Route::get('/', ['as' => 'admin', function(){
 			$projecten=\App\Project::all();
 			$themas=\App\Thema::all();
-			$active='projecten';
+			$active='admin';
 			return view('admin.admin',compact('projecten','themas','active'));
 		}]);
 
@@ -68,6 +86,15 @@ Route::group(['middleware' => ['web']], function () {
 		Route::delete('/upload/file', 'Admin\UploadController@deleteFile');
 		Route::post('/upload/folder', 'Admin\UploadController@createFolder');
 		Route::delete('/upload/folder', 'Admin\UploadController@deleteFolder');
+
+		// users
+		Route::get('gebruikers',['as'=>'admin.user.index','uses'=>'Admin\UserController@index']);
+		Route::get('gebruiker/nieuw',['as'=>'admin.user.create','uses'=>'Admin\UserController@create']);
+		Route::post('gebruiker',['as'=>'admin.user.store','uses'=>'Admin\UserController@store']);
+		Route::get('gebruiker/{user}/edit',['as'=>'admin.user.edit','uses'=>'Admin\UserController@edit']);
+		Route::patch('gebruiker/{user}',['as'=>'admin.user.update','uses'=>'Admin\UserController@update']);
+		Route::post('reset-wachtwoord', ['as'=>'admin.reset-wachtwoord','uses'=>'Admin\UserController@sendResetLinkEmail']);
+
 	});
 	Route::group(['prefix' => 'api'], function () {
 		Route::get('project/{id}', 'APIController@getProject');
@@ -79,3 +106,4 @@ Route::group(['middleware' => ['web']], function () {
 	});
 
 });
+
