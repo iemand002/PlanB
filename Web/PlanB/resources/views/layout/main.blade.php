@@ -41,10 +41,12 @@
 
 @include('layout.footer')
 
+
 {!! Html::script('js/all.js') !!}
 {{--        @if(Auth::user()->admin)--}}
 {!! Html::script('js/admin.js') !!}
 {{--@endif--}}
+{!! Html::script('js/kristof.js') !!}
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {{--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>--}}
 @yield('js')
