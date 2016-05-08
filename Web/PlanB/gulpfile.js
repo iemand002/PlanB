@@ -37,7 +37,7 @@ elixir(function(mix) {
     mix.sass('app.scss');
     mix.sass('admin.scss');
 
-    mix.scripts(['jquery.min.js','bootstrap.min.js']);
+    mix.scripts(['jquery.min.js','bootstrap.min.js','vragen-beantwoorden.js']);
     mix.scripts(['moment.min.js','moment-nl.js','bootstrap-datetimepicker.min.js','datatables/jquery.dataTables.js','datatables/dataTables.bootstrap.js'],'public/js/admin.js');
     
     mix.browserSync({

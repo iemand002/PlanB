@@ -13,9 +13,9 @@
 
     {!! Html::style('css/app.css') !!}
     {!! Html::style('css/kristof.css') !!}
-    {{--    @if(Auth::user()->admin)--}}
+        @if(Auth::user()->admin)
     {!! Html::style('css/admin.css') !!}
-    {{--@endif--}}
+    @endif
     @yield('css')
 
             <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -43,9 +43,9 @@
 
 
 {!! Html::script('js/all.js') !!}
-{{--        @if(Auth::user()->admin)--}}
+        @if(Auth::user()->admin)
 {!! Html::script('js/admin.js') !!}
-{{--@endif--}}
+@endif
 {!! Html::script('js/kristof.js') !!}
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {{--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>--}}

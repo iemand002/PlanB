@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Requests\MilestoneRequest;
 use App\Milestone;
 
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -36,7 +38,7 @@ class MilestoneController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(MilestoneRequest $request, $project)
@@ -50,7 +52,7 @@ class MilestoneController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -61,32 +63,32 @@ class MilestoneController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($project,$milestone)
+    public function edit($project, $milestone)
     {
-        return view('admin.milestone.edit',compact('project','milestone'));
+        return view('admin.milestone.edit', compact('project', 'milestone'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MilestoneRequest $request, $project,$milestone)
+    public function update(MilestoneRequest $request, $project, $milestone)
     {
-        $this->saveMilestone($request,$project,$milestone);
+        $this->saveMilestone($request, $project, $milestone);
 
-        return redirect(route('admin'))->with(['success'=>'Milestone "'.$milestone->naam.'" van project "'.$project->naam.'" is gewijzigd']);
+        return redirect(route('admin'))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -106,6 +108,7 @@ class MilestoneController extends Controller
         $milestone->beschrijving = $request->input('beschrijving');
         $milestone->afbeelding = $request->input('afbeelding');
         $milestone->project_id = $project->id;
+        $milestone->user_id = Auth::id();
         $milestone->save();
     }
 }

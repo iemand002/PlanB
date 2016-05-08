@@ -8,6 +8,7 @@ use App\Http\Requests\ProjectUpdateRequest;
 use App\Milestone;
 use App\Project;
 use App\Thema;
+use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -51,6 +52,7 @@ class ProjectController extends Controller
         $project->naam = $request->input('projectnaam');
         $project->beschrijving = $request->input('projectbeschrijving');
         $project->thema_id = $request->input('thema_id');
+        $project->user_id = Auth::id();
         $project->publish_from = $request->input('publish_from');
         $project->publish_till = $request->input('publish_till');
         $project->save();
@@ -60,9 +62,8 @@ class ProjectController extends Controller
         $milestone->locatie = $request->input('locatie');
         $milestone->beschrijving = $request->input('beschrijving');
         $milestone->afbeelding = $request->input('afbeelding');
-        $milestone->likes = 0;
-        $milestone->dislikes = 0;
         $milestone->project_id = $project->id;
+        $milestone->user_id = Auth::id();
         $milestone->save();
 
         return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
@@ -105,6 +106,7 @@ class ProjectController extends Controller
         $project->naam = $request->input('projectnaam');
         $project->beschrijving = $request->input('projectbeschrijving');
         $project->thema_id = $request->input('thema_id');
+        $project->user_id = Auth::id();
         $project->publish_from = $request->input('publish_from');
         $project->publish_till = $request->input('publish_till');
         $project->save();

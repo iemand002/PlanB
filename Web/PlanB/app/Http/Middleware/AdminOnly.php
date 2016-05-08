@@ -18,6 +18,10 @@ class AdminOnly
         if (\Auth::check() && \Auth::user()->admin) {
             return $next($request);
         }
-        return abort(401, 'Unauthorized');
+        if ($request->ajax() || $request->wantsJson()) {
+            return response('Unauthorized.', 401);
+        } else {
+            return redirect()->guest('login');
+        }
     }
 }

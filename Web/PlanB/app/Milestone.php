@@ -27,4 +27,9 @@ class Milestone extends Model implements SluggableInterface
 		return $this->hasMany('App\Vraag');
 	}
 
+	public function creator()
+	{
+		return $this->hasOne('App\User');
+	}
+
 }

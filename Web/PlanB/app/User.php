@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Project', 'gevolgde_projecten');
     }
+
+    public function projectEigendom()
+    {
+        return $this->belongsToMany('App\Project');
+    }
+
+    public function milestoneEigendom()
+    {
+        return $this->belongsToMany('App\Milestone');
+    }
 }
