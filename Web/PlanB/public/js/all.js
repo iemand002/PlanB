@@ -29,24 +29,20 @@ var dynamicHeight = $("."+curr).innerHeight();
 setHeight();
 $( ".next" ).click(function(e) {
 	e.preventDefault();
-	if (curr > n-1){
-		curr++;
-		setHeight();
-		$( ".next" ).hide();
-	} else {
-		curr++;
-		setHeight();
-	}
+
+	curr++;
+	setHeight();
+	
 	$(".slide-container").css({
 		marginLeft: curr*-100 + "%"
 	});
 });
 
 function setHeight() {
-		curr++;
-		dynamicHeight = $("."+curr).innerHeight();
-		$(".slide-container").css({
-			height: dynamicHeight
-		});
-		curr--;
+	curr++;
+	dynamicHeight = $("."+curr).innerHeight();
+	$(".slide-container").css({
+		height: dynamicHeight
+	});
+	curr--;
 }

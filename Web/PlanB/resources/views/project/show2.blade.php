@@ -40,7 +40,7 @@ Projecten
                     <div class="slide {{$slideCounter}}">
                         <h3>{{ $vraag->vraag }}</h3>
                         @foreach ($vraag->antwoorden as $antwoord)
-                        <p>{{ $antwoord->antwoord }}</p>
+                        <button type="button" class="btn-success btn-block next">{{ $antwoord->antwoord }}</button>
                         @endforeach
 
                     </div>
@@ -57,11 +57,6 @@ Projecten
                         @endforeach
 
                     </div>
-                </div>
-
-
-                <div class="controls">
-                    <button type="button" class="btn-success btn-block next">Bevestig Vraag</button>
                 </div>
             </div>
 
