@@ -30,53 +30,81 @@ Projecten
         </div>
         <div class="row">
             <div class="projectVragen col-sm-12">
-                <h1>Vragen</h1>
-                @foreach ($project->milestones[0]->vragen as $vraag)
-                <h3>{{ $vraag->vraag }}</h3>
-                    @foreach ($vraag->antwoorden as $antwoord)
+                <?php $slideCounter = 0 ?>
+                <div class="slider">
+                  <h1>Vragen</h1>
+                  <div class="slide-container">
+
+                    @foreach ($project->milestones[0]->vragen as $vraag)
+                    <?php $slideCounter++ ?>
+                    <div class="slide {{$slideCounter}}">
+                        <h3>{{ $vraag->vraag }}</h3>
+                        @foreach ($vraag->antwoorden as $antwoord)
                         <p>{{ $antwoord->antwoord }}</p>
+                        @endforeach
+
+                    </div>
                     @endforeach
-                @endforeach
-            </div>
-        </div>
+                    <?php $slideCounter++ ?>
+                    <div class="slide {{$slideCounter}}">
+                        <h3>Resultaten</h3>
 
-    </div>
+                        @foreach ($project->milestones[0]->vragen as $vraag)
+                        <h3>{{ $vraag->vraag }}</h3>
+                        @foreach ($vraag->antwoorden as $antwoord)
+                        <p>{{ $antwoord->antwoord }}: {{ $antwoord->aantal_gekozen }}</p>
+                        @endforeach
+                        @endforeach
 
-    <div class="col-sm-4">
-        <div class="row">
-            <div class="col-sm-12">
-                <h2>Projectinfo</h2>
-                <h3>{{$project->naam}}</h3>
-                <div>{{$project->beschrijving}}</div>
-                <div>
-                    <p>Looptijd project:</p>
-                    <p>van: {{ $project->publish_from }}</p>
-                    <p>tot: {{ $project->publish_till }}</p>
+                    </div>
+                </div>
+
+
+                <div class="controls">
+                    <button type="button" class="btn-success btn-block next">Bevestig Vraag</button>
                 </div>
             </div>
+
         </div>
-        <div class="row">
-            <div class="projectMilestones col-sm-12">
-                <div class="timeline">
-                    <div class="timeline-label">Milestones</div>
-                    <ul class="timeline-list">
-                        @foreach ($project->milestones as $milestone)
-                        <li>
-                          <div class="timeline-list-label">
-                              <time datetime="{{ $milestone->created_at}}">{{ $milestone->created_at->format('d-m-Y') }}</time>
-                          </div>
-                          <div class="card">
-                            <div class="card-body">
-                                <h3>{{ $milestone->naam }}</h3>
-                                <p>{{ $milestone->beschrijving }}</p>
-                            </div>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
+    </div>
+
+</div>
+
+<div class="col-sm-4">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Projectinfo</h2>
+            <h3>{{$project->naam}}</h3>
+            <div>{{$project->beschrijving}}</div>
+            <div>
+                <p>Looptijd project:</p>
+                <p>van: {{ $project->publish_from }}</p>
+                <p>tot: {{ $project->publish_till }}</p>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="projectMilestones col-sm-12">
+            <div class="timeline">
+                <div class="timeline-label">Milestones</div>
+                <ul class="timeline-list">
+                    @foreach ($project->milestones as $milestone)
+                    <li>
+                      <div class="timeline-list-label">
+                          <time datetime="{{ $milestone->created_at}}">{{ $milestone->created_at->format('d-m-Y') }}</time>
+                      </div>
+                      <div class="card">
+                        <div class="card-body">
+                            <h3>{{ $milestone->naam }}</h3>
+                            <p>{{ $milestone->beschrijving }}</p>
+                        </div>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
 </div>
 </div>
 
