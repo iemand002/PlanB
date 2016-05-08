@@ -48,6 +48,9 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show2']);
 	Route::get('project2/{project}',['as'=>'project.show2','uses'=>'ProjectController@show']);
 
+	//antword updates
+	Route::get('/antwoord/{id}', ['as' => 'antwoord.edit', 'uses' => 'AntwoordController@edit']);
+
 	Route::group(['prefix' => 'admin','middleware'=>'auth.admin'], function () {
 		Route::get('/', ['as' => 'admin', function(){
 			$projecten=\App\Project::all();
@@ -95,12 +98,13 @@ Route::group(['middleware' => ['web']], function () {
 		Route::patch('gebruiker/{user}',['as'=>'admin.user.update','uses'=>'Admin\UserController@update']);
 		Route::post('reset-wachtwoord', ['as'=>'admin.reset-wachtwoord','uses'=>'Admin\UserController@sendResetLinkEmail']);
 
+
 	});
 	Route::group(['prefix' => 'api'], function () {
 		Route::get('project/{id}', 'APIController@getProject');
 		Route::get('themas', 'APIController@getAlleThemas');
-        Route::get('projecten','APIController@getProjecten');
-        Route::get('thema/{id}','APIController@getProjectenOpThema');
+		Route::get('projecten','APIController@getProjecten');
+		Route::get('thema/{id}','APIController@getProjectenOpThema');
 		Route::post('like/{milestone_id}', 'APIController@likeMilestone');
 		Route::post('dislike/{milestone_id}', 'APIController@dislikeMilestone');
 	});

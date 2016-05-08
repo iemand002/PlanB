@@ -30,25 +30,26 @@ Projecten
         </div>
         <div class="row">
             <div class="projectVragen col-sm-12">
+                @if($project->milestones[0]->vragen->count() == 0)
+                <h1>Er zijn nog geen vragen voor deze milestone</h1>
+                @else
                 <?php $slideCounter = 0 ?>
                 <div class="slider">
                   <h1>Vragen</h1>
                   <div class="slide-container">
-
                     @foreach ($project->milestones[0]->vragen as $vraag)
                     <?php $slideCounter++ ?>
                     <div class="slide {{$slideCounter}}">
                         <h3>{{ $vraag->vraag }}</h3>
                         @foreach ($vraag->antwoorden as $antwoord)
-                        <button type="button" class="btn-success btn-block next">{{ $antwoord->antwoord }}</button>
+                        <button type="button" class="btn-success btn-block next" id="{{$antwoord->id}}">{{ $antwoord->antwoord }}</button>
                         @endforeach
 
                     </div>
                     @endforeach
                     <?php $slideCounter++ ?>
                     <div class="slide {{$slideCounter}}">
-                        <h3>Resultaten</h3>
-
+                        <h3>Antwoorden</h3>
                         @foreach ($project->milestones[0]->vragen as $vraag)
                         <h3>{{ $vraag->vraag }}</h3>
                         @foreach ($vraag->antwoorden as $antwoord)
@@ -59,7 +60,7 @@ Projecten
                     </div>
                 </div>
             </div>
-
+            @endif
         </div>
     </div>
 

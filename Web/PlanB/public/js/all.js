@@ -26,13 +26,17 @@ $(".slide").css("width", 100/count + "%");
 // Conditional statement for clicking next
 var curr = 0;
 var dynamicHeight = $("."+curr).innerHeight();
+var id;
 setHeight();
 $( ".next" ).click(function(e) {
+	id = $(this).attr('id');
 	e.preventDefault();
+
+	$(".next").click(addOne(id));
 
 	curr++;
 	setHeight();
-	
+
 	$(".slide-container").css({
 		marginLeft: curr*-100 + "%"
 	});
@@ -45,4 +49,10 @@ function setHeight() {
 		height: dynamicHeight
 	});
 	curr--;
+}
+
+//addstuff
+function addOne(id) {
+  //maakt een GET request naar uw backend (laravel)
+	$.get('/antwoord/'+id);
 }
