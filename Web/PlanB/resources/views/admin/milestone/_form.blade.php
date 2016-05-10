@@ -41,7 +41,18 @@
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">{{$submitbuttonText}}</button>
+        <button type="submit" name="submit" value="sluit" class="btn btn-default">{{$submitbuttonText}} &amp; Sluiten
+        </button>
+        @if(isset($create))
+            <button type="submit" name="submit" value="nieuw" class="btn btn-default">{{$submitbuttonText}} &amp;
+                Nieuw
+            </button>
+        @endif
+        @if(isset($projectcreate))
+            <a href="{{route('admin.projecten.index')}}" class="btn btn-default">Annuleer</a>
+        @else
+            <a href="{{route('admin.project.show',$project->slug)}}" class="btn btn-default">Annuleer</a>
+        @endif
     </div>
 </div>
 @section('js-sub')

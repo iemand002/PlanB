@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Milestone;
 use App\Project;
 use App\Thema;
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -36,9 +37,9 @@ class APIController extends Controller
 //        return json_encode(['projecten'=>Project::with(array('thema' => function ($query) {
 //            $query->select('id', 'naam');
 //        }))->get()]);
-        return (['projecten'=>Project::with(array('thema' => function ($query) {
-            $query->select('id', 'naam');
-        }))->get()]);
+        return json_encode(['projecten'=>DB::table('projecten')
+            ->join('themas','projecten.thema_id','=','themas.id')
+        ->select('projecten.id','projecten.naam','projecten.beschrijving','projecten.publish_till','projecten.publish_from','projecten.slug','themas.naam as thema')->get()]);
     }
 
     function likeMilestone($milestoneid)

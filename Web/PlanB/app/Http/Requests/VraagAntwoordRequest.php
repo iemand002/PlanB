@@ -23,19 +23,28 @@ class VraagAntwoordRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules= [
             'vraag'=>'required|max:255',
-            'antwoord-1'=>'required|max:255',
-            'antwoord-2'=>'required|max:255',
         ];
+        for ($i=1;$i<=$this->request->get('count');$i++){
+            if(!$this->request->get('del-'.$i)) {
+                $rules['antwoord-' . $i] = 'required|max:255';
+            }
+        }
+        return $rules;
     }
 
     public function messages()
     {
-        return [
+        $messages= [
             'vraag.required'=>'Vul de vraag/stelling in die je wilt stellen',
-            'antwoord-1.required'=>trans('validation.required',['attribute'=>trans('vraag-antwoord.antwoord').' 1']),
-            'antwoord-2.required'=>trans('validation.required',['attribute'=>trans('vraag-antwoord.antwoord').' 2']),
         ];
+        for ($i=1;$i<=$this->request->get('count');$i++) {
+            if (!$this->request->get('del-' . $i)) {
+                $messages['antwoord-' . $i . '.required'] = trans('validation.required', ['attribute' => trans('vraag-antwoord.antwoord') . ' ' . $i]);
+            }
+        }
+
+        return $messages;
     }
 }

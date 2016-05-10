@@ -42,18 +42,18 @@ class VraagController extends Controller
     {
         $vraag = new Vraag();
 
-        $vraag->vraag = $request->input('vraag');
-        $vraag->milestone_id = $milestone->id;
-
-        $vraag->save();
+        $this->saveVraag($request, $milestone, $vraag);
         for ($i = 1; $i <= $request->input('count'); $i++) {
-            $antwoord = new Antwoord();
-            $antwoord->antwoord = $request->input('antwoord-' . $i);
-            $antwoord->vraag_id = $vraag->id;
-            $antwoord->save();
+            if ($request->input('del-' . $i) == false) {
+                $antwoord = new Antwoord();
+                $this->saveAntwoord($request, $i, $antwoord, $vraag);
+            }
         }
 
-        return redirect()->back()->with(['success' => 'Vraag "' . $vraag->vraag . '" is opgeslagen']);
+        if ($request->input('submit') == 'nieuw') {
+            return redirect()->back()->with(['success' => 'Vraag "' . $vraag->vraag . '" is opgeslagen']);
+        }
+        return redirect(route('admin.project.show', $project->slug))->with(['success' => 'Vraag "' . $vraag->vraag . '" is opgeslagen']);
     }
 
     /**
@@ -73,9 +73,9 @@ class VraagController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($project, $milestone, $vraag)
     {
-        //
+        return view('admin.vraag.edit', compact('project', 'milestone', 'vraag'));
     }
 
     /**
@@ -85,9 +85,22 @@ class VraagController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VraagAntwoordRequest $request, $project, $milestone, $vraag)
     {
-        //
+        $this->saveVraag($request, $milestone, $vraag);
+        for ($i = 1; $i <= $request->input('count'); $i++) {
+            if ($request->input('id-' . $i) != 0) {
+                $antwoord = Antwoord::find($request->input('id-' . $i));
+            } else {
+                $antwoord = new Antwoord();
+            }
+            if ($request->input('del-' . $i)) {
+                Antwoord::destroy($request->input('id-' . $i));
+            } else {
+                $this->saveAntwoord($request, $i, $antwoord, $vraag);
+            }
+        }
+        return redirect(route('admin', $project->slug))->with(['success' => 'Vraag "' . $vraag->vraag . '" is gewijzigd']);
     }
 
     /**
@@ -99,5 +112,31 @@ class VraagController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param VraagAntwoordRequest $request
+     * @param $milestone
+     * @param $vraag
+     */
+    private function saveVraag(VraagAntwoordRequest $request, $milestone, $vraag)
+    {
+        $vraag->vraag = $request->input('vraag');
+        $vraag->milestone_id = $milestone->id;
+
+        $vraag->save();
+    }
+
+    /**
+     * @param VraagAntwoordRequest $request
+     * @param $i
+     * @param $antwoord
+     * @param $vraag
+     */
+    private function saveAntwoord(VraagAntwoordRequest $request, $i, $antwoord, $vraag)
+    {
+        $antwoord->antwoord = $request->input('antwoord-' . $i);
+        $antwoord->vraag_id = $vraag->id;
+        $antwoord->save();
     }
 }

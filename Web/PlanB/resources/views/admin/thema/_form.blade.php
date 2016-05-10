@@ -14,8 +14,11 @@
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">{{$submitbuttonText}}</button>
-        <a href="{{route('admin')}}" type="button" class="btn btn-default">Annuleer</a>
+        <button type="submit" name="submit" value="sluit" class="btn btn-success">{{$submitbuttonText}} &amp; Sluiten</button>
+        @if(isset($create))
+        <button type="submit" name="submit" value="nieuw" class="btn btn-success">{{$submitbuttonText}} &amp; Nieuw</button>
+        @endif
+        <a href="{{route('admin.thema.index')}}" type="button" class="btn btn-default">Annuleer</a>
     </div>
 </div>
 

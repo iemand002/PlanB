@@ -19,7 +19,8 @@ class ThemaController extends Controller
      */
     public function index()
     {
-        //
+        $themas = Thema::all();
+        return view('admin.thema.index', compact('themas'));
     }
 
     /**
@@ -43,7 +44,10 @@ class ThemaController extends Controller
         $thema = new Thema();
         $this->saveThema($request, $thema);
 
-        return redirect()->back()->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
+        if ($request->input('submit') == 'nieuw') {
+            return redirect()->back()->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
+        }
+        return redirect(route('admin'))->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
     }
 
     /**

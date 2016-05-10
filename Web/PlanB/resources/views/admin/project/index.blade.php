@@ -10,7 +10,7 @@ Projecten
 
 @section('content')
 <h1>Projecten</h1>
-<a href="{{ route('project.create') }}">Project toevoegen</a>
+<a href="{{ route('admin.project.create') }}">Project toevoegen</a>
 @foreach ($projecten as $project)
 <div>
 	<h3>{{ $project->naam }}</h3>

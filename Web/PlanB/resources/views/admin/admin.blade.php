@@ -10,7 +10,7 @@
 
 @section('content')
     <h1>Projecten</h1>
-    <a href="{{ route('project.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Project toevoegen</a>
+    <a href="{{ route('admin.project.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Project toevoegen</a>
     <div class="table-responsive">
         <table class="table table-hover">
             @foreach ($projecten as $project)
@@ -39,13 +39,13 @@
                             <td></td>
                             <th>Vraag:</th>
                             <td>{{$vraag->vraag}}</td>
-                            <td></td>
+                            <td><a href="{{ route('admin.vraag.edit',[$project->slug,$milestone->slug,$vraag->id]) }}">wijzig</a></td>
                             <td></td>
                         </tr>
                         @foreach($vraag->antwoorden as $antwoord)
                             <tr>
                                 <td></td>
-                                <td></td>
+                                <td> </td>
                                 <th>Antwoord:</th>
                                 <td>{{$antwoord->antwoord}}</td>
                                 <td>{{$antwoord->aaantal_gekozen}}</td>

@@ -12,7 +12,7 @@
     <h1>Wijzig project</h1>
     <h2>Algemene gegevens</h2>
     {!! Form::model($project,['method'=>'PATCH','route'=>['admin.project.update',$project->slug],'class'=>"form-horizontal"]) !!}
-    @include('admin.project._form',['submitbuttonText'=>"Project wijzigen"])
+    @include('admin.project._form',['submitbuttonText'=>"Project wijzigen",'create'=>false])
     {!! Form::close() !!}
 @endsection
 

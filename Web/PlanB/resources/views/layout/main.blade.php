@@ -13,7 +13,7 @@
 
     {!! Html::style('css/app.css') !!}
     {!! Html::style('css/kristof.css') !!}
-        @if(Auth::user()->admin)
+    @if(Auth::check()&&Auth::user()->admin)
     {!! Html::style('css/admin.css') !!}
     @endif
     @yield('css')
@@ -43,7 +43,7 @@
 
 
 {!! Html::script('js/all.js') !!}
-        @if(Auth::user()->admin)
+@if(Auth::check()&&Auth::user()->admin)
 {!! Html::script('js/admin.js') !!}
 @endif
 {!! Html::script('js/kristof.js') !!}

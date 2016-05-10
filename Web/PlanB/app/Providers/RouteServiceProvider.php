@@ -6,6 +6,7 @@ use App\Milestone;
 use App\Project;
 use App\Thema;
 use App\User;
+use App\Vraag;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -41,6 +42,9 @@ class RouteServiceProvider extends ServiceProvider
         });
         $router->bind('user', function($id) {
             return User::find($id);
+        });
+        $router->bind('vraag', function($id) {
+            return Vraag::find($id);
         });
     }
 

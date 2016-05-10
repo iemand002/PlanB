@@ -66,7 +66,11 @@ class ProjectController extends Controller
         $milestone->user_id = Auth::id();
         $milestone->save();
 
-        return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
+        if($request->input('submit')=='nieuw'){
+            return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
+        }else {
+            return redirect(route('admin.projecten.index'))->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
+        }
     }
 
     /**
@@ -75,9 +79,9 @@ class ProjectController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($project)
     {
-        //
+        return view('admin.project.show',compact('project'));
     }
 
     /**

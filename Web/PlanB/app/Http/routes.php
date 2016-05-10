@@ -60,9 +60,10 @@ Route::group(['middleware' => ['web']], function () {
 		}]);
 
 		// Projecten
-		Route::get('/project/nieuw', ['as' => 'project.create', 'uses' => 'Admin\ProjectController@create']);
-		Route::get('/project/{project}', ['as' => 'admin.project.edit', 'uses' => 'Admin\ProjectController@edit']);
-		Route::post('/project', ['as' => 'project.store', 'uses' => 'Admin\ProjectController@store']);
+		Route::get('/project/nieuw', ['as' => 'admin.project.create', 'uses' => 'Admin\ProjectController@create']);
+		Route::get('/project/{project}/edit', ['as' => 'admin.project.edit', 'uses' => 'Admin\ProjectController@edit']);
+		Route::get('/project/{project}', ['as' => 'admin.project.show', 'uses' => 'Admin\ProjectController@show']);
+		Route::post('/project', ['as' => 'admin.project.store', 'uses' => 'Admin\ProjectController@store']);
 		Route::patch('/project/{project}', ['as' => 'admin.project.update', 'uses' => 'Admin\ProjectController@update']);
 		Route::get('/projecten', ['as' => 'admin.projecten.index', 'uses' => 'Admin\ProjectController@index']);
 
@@ -73,6 +74,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::patch('/project/{project}/{milestone}',['as'=>'admin.milestone.update','uses'=>'Admin\MilestoneController@update']);
 
 		// Themas
+		Route::get('/themas',['as'=>'admin.thema.index','uses'=>'Admin\ThemaController@index']);
 		Route::get('/thema/nieuw',['as'=>'admin.thema.create','uses'=>'Admin\ThemaController@create']);
 		Route::post('/thema/',['as'=>'admin.thema.store','uses'=>'Admin\ThemaController@store']);
 		Route::get('thema/{thema}/edit',['as'=>'admin.thema.edit','uses'=>'Admin\ThemaController@edit']);
@@ -80,7 +82,9 @@ Route::group(['middleware' => ['web']], function () {
 
 		// Vragen
 		Route::get('/project/{project}/{milestone}/vraag/nieuw',['as'=>'admin.vraag.create','uses'=>'Admin\VraagController@create']);
+		Route::get('/project/{project}/{milestone}/{vraag}/edit',['as'=>'admin.vraag.edit','uses'=>'Admin\VraagController@edit']);
 		Route::post('/project/{project}/{milestone}/vraag/',['as'=>'admin.vraag.store','uses'=>'Admin\VraagController@store']);
+		Route::patch('/project/{project}/{milestone}/{vraag}',['as'=>'admin.vraag.update','uses'=>'Admin\VraagController@update']);
 
 		// Upload routes
 		Route::get('/upload', ['as' => 'upload.index', 'uses' => 'Admin\UploadController@index']);

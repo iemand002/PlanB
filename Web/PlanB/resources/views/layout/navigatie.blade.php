@@ -33,6 +33,8 @@
                         <li class="dropdown@if(isset($active)&&$active=='admin') active@endif">
                             <a href="{{route('admin')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adminpanel <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+                                <li><a href="{{route('admin.projecten.index')}}">Projecten</a></li>
+                                <li><a href="{{route('admin.thema.index')}}">Themas</a></li>
                                 <li><a href="{{route('admin.user.index')}}">Gebruikers</a></li>
                             </ul>
                         </li>

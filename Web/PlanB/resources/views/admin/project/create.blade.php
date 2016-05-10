@@ -11,10 +11,10 @@
 @section('content')
     <h1>Nieuw project</h1>
     <h2>Algemene gegevens</h2>
-    {!! Form::open(['method'=>'POST','route'=>'project.store','class'=>"form-horizontal"]) !!}
+    {!! Form::open(['method'=>'POST','route'=>'admin.project.store','class'=>"form-horizontal"]) !!}
     @include('admin.project._form')
     <h2>Eerste milestone</h2>
-    @include('admin.milestone._form',['submitbuttonText'=>"Project opslaan"])
+    @include('admin.milestone._form',['submitbuttonText'=>"Project opslaan",'create'=>true,'projectcreate'=>true])
     {!! Form::close() !!}
 @endsection
 

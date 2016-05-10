@@ -46,7 +46,10 @@ class MilestoneController extends Controller
         $milestone = new Milestone();
         $this->saveMilestone($request, $project, $milestone);
 
-        return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
+        if($request->input('submit')=='nieuw'){
+            return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
+        }
+        return redirect(route('admin'))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
     }
 
     /**
