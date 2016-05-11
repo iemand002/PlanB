@@ -38,6 +38,20 @@
              id="image-preview">
     </div>
 </div>
+@if(!isset($projectcreate))
+<div class="form-group">
+    {!! Form::label('publish_from', 'Zichtbaar vanaf', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::text('publish_from',null,['id'=>'publish_from','class'=>'form-control datepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
+    </div>
+</div>
+@endif
+<div class="form-group">
+    {!! Form::label('publish_till', 'Vragen zichtbaar t/m', ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::text('publish_till',null,['id'=>'publish_till','class'=>'form-control datepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
+    </div>
+</div>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -67,5 +81,14 @@
                 return value;
             });
         }
+    </script>
+    <script>
+        $(function () {
+            $('.datepicker').datetimepicker({
+                locale: 'nl',
+                format: 'DD/MM/YYYY HH:mm:ss',
+                sideBySide: true
+            });
+        });
     </script>
 @endsection

@@ -39,7 +39,7 @@ class APIController extends Controller
 //        }))->get()]);
         return json_encode(['projecten'=>DB::table('projecten')
             ->join('themas','projecten.thema_id','=','themas.id')
-        ->select('projecten.id','projecten.naam','projecten.beschrijving','projecten.publish_till','projecten.publish_from','projecten.slug','themas.naam as thema')->get()]);
+        ->select('projecten.id','projecten.naam','projecten.beschrijving','themas.naam as thema','projecten.slug','projecten.publish_from','projecten.updated_at')->get()]);
     }
 
     function likeMilestone($milestoneid)

@@ -13,13 +13,13 @@
 <div class="form-group">
     {!! Form::label('publish_from', trans("project.publish.vanaf"), ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::text('publish_from',null,['id'=>'publish_from','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
+        {!! Form::text('project_publish_from',null,['id'=>'publish_from','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
     </div>
 </div>
 <div class="form-group">
     {!! Form::label('publish_till', trans("project.publish.tot"), ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::text('publish_till',null,['id'=>'publish_till','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
+        {!! Form::text('project_publish_till',null,['id'=>'publish_till','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
     </div>
 </div>
 <div class="form-group">

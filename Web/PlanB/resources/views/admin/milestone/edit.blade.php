@@ -10,7 +10,7 @@ Projecten
 
 @section('content')
 <h1>Milestone</h1>
-{!! Form::model($milestone,['method'=>'PATCH','route'=>['admin.milestone.update', $project->slug, $milestone->slug]]) !!}
+{!! Form::model($milestone,['method'=>'PATCH','route'=>['admin.milestone.update', $project->slug, $milestone->slug],'class'=>'form-horizontal']) !!}
 @include('admin.milestone._form',['submitbuttonText'=>"Milestone wijzigen"])
 {!! Form::close() !!}
 @endsection

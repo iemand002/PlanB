@@ -110,6 +110,8 @@ class MilestoneController extends Controller
         $milestone->locatie = $request->input('locatie');
         $milestone->beschrijving = $request->input('beschrijving');
         $milestone->afbeelding = $request->input('afbeelding');
+        $milestone->publish_from = $request->input('publish_from');
+        $milestone->publish_till = $request->input('publish_till');
         $milestone->project_id = $project->id;
         $milestone->user_id = Auth::id();
         $milestone->save();

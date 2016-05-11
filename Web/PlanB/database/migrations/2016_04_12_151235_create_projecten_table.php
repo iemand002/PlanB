@@ -10,8 +10,8 @@ class CreateProjectenTable extends Migration {
 		Schema::create('projecten', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('naam');
-			$table->datetime('publish_till');
-			$table->datetime('publish_from');
+			$table->timestamp('publish_till');
+			$table->timestamp('publish_from');
 			$table->timestamps();
 		});
 	}

@@ -64,7 +64,7 @@ class Project extends Model implements SluggableInterface
 
 	public function creator()
 	{
-		return $this->hasOne('App\User');
+		return $this->belongsTo('App\User','user_id');
 	}
 
 }

@@ -53,8 +53,8 @@ class ProjectController extends Controller
         $project->beschrijving = $request->input('projectbeschrijving');
         $project->thema_id = $request->input('thema_id');
         $project->user_id = Auth::id();
-        $project->publish_from = $request->input('publish_from');
-        $project->publish_till = $request->input('publish_till');
+        $project->publish_from = $request->input('project_publish_from');
+        $project->publish_till = $request->input('project_publish_till');
         $project->save();
 
         $milestone = new Milestone();
@@ -62,6 +62,8 @@ class ProjectController extends Controller
         $milestone->locatie = $request->input('locatie');
         $milestone->beschrijving = $request->input('beschrijving');
         $milestone->afbeelding = $request->input('afbeelding');
+//        $milestone->publish_from = $request->input('publish_from'); //auto fill
+        $milestone->publish_till = $request->input('publish_till');
         $milestone->project_id = $project->id;
         $milestone->user_id = Auth::id();
         $milestone->save();
@@ -95,6 +97,8 @@ class ProjectController extends Controller
         $themas = Thema::lists('naam', 'id');
         $project->projectnaam = $project->naam;
         $project->projectbeschrijving = $project->beschrijving;
+        $project->project_publish_from=$project->publish_from;
+        $project->project_publish_till=$project->publish_till;
         return view('admin.project.edit', compact('project', 'themas'));
     }
 
@@ -111,8 +115,8 @@ class ProjectController extends Controller
         $project->beschrijving = $request->input('projectbeschrijving');
         $project->thema_id = $request->input('thema_id');
         $project->user_id = Auth::id();
-        $project->publish_from = $request->input('publish_from');
-        $project->publish_till = $request->input('publish_till');
+        $project->publish_from = $request->input('project_publish_from');
+        $project->publish_till = $request->input('project_publish_till');
         $project->save();
 
         return redirect(route('admin'))->with(['success' => 'Project "' . $project->naam . '" is gewijzigd']);

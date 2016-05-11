@@ -19,7 +19,7 @@ class ProjectTableSeeder extends Seeder
             minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
             id illo nobis qui.',
             'thema_id' => 3,
-            'publish_from' => Carbon::now()->format('d/m/Y H:i:s'),
+            'publish_from' => Carbon::now()->addWeek(-1)->format('d/m/Y H:i:s'),
             'publish_till' => Carbon::now()->addMonth()->format('d/m/Y H:i:s'),
             'slug' => str_slug("Ringland")
         ]);

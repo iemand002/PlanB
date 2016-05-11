@@ -10,7 +10,7 @@ Projecten
 
 @section('content')
 <h1>Milestone</h1>
-{!! Form::open(['method'=>'POST','route'=>['admin.milestone.store', $project->slug]]) !!}
+{!! Form::open(['method'=>'POST','route'=>['admin.milestone.store', $project->slug],'class'=>'form-horizontal']) !!}
 @include('admin.milestone._form',['submitbuttonText'=>"Milestone opslaan",'create'=>true])
 {!! Form::close() !!}
 @endsection
