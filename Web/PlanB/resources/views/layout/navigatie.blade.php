@@ -38,8 +38,6 @@
                                 <li><a href="{{route('admin.user.index')}}">Gebruikers</a></li>
                             </ul>
                         </li>
-                        <li @if(isset($active)&&$active=='admin')class="active"@endif><a
-                                    href="{{route('admin')}}">Adminpanel</a></li>
                         <li @if(isset($active)&&$active=='filemanager')class="active"@endif><a
                                     href="{{route('upload.index')}}">Filemanager</a>
                         </li>

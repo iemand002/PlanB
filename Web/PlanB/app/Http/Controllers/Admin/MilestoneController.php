@@ -49,7 +49,7 @@ class MilestoneController extends Controller
         if($request->input('submit')=='nieuw'){
             return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         }
-        return redirect(route('admin'))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
+        return redirect(route('admin.project.show',$project->slug))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
     }
 
     /**
@@ -58,9 +58,9 @@ class MilestoneController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($project,$milestone)
     {
-        //
+        return view('admin.milestone.show',compact('project','milestone'));
     }
 
     /**
@@ -85,7 +85,7 @@ class MilestoneController extends Controller
     {
         $this->saveMilestone($request, $project, $milestone);
 
-        return redirect(route('admin'))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
+        return redirect(route('admin.project.show',[$project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
     }
 
     /**

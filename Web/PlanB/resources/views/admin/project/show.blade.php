@@ -7,7 +7,10 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <h1 class="pull-left">{{$project->naam}}</h1>
+            <h1 class="pull-left">{{$project->naam}}
+                <small><i class="fa fa-arrow-right"></i> <a href="{{route('admin.projecten.index')}}">Projecten</a>
+                </small>
+            </h1>
             <a href="{{ route('admin.project.edit',$project->slug) }}" class="btn btn-warning pull-right"><i
                         class="fa fa-pencil"></i>
                 Project wijzigen</a>
@@ -37,10 +40,11 @@
                 <table class="table table-hover" id="milestones-table">
                     <thead>
                     <tr>
+                        <th data-sortable="false">Afbeelding</th>
                         <th>Naam</th>
                         <th>Vragen</th>
-                        <th></th>
-                        <th></th>
+                        <th>Locatie</th>
+                        <th>Zichtbaar vanaf</th>
                         <th>Zichtbaar t/m</th>
                         <th>Gemaakt door</th>
                         <th data-sortable="false">Acties</th>
@@ -50,12 +54,17 @@
                     <tbody>
                     @foreach($project->milestones as $milestone)
                         <tr>
-                            <td>{{ $milestone->naam }}</td>
-                            <td>{{$milestone->vragen->count()}}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{!! Html::image('/img'.$milestone->afbeelding,'',['class'=>'img-responsive']) !!}</td>
                             <td>
-                                {{--{{$milestone->publish_till}}--}}
+                                <a href="{{route('admin.milestone.show',[$project->slug,$milestone->slug])}}">{{ $milestone->naam }}</a>
+                            </td>
+                            <td>
+                                <a href="{{route('admin.milestone.show',[$project->slug,$milestone->slug])}}#vragen">{{$milestone->vragen->count()}}</a>
+                            </td>
+                            <td>{{$milestone->locatie}}</td>
+                            <td>{{$milestone->publish_from}}</td>
+                            <td>
+                                {{$milestone->publish_till}}
                             </td>
                             <td>{{$milestone->creator!=null?$milestone->creator->fullname:'-'}}</td>
                             <td><a href="{{route('admin.milestone.edit',[$project->slug,$milestone->slug])}}"

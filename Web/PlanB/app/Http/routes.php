@@ -71,6 +71,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('/project/{project}/milestone/nieuw',['as'=>'admin.milestone.create','uses'=>'Admin\MilestoneController@create']);
 		Route::post('/project/{project}/milestone/',['as'=>'admin.milestone.store','uses'=>'Admin\MilestoneController@store']);
 		Route::get('/project/{project}/{milestone}/edit',['as'=>'admin.milestone.edit','uses'=>'Admin\MilestoneController@edit']);
+		Route::get('/project/{project}/{milestone}',['as'=>'admin.milestone.show','uses'=>'Admin\MilestoneController@show']);
 		Route::patch('/project/{project}/{milestone}',['as'=>'admin.milestone.update','uses'=>'Admin\MilestoneController@update']);
 
 		// Themas

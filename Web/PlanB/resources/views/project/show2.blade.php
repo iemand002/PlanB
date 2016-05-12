@@ -87,7 +87,7 @@ Projecten
                     @foreach ($project->milestones as $milestone)
                     <li>
                       <div class="timeline-list-label">
-                          <time datetime="{{ $milestone->created_at}}">{{ $milestone->created_at->format('d-m-Y') }}</time>
+                          <time datetime="{{ $milestone->publish_from_date_only}}">{{ $milestone->publish_from_date_only }}</time>
                       </div>
                       <div class="card">
                         <div class="card-body">

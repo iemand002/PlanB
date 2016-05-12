@@ -36,6 +36,11 @@ class Milestone extends Model implements SluggableInterface
         return $this->attributes['publish_from'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
     }
 
+    public function getPublishFromDateOnlyAttribute($date)
+    {
+        return $this->attributes['publish_from_date_only'] = Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['publish_from'])->format('d/m/Y');
+    }
+
     public function getPublishTillAttribute($date)
     {
         return $this->attributes['publish_till'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
