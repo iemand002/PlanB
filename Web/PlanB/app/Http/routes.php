@@ -45,8 +45,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/home', 'HomeController@index');
 
 	Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
-	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show2']);
-	Route::get('project2/{project}',['as'=>'project.show2','uses'=>'ProjectController@show']);
+	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show']);
 
 	//antword updates
 	Route::get('/antwoord/{id}', ['as' => 'antwoord.edit', 'uses' => 'AntwoordController@edit']);
