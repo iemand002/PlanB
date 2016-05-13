@@ -9820,10 +9820,21 @@ footer {
     margin-right: -15px;
     line-height: 50px; }
 
+@media (max-width: 992px) {
+  footer span.break, footer .pull-right {
+    padding-right: 10px; } }
+
 @media (max-width: 750px) {
-  footer span {
-    text-align: center;
-    float: left; } }
+  footer span.break, footer .pull-right {
+    display: block;
+    padding-top: 5px;
+    float: left !important; }
+  footer .foot-logo {
+    float: left;
+    padding-right: 5px; }
+  footer .pull-right {
+    line-height: 1.428571429;
+    padding-left: 5px; } }
 
 .foot-logo {
   height: 50px;
@@ -9904,5 +9915,8 @@ body#blank {
 
 .next:focus {
   box-shadow: none; }
+
+.table-responsive {
+  border: 0; }
 
 /*# sourceMappingURL=app.css.map */

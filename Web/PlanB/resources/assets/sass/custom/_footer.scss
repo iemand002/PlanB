@@ -12,6 +12,31 @@ footer {
     line-height: $foot-height;
   }
 }
+@media (max-width: $screen-md) {
+  footer{
+    span.break, .pull-right{
+      padding-right: 10px;
+    }
+  }
+}
+
+@media (max-width: $container-sm) {
+  footer {
+    span.break, .pull-right {
+      display: block;
+      padding-top: 5px;;
+      float: left !important;
+    }
+    .foot-logo{
+      float: left;
+      padding-right: 5px;
+    }
+    .pull-right{
+      line-height: $line-height-base;
+      padding-left: 5px;
+    }
+  }
+}
 
 .foot-logo {
   height: $foot-height;
@@ -38,5 +63,5 @@ footer {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: $foot-height;
+  min-height: $foot-height;
 }

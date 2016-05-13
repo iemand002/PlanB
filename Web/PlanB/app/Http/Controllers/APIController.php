@@ -14,12 +14,12 @@ class APIController extends Controller
 {
     function getProject($projectid)
     {
-        return json_encode(['milestone'=>Milestone::where('project_id', $projectid)->orderBy('created_at', 'desc')
+        return json_encode(['milestone'=>[Milestone::where('project_id', $projectid)->orderBy('created_at', 'desc')
 //            ->with('project')
 //            ->with(['project.thema' => function ($query) {
 //                $query->select('id','naam');
 //            }])
-            ->first()]);
+            ->first()]]);
 //        return (['milestone'=>Milestone::where('project_id', $projectid)->orderBy('created_at', 'desc')
 //            ->with('project')
 //            ->with(['project.thema' => function ($query) {

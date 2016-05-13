@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-responsive">
-                <table class="table table-hover" id="themas-table">
+                <table class="table table-hover table-striped table-bordered" id="themas-table">
                     <thead>
                     <tr>
                         <th>Naam</th>

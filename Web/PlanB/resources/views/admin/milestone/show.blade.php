@@ -41,7 +41,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-responsive">
-                <table class="table table-hover" id="milestones-table">
+                <table class="table table-striped table-bordered" id="milestones-table">
                     <thead>
                     <tr>
                         <th>Vraag</th>
