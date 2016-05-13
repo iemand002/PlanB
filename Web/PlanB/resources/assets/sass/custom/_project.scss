@@ -3,9 +3,10 @@
 }
 
 .projectImage {
-  width: 100%;
+  //width: 100%;
 }
 
 .projectVragen {
-  border: solid 1px black;
+  border-top: solid 1px $gray-lighter;
+  border-bottom: solid 1px $gray-lighter;
 }

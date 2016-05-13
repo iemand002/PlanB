@@ -14,7 +14,8 @@ class MilestoneTableSeeder extends Seeder
     {
         Milestone::create([
             'naam' => 'Bespreken Ringland',
-            'locatie' => 'ring antwerpen',
+            'locatie' => 'E19, Antwerpen, België',
+            'coordinaten'=>'51.212092,4.446369',
             'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
             minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
             id illo nobis qui.',
@@ -27,7 +28,8 @@ class MilestoneTableSeeder extends Seeder
         ]);
         Milestone::create([
             'naam' => 'Uittekenen plannen',
-            'locatie' => 'ring antwerpen',
+            'locatie' => 'E19, Antwerpen, België',
+            'coordinaten'=>'51.212092,4.446369',
             'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
             minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
             id illo nobis qui.',
@@ -40,7 +42,8 @@ class MilestoneTableSeeder extends Seeder
         ]);
         Milestone::create([
             'naam' => 'Uitkiezen bomen',
-            'locatie' => 'groenplaats',
+            'locatie' => 'Groenplaats, Antwerpen, België',
+            'coordinaten'=>'51.21941,4.401093',
             'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
             minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
             id illo nobis qui.',
@@ -54,6 +57,7 @@ class MilestoneTableSeeder extends Seeder
 //        Milestone::create([
 //            'naam'=>'',
 //            'locatie'=>'',
+//        'coordinaten'=>'',
 //            'beschrijving'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
 //        minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
 //            id illo nobis qui.',

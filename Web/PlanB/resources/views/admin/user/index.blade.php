@@ -19,43 +19,44 @@
 
     <div class="row">
         <div class="col-sm-12">
-
-            <table class="table table-striped table-bordered" id="users-table">
-                <thead>
-                <tr>
-                    <th>Naam &amp; Familienaam</th>
-                    <th>E-mail</th>
-                    <th>Admin?</th>
-                    <th>Geregistreerd op</th>
-                    <th data-sortable="false">Acties</th>
-                    <th data-sortable="false">&nbsp;</th>
-                    <th data-sortable="false">&nbsp;</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                {{-- The Subfolders --}}
-                @foreach ($users as $user)
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="users-table">
+                    <thead>
                     <tr>
-                        <td>{{$user->fullname}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->admin?'Ja':'Nee'}}</td>
-                        <td>{{$user->created_at}}</td>
-                        <td>
-                            <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-xs btn-warning"><i
-                                        class="fa fa-pencil"></i> Wijzigen</a>
-                        </td>
-                        <td>
-                            {!! reset_form($user->email) !!}
-                        </td>
-                        <td>
-                            <a href="" class="btn btn-xs btn-danger" disabled=""><i class="fa fa-trash"></i>
-                                Verwijder</a>
-                        </td>
+                        <th>Naam &amp; Familienaam</th>
+                        <th>E-mail</th>
+                        <th>Admin?</th>
+                        <th>Geregistreerd op</th>
+                        <th data-sortable="false">Acties</th>
+                        <th data-sortable="false">&nbsp;</th>
+                        <th data-sortable="false">&nbsp;</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+
+                    {{-- The Subfolders --}}
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{$user->fullname}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->admin?'Ja':'Nee'}}</td>
+                            <td>{{$user->created_at}}</td>
+                            <td>
+                                <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-xs btn-warning"><i
+                                            class="fa fa-pencil"></i> Wijzigen</a>
+                            </td>
+                            <td>
+                                {!! reset_form($user->email) !!}
+                            </td>
+                            <td>
+                                <a href="" class="btn btn-xs btn-danger" disabled=""><i class="fa fa-trash"></i>
+                                    Verwijder</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

@@ -9860,11 +9860,9 @@ body#blank {
 .navbar-brand {
   padding: 1px 10px 0 0; }
 
-.projectImage {
-  width: 100%; }
-
 .projectVragen {
-  border: solid 1px black; }
+  border-top: solid 1px #eaeaea;
+  border-bottom: solid 1px #eaeaea; }
 
 .bootstrap-datetimepicker-widget > .row {
   margin-right: 0; }

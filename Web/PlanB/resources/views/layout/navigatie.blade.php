@@ -44,7 +44,7 @@
                     @endif
                 @endif
             </ul>
-            <ul class="nav navbar-nav navbar-right text-right">
+            <ul class="nav navbar-nav navbar-right text-right hidden-xs">
                 @if(!Auth::check())
                     <li><a href="{{route('auth.login')}}">Login</a></li>
                     <li><a href="{{route('auth.register')}}">Registreer</a></li>

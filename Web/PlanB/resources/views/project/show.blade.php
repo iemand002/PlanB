@@ -16,9 +16,9 @@ Projecten
             <div class="projectAfbeelding">
                 @if($project->milestones->count()!=0)
                 <img src="{{(strpos($project->milestones[0]->afbeelding,'http')===0?'':'/img').$project->milestones[0]->afbeelding}}"
-                alt="" class='projectImage'>
+                alt="" class='projectImage img-responsive'>
                 @else
-                {!! Html::image('/images/dummy.png','',['class'=>'projectImage']) !!}
+                {!! Html::image('/images/dummy.png','',['class'=>'projectImage img-responsive']) !!}
                 @endif
             </div>
         </div>
