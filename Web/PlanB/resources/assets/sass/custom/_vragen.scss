@@ -3,11 +3,13 @@
   overflow: hidden;
   position: relative;
 }
+
 .slide-container {
   position: relative;
   overflow: hidden;
   transition: 0.5s;
 }
+
 .slide {
   position: relative;
   float: left;
@@ -15,4 +17,10 @@
 
 .next {
   float: right;
+}
+
+.next:focus {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
