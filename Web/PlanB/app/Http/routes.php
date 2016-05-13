@@ -47,8 +47,11 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
 	Route::get('project/{project}',['as'=>'project.show','uses'=>'ProjectController@show']);
 
-	//antword updates
+	//antwoord updates
 	Route::get('/antwoord/{id}', ['as' => 'antwoord.edit', 'uses' => 'AntwoordController@edit']);
+
+	//Maps
+	Route::get('/kaart', ['as' => 'map.show', 'uses' => 'MapController@show']);
 
 	Route::group(['prefix' => 'admin','middleware'=>'auth.admin'], function () {
 		Route::get('/', ['as' => 'admin', function(){

@@ -60,6 +60,7 @@ class ProjectController extends Controller
         $milestone = new Milestone();
         $milestone->naam = $request->input('naam');
         $milestone->locatie = $request->input('locatie');
+        $milestone->coordinaten = $request->input('coordinaten');
         $milestone->beschrijving = $request->input('beschrijving');
         $milestone->afbeelding = $request->input('afbeelding');
 //        $milestone->publish_from = $request->input('publish_from'); //auto fill

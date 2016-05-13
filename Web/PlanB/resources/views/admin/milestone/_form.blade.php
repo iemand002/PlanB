@@ -9,6 +9,7 @@
     {!! Form::label('naam', "Locatie", ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         {!! Form::text('locatie',null,['id'=>'locatie','class'=>'form-control','placeholder'=>"Rond welke locatie speelt deze milestone zich af?"]) !!}
+        {!! Form::hidden('coordinaten',null,['id'=>'location', 'data-geo'=>'location']) !!}
     </div>
 </div>
 
