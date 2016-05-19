@@ -9042,6 +9042,81 @@ a.badge:hover, a.badge:focus {
   color: #fff; }
 
 /**
+ * Navs
+ * --------------------------------------------------
+ * - Base class
+ * - Tabs
+ */
+/**
+ * Base class
+ */
+.nav-tabs {
+  background-color: rgba(0, 0, 0, 0.05);
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0; }
+  .nav-tabs:before, .nav-tabs:after {
+    content: " ";
+    display: table; }
+  .nav-tabs:after {
+    clear: both; }
+  .nav-tabs > li {
+    display: block;
+    position: relative; }
+    .nav-tabs > li > a {
+      background: transparent;
+      color: #219dc8;
+      display: block;
+      padding: 0.4285714286rem 0.8571428571rem ;
+      position: relative; }
+      .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+        background: rgba(0, 0, 0, 0.05);
+        color: #34b2de;
+        text-decoration: none; }
+    .nav-tabs > li.active {
+      margin-bottom: -1px;
+      border-bottom: 1px solid #fff; }
+      .nav-tabs > li.active > a {
+        background: #fff;
+        color: #333;
+        cursor: default;
+        font-weight: 600; }
+    .nav-tabs > li.disabled > a {
+      color: #bbb; }
+      .nav-tabs > li.disabled > a:hover, .nav-tabs > li.disabled > a:focus {
+        background-color: transparent;
+        color: #bbb;
+        cursor: not-allowed;
+        text-decoration: none; }
+
+/**
+ * Overrides
+ */
+.nav-lg > li > a {
+  padding: 0.8571428571rem 1.0714285714rem ; }
+
+/**
+ * Tabs
+ */
+.nav-tabs {
+  border-bottom: 1px solid #bbb;
+  border-top: 1px solid #bbb;
+  margin: 1.4285714286rem 0rem ; }
+  .nav-tabs > li {
+    float: left; }
+    .nav-tabs > li > a {
+      line-height: 1.428571429; }
+
+/**
+ * Tabbable tabs
+ */
+.tab-content > .tab-pane {
+  display: none; }
+
+.tab-content > .active {
+  display: block; }
+
+/**
  * Loader
  * --------------------------------------------------
  * To do: give the loader a decent fallback for IE9.

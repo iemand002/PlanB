@@ -31,8 +31,11 @@ class MilestoneController extends Controller
      */
     public function create($project)
     {
-
         return view('admin.milestone.create', compact('project'));
+    }
+    public function create2($project)
+    {
+        return view('admin.milestone.create2', compact('project'));
     }
 
     /**
