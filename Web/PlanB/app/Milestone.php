@@ -71,4 +71,9 @@ class Milestone extends Model implements SluggableInterface
         return $this->belongsTo('App\User');
     }
 
+    public function sections()
+    {
+        return $this->hasMany('App\Section');
+    }
+
 }
