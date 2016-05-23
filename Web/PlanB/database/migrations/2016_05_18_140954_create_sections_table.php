@@ -10,7 +10,8 @@ class CreateSectionsTable extends Migration {
 		Schema::create('sections', function(Blueprint $table) {
 			$table->increments('id');
 			$table->text('tekst')->nullable();
-			$table->string('url');
+			$table->string('url')->nullable();
+			$table->integer('position');
 			$table->integer('type_id')->unsigned();
 			$table->integer('milestone_id')->unsigned();
 			$table->timestamps();
