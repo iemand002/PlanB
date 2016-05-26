@@ -11,7 +11,7 @@ Projecten
 @section('content')
 
 <div class="row">
-    <div class="col-sm-8">
+<div class="col-sm-5">
         <div class="row">
             <div class="projectAfbeelding">
                 @if($project->milestones->count()!=0)
@@ -35,25 +35,24 @@ Projecten
                 @else
                 <?php $slideCounter = 0 ?>
                 <div class="slider">
-                  <h1>Vragen</h1>
+                  <h3>Vragen</h3>
                   <div class="slide-container">
                     @foreach ($project->milestones[0]->vragen as $vraag)
                     <?php $slideCounter++ ?>
                     <div class="slide {{$slideCounter}}">
-                        <h3>{{ $vraag->vraag }}</h3>
+                        <p class="smallTitles">{{ $vraag->vraag }}</p>
                         @foreach ($vraag->antwoorden as $antwoord)
                         <button type="button" class="btn-success btn-block next" id="{{$antwoord->id}}">{{ $antwoord->antwoord }}</button>
                         @endforeach
-
                     </div>
                     @endforeach
                     <?php $slideCounter++ ?>
                     <div class="slide {{$slideCounter}}">
                         <h3>Antwoorden</h3>
                         @foreach ($project->milestones[0]->vragen as $vraag)
-                        <h3>{{ $vraag->vraag }}</h3>
+                        <p class="mediumTitles">{{ $vraag->vraag }}</p>
                         @foreach ($vraag->antwoorden as $antwoord)
-                        <p>{{ $antwoord->antwoord }}: {{ $antwoord->aantal_gekozen }}</p>
+                        <p>{{ $antwoord->antwoord }}: <span class="answer">{{ $antwoord->aantal_gekozen }}</span></p>
                         @endforeach
                         @endforeach
 
@@ -66,7 +65,7 @@ Projecten
 
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-7">
     <div class="row">
         <div class="col-sm-12">
             <h2>Projectinfo</h2>
@@ -91,8 +90,8 @@ Projecten
                       </div>
                       <div class="card">
                         <div class="card-body">
-                            <h3>{{ $milestone->naam }}</h3>
-                            <p>{{ $milestone->beschrijving }}</p>
+                            <p class="milestoneTitles">{{ $milestone->naam }}</p>
+                            <p>{{ str_limit($milestone->beschrijving, $limit = 120, $end = '...')}}</p>
                         </div>
                     </div>
                 </li>
