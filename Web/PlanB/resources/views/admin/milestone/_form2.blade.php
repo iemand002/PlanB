@@ -66,10 +66,87 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="template">
-        {!! Form::hidden('count',0,['id'=>'count']) !!}
+        {!! Form::hidden('count',isset($milestone)?$milestone->sections->count():0,['id'=>'count']) !!}
         {!! Form::hidden('positions',null,['id'=>'positions']) !!}
         <div class="row">
             <div class="col-md-8 box" id="sortable">
+                @if(isset($milestone))
+                    <?php $nr=1?>
+                    @foreach($milestone->sections as $section)
+                        <?php switch ($section->type_id){
+                        case 1:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
+                                {!! Form::hidden('type_id-'.$nr,1) !!}
+                                {!! Form::hidden('id-'.$nr,$section->id) !!}
+                                <div class="col-md-11">
+                                    <h1 contenteditable="true" data-tekst-id="{{$nr}}">{{$section->tekst}}</h1>
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                        <?php break;
+                        case 2:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,null,['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr]) !!}
+                                {!! Form::hidden('type_id-'.$nr,2) !!}
+                                {!! Form::hidden('id-'.$nr,$section->id) !!}
+                                <div class="col-md-11">
+                                    <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}" data-url-id="{{$nr}}">
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                        <?php break;
+                        case 3:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr]) !!}
+                                {!! Form::hidden('type_id-'.$nr,3) !!}
+                                {!! Form::hidden('id-'.$nr,$section->id) !!}
+                                <div class="col-md-4">
+                                    <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}" data-url-id="{{$nr}}">
+                                </div>
+                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
+                                    {!! $section->tekst!!}
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                        <?php break;
+                        case 4:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr]) !!}
+                                {!! Form::hidden('type_id-'.$nr,4) !!}
+                                {!! Form::hidden('id-'.$nr,$section->id) !!}
+                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
+                                    {!! $section->tekst!!}
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}" data-url-id="{{$nr}}">
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                        <?php break;
+                        case 5:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
+                                {!! Form::hidden('type_id-'.$nr,5) !!}
+                                {!! Form::hidden('id-'.$nr,$section->id) !!}
+                                <div class="col-md-11" contenteditable="true" data-tekst-id="{{$nr}}">
+                                    {!! $section->tekst!!}
+                                </div>
+                            </div>
+                        <?php break;
+                        }
+                            $nr++; ?>
+                    @endforeach
+                @endif
             </div>
             <div class="col-md-4 box">
                 <div class="list-group" id="draggable">
@@ -77,6 +154,7 @@
                         {!! Form::hidden('tekst','Header h1',['id'=>'tekst']) !!}
                         {!! Form::hidden('url',null,['id'=>'url']) !!}
                         {!! Form::hidden('type_id',1) !!}
+                        {!! Form::hidden('id',0) !!}
                         <div class="col-md-11">
                             <h1>Header h1</h1>
                         </div>
@@ -85,6 +163,7 @@
                         {!! Form::hidden('tekst',null,['id'=>'tekst']) !!}
                         {!! Form::hidden('url',"/images/dummy.png",['id'=>'url']) !!}
                         {!! Form::hidden('type_id',2) !!}
+                        {!! Form::hidden('id',0) !!}
                         <div class="col-md-11">
                             <img src="/images/dummy.png">
                         </div>
@@ -97,6 +176,7 @@
                             sapiente tempora vel.",['id'=>'tekst']) !!}
                         {!! Form::hidden('url',"/images/dummy.png",['id'=>'url']) !!}
                         {!! Form::hidden('type_id',3) !!}
+                        {!! Form::hidden('id',0) !!}
                         <div class="col-md-4">
                             <img src="/images/dummy.png">
                         </div>
@@ -116,6 +196,7 @@
                             sapiente tempora vel.",['id'=>'tekst']) !!}
                         {!! Form::hidden('url',"/images/dummy.png",['id'=>'url']) !!}
                         {!! Form::hidden('type_id',4) !!}
+                        {!! Form::hidden('id',0) !!}
                         <div class="col-md-7">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi cum cupiditate
                             doloribus
@@ -135,6 +216,7 @@
                             sapiente tempora vel.",['id'=>'tekst']) !!}
                         {!! Form::hidden('url',null,['id'=>'url']) !!}
                         {!! Form::hidden('type_id',5) !!}
+                        {!! Form::hidden('id',0) !!}
                         <div class="col-md-11">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi cum cupiditate
                             doloribus
@@ -226,37 +308,40 @@
                 var type = item.children[2];
                 type.name = "type_id-" + count;
                 type.id = "type_id-" + count;
+                var id = item.children[3];
+                id.name = "id-" + count;
+                id.id = "id-" + count;
                 var input;
                 switch (type.value) {
                     case "1":
-                        input = item.children[3].children[0];
+                        input = item.children[4].children[0];
                         input.contentEditable = true;
                         input.setAttribute('data-tekst-id', count);
                         break;
                     case "2":
-                        input = item.children[3].children[0];
+                        input = item.children[4].children[0];
                         input.setAttribute('data-url-id', count);
                         input.id = 'img-' + count;
                         break;
                     case "3":
-                        input = item.children[4];
-                        input.contentEditable = true;
-                        input.setAttribute('data-tekst-id', count);
-                        input = item.children[3].children[0];
-                        input.setAttribute('data-url-id', count);
-                        input.id = 'img-' + count;
-                        break;
-                    case "4":
-                        input = item.children[3];
+                        input = item.children[5];
                         input.contentEditable = true;
                         input.setAttribute('data-tekst-id', count);
                         input = item.children[4].children[0];
                         input.setAttribute('data-url-id', count);
                         input.id = 'img-' + count;
+                        break;
+                    case "4":
+                        input = item.children[4];
+                        input.contentEditable = true;
+                        input.setAttribute('data-tekst-id', count);
+                        input = item.children[5].children[0];
+                        input.setAttribute('data-url-id', count);
+                        input.id = 'img-' + count;
 
                         break;
                     case "5":
-                        input = item.children[3];
+                        input = item.children[4];
                         input.contentEditable = true;
                         input.setAttribute('data-tekst-id', count);
                         break;
@@ -304,6 +389,7 @@
                 }
             }
         });
+        sortable.save();
         $('#sortable').on('blur', '[contenteditable]', function () {
             var id = $(this)[0].getAttribute('data-tekst-id');
             $("#tekst-" + id).val($(this)[0].innerHTML);

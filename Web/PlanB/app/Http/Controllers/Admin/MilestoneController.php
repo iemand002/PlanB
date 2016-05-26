@@ -73,19 +73,14 @@ class MilestoneController extends Controller
         for ($i = 1; $i <= $request->input('count'); $i++) {
             if (!$request->has('del-' . $i)) {
                 $section = new Section();
-                $section->tekst = $request->input('tekst-' . $i);
-                $section->url = $request->input('url-' . $i);
-                $section->position = array_search($i, $positions);
-                $section->type_id = $request->input('type_id-' . $i);
-                $section->milestone_id = $milestone->id;
-                $section->save();
+                $this->saveSection($request, $i, $section, $positions, $milestone);
             }
 
         }
         if ($request->input('submit') == 'nieuw') {
             return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         } elseif ($request->input('submit') == 'opslaan') {
-            return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen', 'milestone' => $milestone]);
+            return redirect(route('admin.milestone.edit2',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         }
         return redirect(route('admin.project.show', $project->slug))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
     }
@@ -111,6 +106,10 @@ class MilestoneController extends Controller
     {
         return view('admin.milestone.edit', compact('project', 'milestone'));
     }
+    public function edit2($project, $milestone)
+    {
+        return view('admin.milestone.edit2', compact('project', 'milestone'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -123,6 +122,27 @@ class MilestoneController extends Controller
     {
         $this->saveMilestone($request, $project, $milestone);
 
+        return redirect(route('admin.project.show', [$project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
+    }
+    public function update2(MilestoneRequest $request, $project, $milestone)
+    {
+        $this->saveMilestone($request, $project, $milestone);
+
+        $positions = explode(',', $request->input('positions'));
+        for ($i = 1; $i <= $request->input('count'); $i++) {
+            if (!$request->has('del-' . $i)) {
+                if ($request->input('id-'.$i)===0) {
+                    $section = new Section();
+                }else{
+                    $section=Section::find($request->input('id-'.$i));
+                }
+                $this->saveSection($request, $i, $section, $positions, $milestone);
+            }
+
+        }
+        if ($request->input('submit') == 'opslaan') {
+            return redirect(route('admin.milestone.edit2',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is gewijzigd']);
+        }
         return redirect(route('admin.project.show', [$project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
     }
 
@@ -154,5 +174,22 @@ class MilestoneController extends Controller
         $milestone->project_id = $project->id;
         $milestone->user_id = Auth::id();
         $milestone->save();
+    }
+
+    /**
+     * @param MilestoneRequest $request
+     * @param $i
+     * @param $section
+     * @param $positions
+     * @param $milestone
+     */
+    private function saveSection(MilestoneRequest $request, $i, $section, $positions, $milestone)
+    {
+        $section->tekst = $request->input('tekst-' . $i);
+        $section->url = $request->input('url-' . $i);
+        $section->position = array_search($i, $positions);
+        $section->type_id = $request->input('type_id-' . $i);
+        $section->milestone_id = $milestone->id;
+        $section->save();
     }
 }

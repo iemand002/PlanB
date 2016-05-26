@@ -68,12 +68,12 @@ class Milestone extends Model implements SluggableInterface
 
     public function creator()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id');
     }
 
     public function sections()
     {
-        return $this->hasMany('App\Section');
+        return $this->hasMany('App\Section')->orderBy('position');
     }
 
 }
