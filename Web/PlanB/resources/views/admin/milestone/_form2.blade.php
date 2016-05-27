@@ -66,88 +66,181 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="template">
-        {!! Form::hidden('count',isset($milestone)?$milestone->sections->count():0,['id'=>'count']) !!}
+        {!! Form::hidden('count',(old('count'))?old('count'):isset($milestone)?$milestone->sections->count():0,['id'=>'count']) !!}
         {!! Form::hidden('positions',null,['id'=>'positions']) !!}
         <div class="row">
             <div class="col-md-8 box" id="sortable">
-                @if(isset($milestone))
-                    <?php $nr=1?>
+                @if(old('count'))
+                    @for($nr=1;$nr<=old('count');$nr++)
+                        @unless(old('del-'.$nr))
+                            <?php switch (old('type_id-' . $nr)){
+                            case 1:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
+                                {!! Form::hidden('type_id-'.$nr,1) !!}
+                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
+                                <div class="col-md-11">
+                                    <h1 contenteditable="true" data-tekst-id="{{$nr}}">{{old('tekst-'.$nr)}}</h1>
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                            <?php break;
+                            case 2:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,null,['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,old('url-'.$nr),['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
+                                {!! Form::hidden('type_id-'.$nr,2) !!}
+                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
+                                <div class="col-md-11">
+                                    <img src="{{((strpos(old('url-'.$nr),'http')===0||strpos(old('url-'.$nr),'/images')===0)?'':'/img').old('url-'.$nr)}}"
+                                         data-url-id="{{$nr}}" id="img-{{$nr}}">
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                            <?php break;
+                            case 3:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,old('url-'.$nr),['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
+                                {!! Form::hidden('type_id-'.$nr,3) !!}
+                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
+                                <div class="col-md-4">
+                                    <img src="{{((strpos(old('url-'.$nr),'http')===0||strpos(old('url-'.$nr),'/images')===0)?'':'/img').old('url-'.$nr)}}"
+                                         data-url-id="{{$nr}}" id="img-{{$nr}}">
+                                </div>
+                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
+                                    {!! old('tekst-'.$nr)!!}
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                            <?php break;
+                            case 4:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,old('url-'.$nr),['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
+                                {!! Form::hidden('type_id-'.$nr,4) !!}
+                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
+                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
+                                    {!! old('tekst-'.$nr)!!}
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{{((strpos(old('url-'.$nr),'http')===0||strpos(old('url-'.$nr),'/images')===0)?'':'/img').old('url-'.$nr)}}"
+                                         data-url-id="{{$nr}}" id="img-{{$nr}}">
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                            <?php break;
+                            case 5:?>
+                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
+                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
+                                {!! Form::hidden('type_id-'.$nr,5) !!}
+                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
+                                <div class="col-md-11" contenteditable="true" data-tekst-id="{{$nr}}">
+                                    {!! old('tekst-'.$nr)!!}
+                                </div>
+                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                            </div>
+                            <?php break;
+                            } ?>
+                        @endunless
+                    @endfor
+                @elseif(isset($milestone))
+                    <?php $nr = 1?>
                     @foreach($milestone->sections as $section)
                         <?php switch ($section->type_id){
                         case 1:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
-                                {!! Form::hidden('type_id-'.$nr,1) !!}
-                                {!! Form::hidden('id-'.$nr,$section->id) !!}
-                                <div class="col-md-11">
-                                    <h1 contenteditable="true" data-tekst-id="{{$nr}}">{{$section->tekst}}</h1>
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                            {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
+                            {!! Form::hidden('type_id-'.$nr,1) !!}
+                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
+                            <div class="col-md-11">
+                                <h1 contenteditable="true" data-tekst-id="{{$nr}}">{{$section->tekst}}</h1>
                             </div>
+                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        </div>
                         <?php break;
                         case 2:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,null,['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr]) !!}
-                                {!! Form::hidden('type_id-'.$nr,2) !!}
-                                {!! Form::hidden('id-'.$nr,$section->id) !!}
-                                <div class="col-md-11">
-                                    <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}" data-url-id="{{$nr}}">
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                            {!! Form::hidden('tekst-'.$nr,null,['id'=>'tekst-'.$nr]) !!}
+                            {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
+                            {!! Form::hidden('type_id-'.$nr,2) !!}
+                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
+                            <div class="col-md-11">
+                                <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}"
+                                     data-url-id="{{$nr}}" id="img-{{$nr}}">
                             </div>
+                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        </div>
                         <?php break;
                         case 3:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr]) !!}
-                                {!! Form::hidden('type_id-'.$nr,3) !!}
-                                {!! Form::hidden('id-'.$nr,$section->id) !!}
-                                <div class="col-md-4">
-                                    <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}" data-url-id="{{$nr}}">
-                                </div>
-                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
-                                    {!! $section->tekst!!}
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                            {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
+                            {!! Form::hidden('type_id-'.$nr,3) !!}
+                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
+                            <div class="col-md-4">
+                                <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}"
+                                     data-url-id="{{$nr}}" id="img-{{$nr}}">
                             </div>
+                            <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
+                                {!! $section->tekst!!}
+                            </div>
+                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        </div>
                         <?php break;
                         case 4:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr]) !!}
-                                {!! Form::hidden('type_id-'.$nr,4) !!}
-                                {!! Form::hidden('id-'.$nr,$section->id) !!}
-                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
-                                    {!! $section->tekst!!}
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}" data-url-id="{{$nr}}">
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                            {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
+                            {!! Form::hidden('type_id-'.$nr,4) !!}
+                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
+                            <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
+                                {!! $section->tekst!!}
                             </div>
+                            <div class="col-md-4">
+                                <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}"
+                                     data-url-id="{{$nr}}" id="img-{{$nr}}">
+                            </div>
+                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        </div>
                         <?php break;
                         case 5:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
-                                {!! Form::hidden('type_id-'.$nr,5) !!}
-                                {!! Form::hidden('id-'.$nr,$section->id) !!}
-                                <div class="col-md-11" contenteditable="true" data-tekst-id="{{$nr}}">
-                                    {!! $section->tekst!!}
-                                </div>
+                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
+                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
+                            {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
+                            {!! Form::hidden('type_id-'.$nr,5) !!}
+                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
+                            <div class="col-md-11" contenteditable="true" data-tekst-id="{{$nr}}">
+                                {!! $section->tekst!!}
                             </div>
+                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
+                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
+                        </div>
                         <?php break;
                         }
-                            $nr++; ?>
+                        $nr++; ?>
                     @endforeach
                 @endif
             </div>
+            @if(old('count'))
+                @for($i=1;$i<=old('count');$i++)
+                    @if(old('del-'.$i))
+                        {!! Form::hidden('del-'.$i,old('del-'.$i)) !!}
+                    @endif
+                @endfor
+            @endif
             <div class="col-md-4 box">
                 <div class="list-group" id="draggable">
                     <div class="row list-group-item">
@@ -267,7 +360,7 @@
     {{--<script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>--}}
     <script src="/js/Sortable.min.js"></script>
     <script>
-        var count = 1;
+        var count = document.getElementById('count').value;
         Sortable.create(document.getElementById('draggable'), {
             sort: false,
             group: {
@@ -353,10 +446,11 @@
             },
             onFilter: function (evt) {
                 var id = evt.item.getAttribute('data-id');
+                console.log(id);
                 var inpHidden = document.createElement('input');
                 inpHidden.setAttribute('type', 'hidden');
                 inpHidden.setAttribute('name', 'del-' + id);
-                inpHidden.setAttribute('value', true);
+                inpHidden.setAttribute('value', document.getElementById('id-' + id).value);
                 document.getElementById('template').appendChild(inpHidden);
                 evt.item.parentNode.removeChild(evt.item);
                 sortable.save();
