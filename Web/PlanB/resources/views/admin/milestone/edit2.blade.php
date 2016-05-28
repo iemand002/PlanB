@@ -9,7 +9,7 @@ Projecten
 @endsection
 
 @section('content')
-{!! Form::model($milestone,['method'=>'PATCH','route'=>['admin.milestone.update2', $project->slug, $milestone->slug],'class'=>'form-horizontal']) !!}
+{!! Form::model($milestone,['method'=>'PATCH','route'=>['admin.milestone.update', $project->slug, $milestone->slug],'class'=>'form-horizontal']) !!}
 <div class="row">
     <div class="col-xs-12">
         <h1 class="pull-left">Milestone</h1>

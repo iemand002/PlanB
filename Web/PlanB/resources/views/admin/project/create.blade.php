@@ -14,7 +14,11 @@
     {!! Form::open(['method'=>'POST','route'=>'admin.project.store','class'=>"form-horizontal"]) !!}
     @include('admin.project._form')
     <h2>Eerste milestone</h2>
-    @include('admin.milestone._form',['submitbuttonText'=>"Project opslaan",'create'=>true,'projectcreate'=>true])
+    @include('admin.milestone._form2',['projectcreate'=>true])
+    <button type="submit" name="submit" value="sluit" class="btn btn-default">Opslaan &amp;
+        Sluiten
+    </button>
+    <a href="{{route('admin.projecten.index')}}" class="btn btn-default">Annuleer</a>
     {!! Form::close() !!}
 @endsection
 
