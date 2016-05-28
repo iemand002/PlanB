@@ -66,7 +66,8 @@
         </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="template">
-        {!! Form::hidden('count',(old('count'))?old('count'):isset($milestone)?$milestone->sections->count():0,['id'=>'count']) !!}
+        {!! Form::hidden('count',isset($milestone)?$milestone->sections->count():0,['id'=>'count']) !!}
+        {!! Form::hidden('count-real',isset($milestone)?$milestone->sections->count():0,['id'=>'count-real']) !!}
         {!! Form::hidden('positions',null,['id'=>'positions']) !!}
         <div class="row">
             <div class="col-md-8 box" id="sortable">
@@ -75,78 +76,19 @@
                         @unless(old('del-'.$nr))
                             <?php switch (old('type_id-' . $nr)){
                             case 1:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
-                                {!! Form::hidden('type_id-'.$nr,1) !!}
-                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
-                                <div class="col-md-11">
-                                    <h1 contenteditable="true" data-tekst-id="{{$nr}}">{{old('tekst-'.$nr)}}</h1>
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                            </div>
+                            @include('admin.section.h1',['nr'=>$nr,'id'=>old('id-'.$nr),'tekst'=>old('tekst-'.$nr)])
                             <?php break;
                             case 2:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,null,['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,old('url-'.$nr),['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
-                                {!! Form::hidden('type_id-'.$nr,2) !!}
-                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
-                                <div class="col-md-11">
-                                    <img src="{{((strpos(old('url-'.$nr),'http')===0||strpos(old('url-'.$nr),'/images')===0)?'':'/img').old('url-'.$nr)}}"
-                                         data-url-id="{{$nr}}" id="img-{{$nr}}">
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                            </div>
+                            @include('admin.section.afbeelding',['nr'=>$nr,'id'=>old('id-'.$nr),'url'=>old('url-'.$nr)])
                             <?php break;
                             case 3:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,old('url-'.$nr),['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
-                                {!! Form::hidden('type_id-'.$nr,3) !!}
-                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
-                                <div class="col-md-4">
-                                    <img src="{{((strpos(old('url-'.$nr),'http')===0||strpos(old('url-'.$nr),'/images')===0)?'':'/img').old('url-'.$nr)}}"
-                                         data-url-id="{{$nr}}" id="img-{{$nr}}">
-                                </div>
-                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
-                                    {!! old('tekst-'.$nr)!!}
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                            </div>
+                            @include('admin.section.lart',['nr'=>$nr,'id'=>old('id-'.$nr),'url'=>old('url-'.$nr),'tekst'=>old('tekst-'.$nr)])
                             <?php break;
                             case 4:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,old('url-'.$nr),['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
-                                {!! Form::hidden('type_id-'.$nr,4) !!}
-                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
-                                <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
-                                    {!! old('tekst-'.$nr)!!}
-                                </div>
-                                <div class="col-md-4">
-                                    <img src="{{((strpos(old('url-'.$nr),'http')===0||strpos(old('url-'.$nr),'/images')===0)?'':'/img').old('url-'.$nr)}}"
-                                         data-url-id="{{$nr}}" id="img-{{$nr}}">
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                            </div>
+                            @include('admin.section.ralt',['nr'=>$nr,'id'=>old('id-'.$nr),'url'=>old('url-'.$nr),'tekst'=>old('tekst-'.$nr)])
                             <?php break;
                             case 5:?>
-                            <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                                {!! Form::hidden('tekst-'.$nr,old('tekst-'.$nr),['id'=>'tekst-'.$nr]) !!}
-                                {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
-                                {!! Form::hidden('type_id-'.$nr,5) !!}
-                                {!! Form::hidden('id-'.$nr,old('id-'.$nr),['id'=>'id-'.$nr]) !!}
-                                <div class="col-md-11" contenteditable="true" data-tekst-id="{{$nr}}">
-                                    {!! old('tekst-'.$nr)!!}
-                                </div>
-                                <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                                <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                            </div>
+                            @include('admin.section.tekst',['nr'=>$nr,'id'=>old('id-'.$nr),'tekst'=>old('tekst-'.$nr)])
                             <?php break;
                             } ?>
                         @endunless
@@ -156,78 +98,19 @@
                     @foreach($milestone->sections as $section)
                         <?php switch ($section->type_id){
                         case 1:?>
-                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                            {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
-                            {!! Form::hidden('type_id-'.$nr,1) !!}
-                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
-                            <div class="col-md-11">
-                                <h1 contenteditable="true" data-tekst-id="{{$nr}}">{{$section->tekst}}</h1>
-                            </div>
-                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                        </div>
+                        @include('admin.section.h1',['nr'=>$nr,'id'=>$section->id,'tekst'=>$section->tekst])
                         <?php break;
                         case 2:?>
-                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                            {!! Form::hidden('tekst-'.$nr,null,['id'=>'tekst-'.$nr]) !!}
-                            {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
-                            {!! Form::hidden('type_id-'.$nr,2) !!}
-                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
-                            <div class="col-md-11">
-                                <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}"
-                                     data-url-id="{{$nr}}" id="img-{{$nr}}">
-                            </div>
-                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                        </div>
+                        @include('admin.section.afbeelding',['nr'=>$nr,'id'=>$section->id,'url'=>$section->url])
                         <?php break;
                         case 3:?>
-                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                            {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
-                            {!! Form::hidden('type_id-'.$nr,3) !!}
-                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
-                            <div class="col-md-4">
-                                <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}"
-                                     data-url-id="{{$nr}}" id="img-{{$nr}}">
-                            </div>
-                            <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
-                                {!! $section->tekst!!}
-                            </div>
-                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                        </div>
+                        @include('admin.section.lart',['nr'=>$nr,'id'=>$section->id,'url'=>$section->url,'tekst'=>$section->tekst])
                         <?php break;
                         case 4:?>
-                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                            {!! Form::hidden('url-'.$nr,$section->url,['id'=>'url-'.$nr,'onchange'=>"handle_image_change('$nr')"]) !!}
-                            {!! Form::hidden('type_id-'.$nr,4) !!}
-                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
-                            <div class="col-md-7" contenteditable="true" data-tekst-id="{{$nr}}">
-                                {!! $section->tekst!!}
-                            </div>
-                            <div class="col-md-4">
-                                <img src="{{((strpos($section->url,'http')===0||strpos($section->url,'/images')===0)?'':'/img').$section->url}}"
-                                     data-url-id="{{$nr}}" id="img-{{$nr}}">
-                            </div>
-                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                        </div>
+                        @include('admin.section.ralt',['nr'=>$nr,'id'=>$section->id,'url'=>$section->url,'tekst'=>$section->tekst])
                         <?php break;
                         case 5:?>
-                        <div class="row list-group-item" draggable="false" data-id="{{$nr}}">
-                            {!! Form::hidden('tekst-'.$nr,$section->tekst,['id'=>'tekst-'.$nr]) !!}
-                            {!! Form::hidden('url-'.$nr,null,['id'=>'url-'.$nr]) !!}
-                            {!! Form::hidden('type_id-'.$nr,5) !!}
-                            {!! Form::hidden('id-'.$nr,$section->id,['id'=>'id-'.$nr]) !!}
-                            <div class="col-md-11" contenteditable="true" data-tekst-id="{{$nr}}">
-                                {!! $section->tekst!!}
-                            </div>
-                            <i class="fa fa-arrows pull-right" aria-hidden="true"></i>
-                            <i class="fa fa-times pull-right tink-text-red" aria-hidden="true"></i>
-                        </div>
+                        @include('admin.section.tekst',['nr'=>$nr,'id'=>$section->id,'tekst'=>$section->tekst])
                         <?php break;
                         }
                         $nr++; ?>
@@ -323,30 +206,6 @@
         </div>
     </div>
 </div>
-@section('css-sub')
-    <style>
-        .box {
-            border: 1px solid lightgray;
-        }
-
-        #sortable {
-            min-height: 100px;
-            min-height: calc(100vh - 200px);
-        }
-
-        #sortable, #draggable {
-            list-style-type: none;
-        }
-
-        .sortable-ghost {
-            opacity: .3;
-        }
-
-        [contenteditable]:focus {
-            outline: 1px solid gray;
-        }
-    </style>
-@endsection
 @section('js-sub')
     <script>
         $(function () {
@@ -357,10 +216,11 @@
             });
         });
     </script>
-    {{--<script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>--}}
-    <script src="/js/Sortable.min.js"></script>
     <script>
+        {{-- count how many blocks are added (count) and how many are left (countReal) --}}
         var count = document.getElementById('count').value;
+        var countReal = document.getElementById('count-real').value;
+        {{-- setup drag/drop/sort zones--}}
         Sortable.create(document.getElementById('draggable'), {
             sort: false,
             group: {
@@ -380,9 +240,12 @@
             filter: '.fa-times',
             animation: 0,
             onAdd: function (evt) {
-                console.log(evt);
+                {{-- if item is dragged from dragzone (#draggable) and dropped in sort zone (#sortable), add/change some attributes --}}
+                count++;
+                countReal++;
                 var item = evt.item;
                 item.setAttribute('data-id', count);
+                {{-- move and delete icon --}}
                 var move = document.createElement('i');
                 move.setAttribute('class', 'fa fa-arrows pull-right');
                 move.setAttribute('aria-hidden', 'true');
@@ -391,6 +254,7 @@
                 del.setAttribute('class', 'fa fa-times pull-right tink-text-red');
                 del.setAttribute('aria-hidden', 'true');
                 item.appendChild(del);
+                {{-- change the ids and name attributes to be unique --}}
                 var tekst = item.children[0];
                 tekst.name = "tekst-" + count;
                 tekst.id = "tekst-" + count;
@@ -406,6 +270,7 @@
                 id.id = "id-" + count;
                 var input;
                 switch (type.value) {
+                    {{-- make the right items inline editable --}}
                     case "1":
                         input = item.children[4].children[0];
                         input.contentEditable = true;
@@ -431,7 +296,6 @@
                         input = item.children[5].children[0];
                         input.setAttribute('data-url-id', count);
                         input.id = 'img-' + count;
-
                         break;
                     case "5":
                         input = item.children[4];
@@ -440,62 +304,59 @@
                         break;
                 }
                 document.getElementById('count').value = count;
-//                $("#count").val(count);
-                count++;
+                document.getElementById('count-real').value = countReal;
                 sortable.save();
             },
             onFilter: function (evt) {
+                {{-- if the delete button is clicked --}}
+                {{-- change count --}}
+                countReal--;
+                document.getElementById('count-real').value = countReal;
+                {{-- add hidden item for backend --}}
                 var id = evt.item.getAttribute('data-id');
-                console.log(id);
                 var inpHidden = document.createElement('input');
                 inpHidden.setAttribute('type', 'hidden');
                 inpHidden.setAttribute('name', 'del-' + id);
                 inpHidden.setAttribute('value', document.getElementById('id-' + id).value);
                 document.getElementById('template').appendChild(inpHidden);
+                {{-- remove the block --}}
                 evt.item.parentNode.removeChild(evt.item);
+                {{-- save the new positions --}}
                 sortable.save();
             },
-            onRemove: function (evt) {
-                console.log(evt);
-            },
             store: {
-                /**
-                 * Get the order of elements. Called once during initialization.
-                 * @param   {Sortable}  sortable
-                 * @returns {Array}
-                 */
+                {{--
+                     * Get the order of elements. Called once during initialization.
+                     * @param   {Sortable}  sortable
+                     * @returns {Array}
+                --}}
                 get: function (sortable) {
-//                    console.log(sortable);
-//                    var order = localStorage.getItem(sortable.options.group);
-//                    return order ? order.split('|') : [];
                     return [];
                 },
-
-                /**
-                 * Save the order of elements. Called onEnd (when the item is dropped).
-                 * @param {Sortable}  sortable
-                 */
+                {{--
+                     * Save the order of elements. Called onEnd (when the item is dropped).
+                     * @param {Sortable}  sortable
+                 --}}
                 set: function (sortable) {
-                    console.log(sortable.toArray());
                     document.getElementById('positions').value = sortable.toArray();
-//                    var order = sortable.toArray();
-//                    localStorage.setItem(sortable.options.group, order.join('|'));
                 }
             }
         });
+        {{-- save positions onload (important when editing) --}}
         sortable.save();
         $('#sortable').on('blur', '[contenteditable]', function () {
+                    {{-- save the edited tekst to the right hidden input after edit --}}
             var id = $(this)[0].getAttribute('data-tekst-id');
             $("#tekst-" + id).val($(this)[0].innerHTML);
         }).on('click', 'img', function () {
-            console.log($(this));
+            {{-- open the filemanager on image click and change the input field --}}
             window.open('{{route('upload.picker')}}?id=url-' + $(this)[0].getAttribute('data-url-id'), 'imagepicker', 'width=1000,height=500,scrollbars=yes,toolbar=no,location=no');
             var id = $(this)[0].getAttribute('data-tekst-id');
             $("#tekst-" + id).val($(this)[0].innerHTML);
         });
         function handle_image_change(id) {
+            {{-- change the image preview (template section) --}}
             $('#img-' + id).attr("src", function () {
-
                 var value = $('#url-' + id).val();
                 if (value.substr(0, 4) != 'http') {
                     value = '/img' + value;
@@ -504,8 +365,8 @@
             });
         }
         function handle_image_change2() {
+            {{-- change the image preview (details section) --}}
             $("#image-preview").attr("src", function () {
-
                 var value = $("#afbeelding").val();
                 if (value.substr(0, 4) != 'http') {
                     value = '/img' + value;

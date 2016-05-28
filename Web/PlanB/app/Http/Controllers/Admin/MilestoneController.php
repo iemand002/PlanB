@@ -65,7 +65,6 @@ class MilestoneController extends Controller
      */
     public function store2(MilestoneRequest $request, $project)
     {
-//        dd($request->all());
         $milestone = new Milestone();
         $this->saveMilestone($request, $project, $milestone);
 

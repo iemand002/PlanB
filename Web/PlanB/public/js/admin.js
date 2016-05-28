@@ -15561,4 +15561,600 @@ else if ( jQuery ) {
 })(window, document);
 
 
+/*! Sortable 1.4.2 - MIT | git://github.com/rubaxa/Sortable.git */
+!function(a){"use strict";"function"==typeof define&&define.amd?define(a):"undefined"!=typeof module&&"undefined"!=typeof module.exports?module.exports=a():"undefined"!=typeof Package?Sortable=a():window.Sortable=a()}(function(){"use strict";function a(a,b){if(!a||!a.nodeType||1!==a.nodeType)throw"Sortable: `el` must be HTMLElement, and not "+{}.toString.call(a);this.el=a,this.options=b=r({},b),a[L]=this;var c={group:Math.random(),sort:!0,disabled:!1,store:null,handle:null,scroll:!0,scrollSensitivity:30,scrollSpeed:10,draggable:/[uo]l/i.test(a.nodeName)?"li":">*",ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",ignore:"a, img",filter:null,animation:0,setData:function(a,b){a.setData("Text",b.textContent)},dropBubble:!1,dragoverBubble:!1,dataIdAttr:"data-id",delay:0,forceFallback:!1,fallbackClass:"sortable-fallback",fallbackOnBody:!1};for(var d in c)!(d in b)&&(b[d]=c[d]);V(b);for(var f in this)"_"===f.charAt(0)&&(this[f]=this[f].bind(this));this.nativeDraggable=b.forceFallback?!1:P,e(a,"mousedown",this._onTapStart),e(a,"touchstart",this._onTapStart),this.nativeDraggable&&(e(a,"dragover",this),e(a,"dragenter",this)),T.push(this._onDragOver),b.store&&this.sort(b.store.get(this))}function b(a){v&&v.state!==a&&(h(v,"display",a?"none":""),!a&&v.state&&w.insertBefore(v,s),v.state=a)}function c(a,b,c){if(a){c=c||N,b=b.split(".");var d=b.shift().toUpperCase(),e=new RegExp("\\s("+b.join("|")+")(?=\\s)","g");do if(">*"===d&&a.parentNode===c||(""===d||a.nodeName.toUpperCase()==d)&&(!b.length||((" "+a.className+" ").match(e)||[]).length==b.length))return a;while(a!==c&&(a=a.parentNode))}return null}function d(a){a.dataTransfer&&(a.dataTransfer.dropEffect="move"),a.preventDefault()}function e(a,b,c){a.addEventListener(b,c,!1)}function f(a,b,c){a.removeEventListener(b,c,!1)}function g(a,b,c){if(a)if(a.classList)a.classList[c?"add":"remove"](b);else{var d=(" "+a.className+" ").replace(K," ").replace(" "+b+" "," ");a.className=(d+(c?" "+b:"")).replace(K," ")}}function h(a,b,c){var d=a&&a.style;if(d){if(void 0===c)return N.defaultView&&N.defaultView.getComputedStyle?c=N.defaultView.getComputedStyle(a,""):a.currentStyle&&(c=a.currentStyle),void 0===b?c:c[b];b in d||(b="-webkit-"+b),d[b]=c+("string"==typeof c?"":"px")}}function i(a,b,c){if(a){var d=a.getElementsByTagName(b),e=0,f=d.length;if(c)for(;f>e;e++)c(d[e],e);return d}return[]}function j(a,b,c,d,e,f,g){var h=N.createEvent("Event"),i=(a||b[L]).options,j="on"+c.charAt(0).toUpperCase()+c.substr(1);h.initEvent(c,!0,!0),h.to=b,h.from=e||b,h.item=d||b,h.clone=v,h.oldIndex=f,h.newIndex=g,b.dispatchEvent(h),i[j]&&i[j].call(a,h)}function k(a,b,c,d,e,f){var g,h,i=a[L],j=i.options.onMove;return g=N.createEvent("Event"),g.initEvent("move",!0,!0),g.to=b,g.from=a,g.dragged=c,g.draggedRect=d,g.related=e||b,g.relatedRect=f||b.getBoundingClientRect(),a.dispatchEvent(g),j&&(h=j.call(i,g)),h}function l(a){a.draggable=!1}function m(){R=!1}function n(a,b){var c=a.lastElementChild,d=c.getBoundingClientRect();return(b.clientY-(d.top+d.height)>5||b.clientX-(d.right+d.width)>5)&&c}function o(a){for(var b=a.tagName+a.className+a.src+a.href+a.textContent,c=b.length,d=0;c--;)d+=b.charCodeAt(c);return d.toString(36)}function p(a){var b=0;if(!a||!a.parentNode)return-1;for(;a&&(a=a.previousElementSibling);)"TEMPLATE"!==a.nodeName.toUpperCase()&&b++;return b}function q(a,b){var c,d;return function(){void 0===c&&(c=arguments,d=this,setTimeout(function(){1===c.length?a.call(d,c[0]):a.apply(d,c),c=void 0},b))}}function r(a,b){if(a&&b)for(var c in b)b.hasOwnProperty(c)&&(a[c]=b[c]);return a}var s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J={},K=/\s+/g,L="Sortable"+(new Date).getTime(),M=window,N=M.document,O=M.parseInt,P=!!("draggable"in N.createElement("div")),Q=function(a){return a=N.createElement("x"),a.style.cssText="pointer-events:auto","auto"===a.style.pointerEvents}(),R=!1,S=Math.abs,T=([].slice,[]),U=q(function(a,b,c){if(c&&b.scroll){var d,e,f,g,h=b.scrollSensitivity,i=b.scrollSpeed,j=a.clientX,k=a.clientY,l=window.innerWidth,m=window.innerHeight;if(z!==c&&(y=b.scroll,z=c,y===!0)){y=c;do if(y.offsetWidth<y.scrollWidth||y.offsetHeight<y.scrollHeight)break;while(y=y.parentNode)}y&&(d=y,e=y.getBoundingClientRect(),f=(S(e.right-j)<=h)-(S(e.left-j)<=h),g=(S(e.bottom-k)<=h)-(S(e.top-k)<=h)),f||g||(f=(h>=l-j)-(h>=j),g=(h>=m-k)-(h>=k),(f||g)&&(d=M)),(J.vx!==f||J.vy!==g||J.el!==d)&&(J.el=d,J.vx=f,J.vy=g,clearInterval(J.pid),d&&(J.pid=setInterval(function(){d===M?M.scrollTo(M.pageXOffset+f*i,M.pageYOffset+g*i):(g&&(d.scrollTop+=g*i),f&&(d.scrollLeft+=f*i))},24)))}},30),V=function(a){var b=a.group;b&&"object"==typeof b||(b=a.group={name:b}),["pull","put"].forEach(function(a){a in b||(b[a]=!0)}),a.groups=" "+b.name+(b.put.join?" "+b.put.join(" "):"")+" "};return a.prototype={constructor:a,_onTapStart:function(a){var b=this,d=this.el,e=this.options,f=a.type,g=a.touches&&a.touches[0],h=(g||a).target,i=h,k=e.filter;if(!("mousedown"===f&&0!==a.button||e.disabled)&&(h=c(h,e.draggable,d))){if(D=p(h),"function"==typeof k){if(k.call(this,a,h,this))return j(b,i,"filter",h,d,D),void a.preventDefault()}else if(k&&(k=k.split(",").some(function(a){return a=c(i,a.trim(),d),a?(j(b,a,"filter",h,d,D),!0):void 0})))return void a.preventDefault();(!e.handle||c(i,e.handle,d))&&this._prepareDragStart(a,g,h)}},_prepareDragStart:function(a,b,c){var d,f=this,h=f.el,j=f.options,k=h.ownerDocument;c&&!s&&c.parentNode===h&&(G=a,w=h,s=c,t=s.parentNode,x=s.nextSibling,F=j.group,d=function(){f._disableDelayedDrag(),s.draggable=!0,g(s,f.options.chosenClass,!0),f._triggerDragStart(b)},j.ignore.split(",").forEach(function(a){i(s,a.trim(),l)}),e(k,"mouseup",f._onDrop),e(k,"touchend",f._onDrop),e(k,"touchcancel",f._onDrop),j.delay?(e(k,"mouseup",f._disableDelayedDrag),e(k,"touchend",f._disableDelayedDrag),e(k,"touchcancel",f._disableDelayedDrag),e(k,"mousemove",f._disableDelayedDrag),e(k,"touchmove",f._disableDelayedDrag),f._dragStartTimer=setTimeout(d,j.delay)):d())},_disableDelayedDrag:function(){var a=this.el.ownerDocument;clearTimeout(this._dragStartTimer),f(a,"mouseup",this._disableDelayedDrag),f(a,"touchend",this._disableDelayedDrag),f(a,"touchcancel",this._disableDelayedDrag),f(a,"mousemove",this._disableDelayedDrag),f(a,"touchmove",this._disableDelayedDrag)},_triggerDragStart:function(a){a?(G={target:s,clientX:a.clientX,clientY:a.clientY},this._onDragStart(G,"touch")):this.nativeDraggable?(e(s,"dragend",this),e(w,"dragstart",this._onDragStart)):this._onDragStart(G,!0);try{N.selection?N.selection.empty():window.getSelection().removeAllRanges()}catch(b){}},_dragStarted:function(){w&&s&&(g(s,this.options.ghostClass,!0),a.active=this,j(this,w,"start",s,w,D))},_emulateDragOver:function(){if(H){if(this._lastX===H.clientX&&this._lastY===H.clientY)return;this._lastX=H.clientX,this._lastY=H.clientY,Q||h(u,"display","none");var a=N.elementFromPoint(H.clientX,H.clientY),b=a,c=" "+this.options.group.name,d=T.length;if(b)do{if(b[L]&&b[L].options.groups.indexOf(c)>-1){for(;d--;)T[d]({clientX:H.clientX,clientY:H.clientY,target:a,rootEl:b});break}a=b}while(b=b.parentNode);Q||h(u,"display","")}},_onTouchMove:function(b){if(G){a.active||this._dragStarted(),this._appendGhost();var c=b.touches?b.touches[0]:b,d=c.clientX-G.clientX,e=c.clientY-G.clientY,f=b.touches?"translate3d("+d+"px,"+e+"px,0)":"translate("+d+"px,"+e+"px)";I=!0,H=c,h(u,"webkitTransform",f),h(u,"mozTransform",f),h(u,"msTransform",f),h(u,"transform",f),b.preventDefault()}},_appendGhost:function(){if(!u){var a,b=s.getBoundingClientRect(),c=h(s),d=this.options;u=s.cloneNode(!0),g(u,d.ghostClass,!1),g(u,d.fallbackClass,!0),h(u,"top",b.top-O(c.marginTop,10)),h(u,"left",b.left-O(c.marginLeft,10)),h(u,"width",b.width),h(u,"height",b.height),h(u,"opacity","0.8"),h(u,"position","fixed"),h(u,"zIndex","100000"),h(u,"pointerEvents","none"),d.fallbackOnBody&&N.body.appendChild(u)||w.appendChild(u),a=u.getBoundingClientRect(),h(u,"width",2*b.width-a.width),h(u,"height",2*b.height-a.height)}},_onDragStart:function(a,b){var c=a.dataTransfer,d=this.options;this._offUpEvents(),"clone"==F.pull&&(v=s.cloneNode(!0),h(v,"display","none"),w.insertBefore(v,s)),b?("touch"===b?(e(N,"touchmove",this._onTouchMove),e(N,"touchend",this._onDrop),e(N,"touchcancel",this._onDrop)):(e(N,"mousemove",this._onTouchMove),e(N,"mouseup",this._onDrop)),this._loopId=setInterval(this._emulateDragOver,50)):(c&&(c.effectAllowed="move",d.setData&&d.setData.call(this,c,s)),e(N,"drop",this),setTimeout(this._dragStarted,0))},_onDragOver:function(a){var d,e,f,g=this.el,i=this.options,j=i.group,l=j.put,o=F===j,p=i.sort;if(void 0!==a.preventDefault&&(a.preventDefault(),!i.dragoverBubble&&a.stopPropagation()),I=!0,F&&!i.disabled&&(o?p||(f=!w.contains(s)):F.pull&&l&&(F.name===j.name||l.indexOf&&~l.indexOf(F.name)))&&(void 0===a.rootEl||a.rootEl===this.el)){if(U(a,i,this.el),R)return;if(d=c(a.target,i.draggable,g),e=s.getBoundingClientRect(),f)return b(!0),void(v||x?w.insertBefore(s,v||x):p||w.appendChild(s));if(0===g.children.length||g.children[0]===u||g===a.target&&(d=n(g,a))){if(d){if(d.animated)return;r=d.getBoundingClientRect()}b(o),k(w,g,s,e,d,r)!==!1&&(s.contains(g)||(g.appendChild(s),t=g),this._animate(e,s),d&&this._animate(r,d))}else if(d&&!d.animated&&d!==s&&void 0!==d.parentNode[L]){A!==d&&(A=d,B=h(d),C=h(d.parentNode));var q,r=d.getBoundingClientRect(),y=r.right-r.left,z=r.bottom-r.top,D=/left|right|inline/.test(B.cssFloat+B.display)||"flex"==C.display&&0===C["flex-direction"].indexOf("row"),E=d.offsetWidth>s.offsetWidth,G=d.offsetHeight>s.offsetHeight,H=(D?(a.clientX-r.left)/y:(a.clientY-r.top)/z)>.5,J=d.nextElementSibling,K=k(w,g,s,e,d,r);if(K!==!1){if(R=!0,setTimeout(m,30),b(o),1===K||-1===K)q=1===K;else if(D){var M=s.offsetTop,N=d.offsetTop;q=M===N?d.previousElementSibling===s&&!E||H&&E:N>M}else q=J!==s&&!G||H&&G;s.contains(g)||(q&&!J?g.appendChild(s):d.parentNode.insertBefore(s,q?J:d)),t=s.parentNode,this._animate(e,s),this._animate(r,d)}}}},_animate:function(a,b){var c=this.options.animation;if(c){var d=b.getBoundingClientRect();h(b,"transition","none"),h(b,"transform","translate3d("+(a.left-d.left)+"px,"+(a.top-d.top)+"px,0)"),b.offsetWidth,h(b,"transition","all "+c+"ms"),h(b,"transform","translate3d(0,0,0)"),clearTimeout(b.animated),b.animated=setTimeout(function(){h(b,"transition",""),h(b,"transform",""),b.animated=!1},c)}},_offUpEvents:function(){var a=this.el.ownerDocument;f(N,"touchmove",this._onTouchMove),f(a,"mouseup",this._onDrop),f(a,"touchend",this._onDrop),f(a,"touchcancel",this._onDrop)},_onDrop:function(b){var c=this.el,d=this.options;clearInterval(this._loopId),clearInterval(J.pid),clearTimeout(this._dragStartTimer),f(N,"mousemove",this._onTouchMove),this.nativeDraggable&&(f(N,"drop",this),f(c,"dragstart",this._onDragStart)),this._offUpEvents(),b&&(I&&(b.preventDefault(),!d.dropBubble&&b.stopPropagation()),u&&u.parentNode.removeChild(u),s&&(this.nativeDraggable&&f(s,"dragend",this),l(s),g(s,this.options.ghostClass,!1),g(s,this.options.chosenClass,!1),w!==t?(E=p(s),E>=0&&(j(null,t,"sort",s,w,D,E),j(this,w,"sort",s,w,D,E),j(null,t,"add",s,w,D,E),j(this,w,"remove",s,w,D,E))):(v&&v.parentNode.removeChild(v),s.nextSibling!==x&&(E=p(s),E>=0&&(j(this,w,"update",s,w,D,E),j(this,w,"sort",s,w,D,E)))),a.active&&((null===E||-1===E)&&(E=D),j(this,w,"end",s,w,D,E),this.save())),w=s=t=u=x=v=y=z=G=H=I=E=A=B=F=a.active=null)},handleEvent:function(a){var b=a.type;"dragover"===b||"dragenter"===b?s&&(this._onDragOver(a),d(a)):("drop"===b||"dragend"===b)&&this._onDrop(a)},toArray:function(){for(var a,b=[],d=this.el.children,e=0,f=d.length,g=this.options;f>e;e++)a=d[e],c(a,g.draggable,this.el)&&b.push(a.getAttribute(g.dataIdAttr)||o(a));return b},sort:function(a){var b={},d=this.el;this.toArray().forEach(function(a,e){var f=d.children[e];c(f,this.options.draggable,d)&&(b[a]=f)},this),a.forEach(function(a){b[a]&&(d.removeChild(b[a]),d.appendChild(b[a]))})},save:function(){var a=this.options.store;a&&a.set(this)},closest:function(a,b){return c(a,b||this.options.draggable,this.el)},option:function(a,b){var c=this.options;return void 0===b?c[a]:(c[a]=b,void("group"===a&&V(c)))},destroy:function(){var a=this.el;a[L]=null,f(a,"mousedown",this._onTapStart),f(a,"touchstart",this._onTapStart),this.nativeDraggable&&(f(a,"dragover",this),f(a,"dragenter",this)),Array.prototype.forEach.call(a.querySelectorAll("[draggable]"),function(a){a.removeAttribute("draggable")}),T.splice(T.indexOf(this._onDragOver),1),this._onDrop(),this.el=a=null}},a.utils={on:e,off:f,css:h,find:i,is:function(a,b){return!!c(a,b,a)},extend:r,throttle:q,closest:c,toggleClass:g,index:p},a.create=function(b,c){return new a(b,c)},a.version="1.4.2",a});
+/**
+ * jQuery Geocoding and Places Autocomplete Plugin - V 1.7.0
+ *
+ * @author Martin Kleppe <kleppe@ubilabs.net>, 2016
+ * @author Ubilabs http://ubilabs.net, 2016
+ * @license MIT License <http://www.opensource.org/licenses/mit-license.php>
+ */
+
+// # $.geocomplete()
+// ## jQuery Geocoding and Places Autocomplete Plugin
+//
+// * https://github.com/ubilabs/geocomplete/
+// * by Martin Kleppe <kleppe@ubilabs.net>
+
+(function($, window, document, undefined){
+
+  // ## Options
+  // The default options for this plugin.
+  //
+  // * `map` - Might be a selector, an jQuery object or a DOM element. Default is `false` which shows no map.
+  // * `details` - The container that should be populated with data. Defaults to `false` which ignores the setting.
+  // * 'detailsScope' - Allows you to scope the 'details' container and have multiple geocomplete fields on one page. Must be a parent of the input. Default is 'null'
+  // * `location` - Location to initialize the map on. Might be an address `string` or an `array` with [latitude, longitude] or a `google.maps.LatLng`object. Default is `false` which shows a blank map.
+  // * `bounds` - Whether to snap geocode search to map bounds. Default: `true` if false search globally. Alternatively pass a custom `LatLngBounds object.
+  // * `autoselect` - Automatically selects the highlighted item or the first item from the suggestions list on Enter.
+  // * `detailsAttribute` - The attribute's name to use as an indicator. Default: `"name"`
+  // * `mapOptions` - Options to pass to the `google.maps.Map` constructor. See the full list [here](http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions).
+  // * `mapOptions.zoom` - The inital zoom level. Default: `14`
+  // * `mapOptions.scrollwheel` - Whether to enable the scrollwheel to zoom the map. Default: `false`
+  // * `mapOptions.mapTypeId` - The map type. Default: `"roadmap"`
+  // * `markerOptions` - The options to pass to the `google.maps.Marker` constructor. See the full list [here](http://code.google.com/apis/maps/documentation/javascript/reference.html#MarkerOptions).
+  // * `markerOptions.draggable` - If the marker is draggable. Default: `false`. Set to true to enable dragging.
+  // * `markerOptions.disabled` - Do not show marker. Default: `false`. Set to true to disable marker.
+  // * `maxZoom` - The maximum zoom level too zoom in after a geocoding response. Default: `16`
+  // * `types` - An array containing one or more of the supported types for the places request. Default: `['geocode']` See the full list [here](http://code.google.com/apis/maps/documentation/javascript/places.html#place_search_requests).
+  // * `blur` - Trigger geocode when input loses focus.
+  // * `geocodeAfterResult` - If blur is set to true, choose whether to geocode if user has explicitly selected a result before blur.
+  // * `restoreValueAfterBlur` - Restores the input's value upon blurring. Default is `false` which ignores the setting.
+
+  var defaults = {
+    bounds: true,
+    country: null,
+    map: false,
+    details: false,
+    detailsAttribute: "name",
+    detailsScope: null,
+    autoselect: true,
+    location: false,
+
+    mapOptions: {
+      zoom: 14,
+      scrollwheel: false,
+      mapTypeId: "roadmap"
+    },
+
+    markerOptions: {
+      draggable: false
+    },
+
+    maxZoom: 16,
+    types: ['geocode'],
+    blur: false,
+    geocodeAfterResult: false,
+    restoreValueAfterBlur: false
+  };
+
+  // See: [Geocoding Types](https://developers.google.com/maps/documentation/geocoding/#Types)
+  // on Google Developers.
+  var componentTypes = ("street_address route intersection political " +
+    "country administrative_area_level_1 administrative_area_level_2 " +
+    "administrative_area_level_3 colloquial_area locality sublocality " +
+    "neighborhood premise subpremise postal_code natural_feature airport " +
+    "park point_of_interest post_box street_number floor room " +
+    "lat lng viewport location " +
+    "formatted_address location_type bounds").split(" ");
+
+  // See: [Places Details Responses](https://developers.google.com/maps/documentation/javascript/places#place_details_responses)
+  // on Google Developers.
+  var placesDetails = ("id place_id url website vicinity reference name rating " +
+    "international_phone_number icon formatted_phone_number").split(" ");
+
+  // The actual plugin constructor.
+  function GeoComplete(input, options) {
+
+    this.options = $.extend(true, {}, defaults, options);
+
+    // This is a fix to allow types:[] not to be overridden by defaults
+    // so search results includes everything
+    if (options && options.types) {
+      this.options.types = options.types;
+    }
+
+    this.input = input;
+    this.$input = $(input);
+
+    this._defaults = defaults;
+    this._name = 'geocomplete';
+
+    this.init();
+  }
+
+  // Initialize all parts of the plugin.
+  $.extend(GeoComplete.prototype, {
+    init: function(){
+      this.initMap();
+      this.initMarker();
+      this.initGeocoder();
+      this.initDetails();
+      this.initLocation();
+    },
+
+    // Initialize the map but only if the option `map` was set.
+    // This will create a `map` within the given container
+    // using the provided `mapOptions` or link to the existing map instance.
+    initMap: function(){
+      if (!this.options.map){ return; }
+
+      if (typeof this.options.map.setCenter == "function"){
+        this.map = this.options.map;
+        return;
+      }
+
+      this.map = new google.maps.Map(
+        $(this.options.map)[0],
+        this.options.mapOptions
+      );
+
+      // add click event listener on the map
+      google.maps.event.addListener(
+        this.map,
+        'click',
+        $.proxy(this.mapClicked, this)
+      );
+
+      // add dragend even listener on the map
+      google.maps.event.addListener(
+        this.map,
+        'dragend',
+        $.proxy(this.mapDragged, this)
+      );
+
+      // add idle even listener on the map
+      google.maps.event.addListener(
+        this.map,
+        'idle',
+        $.proxy(this.mapIdle, this)
+      );
+
+      google.maps.event.addListener(
+        this.map,
+        'zoom_changed',
+        $.proxy(this.mapZoomed, this)
+      );
+    },
+
+    // Add a marker with the provided `markerOptions` but only
+    // if the option was set. Additionally it listens for the `dragend` event
+    // to notify the plugin about changes.
+    initMarker: function(){
+      if (!this.map){ return; }
+      var options = $.extend(this.options.markerOptions, { map: this.map });
+
+      if (options.disabled){ return; }
+
+      this.marker = new google.maps.Marker(options);
+
+      google.maps.event.addListener(
+        this.marker,
+        'dragend',
+        $.proxy(this.markerDragged, this)
+      );
+    },
+
+    // Associate the input with the autocompleter and create a geocoder
+    // to fall back when the autocompleter does not return a value.
+    initGeocoder: function(){
+
+      // Indicates is user did select a result from the dropdown.
+      var selected = false;
+
+      var options = {
+        types: this.options.types,
+        bounds: this.options.bounds === true ? null : this.options.bounds,
+        componentRestrictions: this.options.componentRestrictions
+      };
+
+      if (this.options.country){
+        options.componentRestrictions = {country: this.options.country};
+      }
+
+      this.autocomplete = new google.maps.places.Autocomplete(
+        this.input, options
+      );
+
+      this.geocoder = new google.maps.Geocoder();
+
+      // Bind autocomplete to map bounds but only if there is a map
+      // and `options.bindToMap` is set to true.
+      if (this.map && this.options.bounds === true){
+        this.autocomplete.bindTo('bounds', this.map);
+      }
+
+      // Watch `place_changed` events on the autocomplete input field.
+      google.maps.event.addListener(
+        this.autocomplete,
+        'place_changed',
+        $.proxy(this.placeChanged, this)
+      );
+
+      // Prevent parent form from being submitted if user hit enter.
+      this.$input.on('keypress.' + this._name, function(event){
+        if (event.keyCode === 13){ return false; }
+      });
+
+      // Assume that if user types anything after having selected a result,
+      // the selected location is not valid any more.
+      if (this.options.geocodeAfterResult === true){
+        this.$input.bind('keypress.' + this._name, $.proxy(function(){
+          if (event.keyCode != 9 && this.selected === true){
+              this.selected = false;
+          }
+        }, this));
+      }
+
+      // Listen for "geocode" events and trigger find action.
+      this.$input.bind('geocode.' + this._name, $.proxy(function(){
+        this.find();
+      }, this));
+
+      // Saves the previous input value
+      this.$input.bind('geocode:result.' + this._name, $.proxy(function(){
+        this.lastInputVal = this.$input.val();
+      }, this));
+
+      // Trigger find action when input element is blurred out and user has
+      // not explicitly selected a result.
+      // (Useful for typing partial location and tabbing to the next field
+      // or clicking somewhere else.)
+      if (this.options.blur === true){
+        this.$input.on('blur.' + this._name, $.proxy(function(){
+          if (this.options.geocodeAfterResult === true && this.selected === true) { return; }
+
+          if (this.options.restoreValueAfterBlur === true && this.selected === true) {
+            setTimeout($.proxy(this.restoreLastValue, this), 0);
+          } else {
+            this.find();
+          }
+        }, this));
+      }
+    },
+
+    // Prepare a given DOM structure to be populated when we got some data.
+    // This will cycle through the list of component types and map the
+    // corresponding elements.
+    initDetails: function(){
+      if (!this.options.details){ return; }
+
+      if(this.options.detailsScope) {
+        var $details = $(this.input).parents(this.options.detailsScope).find(this.options.details);
+      } else {
+        var $details = $(this.options.details);
+      }
+
+      var attribute = this.options.detailsAttribute,
+        details = {};
+
+      function setDetail(value){
+        details[value] = $details.find("[" +  attribute + "=" + value + "]");
+      }
+
+      $.each(componentTypes, function(index, key){
+        setDetail(key);
+        setDetail(key + "_short");
+      });
+
+      $.each(placesDetails, function(index, key){
+        setDetail(key);
+      });
+
+      this.$details = $details;
+      this.details = details;
+    },
+
+    // Set the initial location of the plugin if the `location` options was set.
+    // This method will care about converting the value into the right format.
+    initLocation: function() {
+
+      var location = this.options.location, latLng;
+
+      if (!location) { return; }
+
+      if (typeof location == 'string') {
+        this.find(location);
+        return;
+      }
+
+      if (location instanceof Array) {
+        latLng = new google.maps.LatLng(location[0], location[1]);
+      }
+
+      if (location instanceof google.maps.LatLng){
+        latLng = location;
+      }
+
+      if (latLng){
+        if (this.map){ this.map.setCenter(latLng); }
+        if (this.marker){ this.marker.setPosition(latLng); }
+      }
+    },
+
+    destroy: function(){
+      if (this.map) {
+        google.maps.event.clearInstanceListeners(this.map);
+        google.maps.event.clearInstanceListeners(this.marker);
+      }
+
+      this.autocomplete.unbindAll();
+      google.maps.event.clearInstanceListeners(this.autocomplete);
+      google.maps.event.clearInstanceListeners(this.input);
+      this.$input.removeData();
+      this.$input.off(this._name);
+      this.$input.unbind('.' + this._name);
+    },
+
+    // Look up a given address. If no `address` was specified it uses
+    // the current value of the input.
+    find: function(address){
+      this.geocode({
+        address: address || this.$input.val()
+      });
+    },
+
+    // Requests details about a given location.
+    // Additionally it will bias the requests to the provided bounds.
+    geocode: function(request){
+      // Don't geocode if the requested address is empty
+      if (!request.address) {
+        return;
+      }
+      if (this.options.bounds && !request.bounds){
+        if (this.options.bounds === true){
+          request.bounds = this.map && this.map.getBounds();
+        } else {
+          request.bounds = this.options.bounds;
+        }
+      }
+
+      if (this.options.country){
+        request.region = this.options.country;
+      }
+
+      this.geocoder.geocode(request, $.proxy(this.handleGeocode, this));
+    },
+
+    // Get the selected result. If no result is selected on the list, then get
+    // the first result from the list.
+    selectFirstResult: function() {
+      //$(".pac-container").hide();
+
+      var selected = '';
+      // Check if any result is selected.
+      if ($(".pac-item-selected")[0]) {
+        selected = '-selected';
+      }
+
+      // Get the first suggestion's text.
+      var $span1 = $(".pac-container:visible .pac-item" + selected + ":first span:nth-child(2)").text();
+      var $span2 = $(".pac-container:visible .pac-item" + selected + ":first span:nth-child(3)").text();
+
+      // Adds the additional information, if available.
+      var firstResult = $span1;
+      if ($span2) {
+        firstResult += " - " + $span2;
+      }
+
+      this.$input.val(firstResult);
+
+      return firstResult;
+    },
+
+    // Restores the input value using the previous value if it exists
+    restoreLastValue: function() {
+      if (this.lastInputVal){ this.$input.val(this.lastInputVal); }
+    },
+
+    // Handles the geocode response. If more than one results was found
+    // it triggers the "geocode:multiple" events. If there was an error
+    // the "geocode:error" event is fired.
+    handleGeocode: function(results, status){
+      if (status === google.maps.GeocoderStatus.OK) {
+        var result = results[0];
+        this.$input.val(result.formatted_address);
+        this.update(result);
+
+        if (results.length > 1){
+          this.trigger("geocode:multiple", results);
+        }
+
+      } else {
+        this.trigger("geocode:error", status);
+      }
+    },
+
+    // Triggers a given `event` with optional `arguments` on the input.
+    trigger: function(event, argument){
+      this.$input.trigger(event, [argument]);
+    },
+
+    // Set the map to a new center by passing a `geometry`.
+    // If the geometry has a viewport, the map zooms out to fit the bounds.
+    // Additionally it updates the marker position.
+    center: function(geometry){
+      if (geometry.viewport){
+        this.map.fitBounds(geometry.viewport);
+        if (this.map.getZoom() > this.options.maxZoom){
+          this.map.setZoom(this.options.maxZoom);
+        }
+      } else {
+        this.map.setZoom(this.options.maxZoom);
+        this.map.setCenter(geometry.location);
+      }
+
+      if (this.marker){
+        this.marker.setPosition(geometry.location);
+        this.marker.setAnimation(this.options.markerOptions.animation);
+      }
+    },
+
+    // Update the elements based on a single places or geocoding response
+    // and trigger the "geocode:result" event on the input.
+    update: function(result){
+
+      if (this.map){
+        this.center(result.geometry);
+      }
+
+      if (this.$details){
+        this.fillDetails(result);
+      }
+
+      this.trigger("geocode:result", result);
+    },
+
+    // Populate the provided elements with new `result` data.
+    // This will lookup all elements that has an attribute with the given
+    // component type.
+    fillDetails: function(result){
+
+      var data = {},
+        geometry = result.geometry,
+        viewport = geometry.viewport,
+        bounds = geometry.bounds;
+
+      // Create a simplified version of the address components.
+      $.each(result.address_components, function(index, object){
+        var name = object.types[0];
+
+        $.each(object.types, function(index, name){
+          data[name] = object.long_name;
+          data[name + "_short"] = object.short_name;
+        });
+      });
+
+      // Add properties of the places details.
+      $.each(placesDetails, function(index, key){
+        data[key] = result[key];
+      });
+
+      // Add infos about the address and geometry.
+      $.extend(data, {
+        formatted_address: result.formatted_address,
+        location_type: geometry.location_type || "PLACES",
+        viewport: viewport,
+        bounds: bounds,
+        location: geometry.location,
+        lat: geometry.location.lat(),
+        lng: geometry.location.lng()
+      });
+
+      // Set the values for all details.
+      $.each(this.details, $.proxy(function(key, $detail){
+        var value = data[key];
+        this.setDetail($detail, value);
+      }, this));
+
+      this.data = data;
+    },
+
+    // Assign a given `value` to a single `$element`.
+    // If the element is an input, the value is set, otherwise it updates
+    // the text content.
+    setDetail: function($element, value){
+
+      if (value === undefined){
+        value = "";
+      } else if (typeof value.toUrlValue == "function"){
+        value = value.toUrlValue();
+      }
+
+      if ($element.is(":input")){
+        $element.val(value);
+      } else {
+        $element.text(value);
+      }
+    },
+
+    // Fire the "geocode:dragged" event and pass the new position.
+    markerDragged: function(event){
+      this.trigger("geocode:dragged", event.latLng);
+    },
+
+    mapClicked: function(event) {
+        this.trigger("geocode:click", event.latLng);
+    },
+
+    // Fire the "geocode:mapdragged" event and pass the current position of the map center.
+    mapDragged: function(event) {
+      this.trigger("geocode:mapdragged", this.map.getCenter());
+    },
+
+    // Fire the "geocode:idle" event and pass the current position of the map center.
+    mapIdle: function(event) {
+      this.trigger("geocode:idle", this.map.getCenter());
+    },
+
+    mapZoomed: function(event) {
+      this.trigger("geocode:zoom", this.map.getZoom());
+    },
+
+    // Restore the old position of the marker to the last knwon location.
+    resetMarker: function(){
+      this.marker.setPosition(this.data.location);
+      this.setDetail(this.details.lat, this.data.location.lat());
+      this.setDetail(this.details.lng, this.data.location.lng());
+    },
+
+    // Update the plugin after the user has selected an autocomplete entry.
+    // If the place has no geometry it passes it to the geocoder.
+    placeChanged: function(){
+      var place = this.autocomplete.getPlace();
+      this.selected = true;
+
+      if (!place.geometry){
+        if (this.options.autoselect) {
+          // Automatically selects the highlighted item or the first item from the
+          // suggestions list.
+          var autoSelection = this.selectFirstResult();
+          this.find(autoSelection);
+        }
+      } else {
+        // Use the input text if it already gives geometry.
+        this.update(place);
+      }
+    }
+  });
+
+  // A plugin wrapper around the constructor.
+  // Pass `options` with all settings that are different from the default.
+  // The attribute is used to prevent multiple instantiations of the plugin.
+  $.fn.geocomplete = function(options) {
+
+    var attribute = 'plugin_geocomplete';
+
+    // If you call `.geocomplete()` with a string as the first parameter
+    // it returns the corresponding property or calls the method with the
+    // following arguments.
+    if (typeof options == "string"){
+
+      var instance = $(this).data(attribute) || $(this).geocomplete().data(attribute),
+        prop = instance[options];
+
+      if (typeof prop == "function"){
+        prop.apply(instance, Array.prototype.slice.call(arguments, 1));
+        return $(this);
+      } else {
+        if (arguments.length == 2){
+          prop = arguments[1];
+        }
+        return prop;
+      }
+    } else {
+      return this.each(function() {
+        // Prevent against multiple instantiations.
+        var instance = $.data(this, attribute);
+        if (!instance) {
+          instance = new GeoComplete( this, options );
+          $.data(this, attribute, instance);
+        }
+      });
+    }
+  };
+
+})( jQuery, window, document );
+
 //# sourceMappingURL=admin.js.map
