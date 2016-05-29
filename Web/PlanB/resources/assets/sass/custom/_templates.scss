@@ -1,0 +1,30 @@
+.box {
+  border: 1px solid lightgray;
+}
+
+.sortable-ghost {
+  opacity: .3;
+}
+
+[contenteditable]:focus {
+  outline: 1px solid gray;
+}
+
+#template > .row {
+  display: flex;
+}
+
+#sortable {
+  flex: 1;
+  .fa-arrows {
+    cursor: move;
+  }
+  .fa-times, img {
+    cursor: pointer;
+  }
+}
+
+#draggable {
+  flex: 2;
+  cursor: grab;
+}

@@ -6,7 +6,7 @@
 
 
 @section('content')
-    {!! Form::open(['method'=>'POST','route'=>['admin.milestone.store2', $project->slug],'class'=>'form-horizontal']) !!}
+    {!! Form::open(['method'=>'POST','route'=>['admin.milestone.store', $project->slug],'class'=>'form-horizontal']) !!}
     <div class="row">
         <div class="col-xs-12">
             <h1 class="pull-left">Milestone</h1>
@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    @include('admin.milestone._form2',['submitbuttonText'=>"Milestone opslaan",'create'=>true])
+    @include('admin.milestone._form2')
     {!! Form::close() !!}
 @endsection
 

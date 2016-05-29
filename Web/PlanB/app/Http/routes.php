@@ -70,15 +70,11 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('/projecten', ['as' => 'admin.projecten.index', 'uses' => 'Admin\ProjectController@index']);
 
 		// Milestones
-		Route::get('/project/{project}/milestone/nieuw',['as'=>'admin.milestone.create','uses'=>'Admin\MilestoneController@create']);
-		Route::get('/project/{project}/milestone/nieuw2',['as'=>'admin.milestone.create2','uses'=>'Admin\MilestoneController@create2']);
-		Route::post('/project/{project}/milestone/',['as'=>'admin.milestone.store','uses'=>'Admin\MilestoneController@store']);
-		Route::post('/project/{project}/milestone2/',['as'=>'admin.milestone.store2','uses'=>'Admin\MilestoneController@store2']);
-		Route::get('/project/{project}/{milestone}/edit',['as'=>'admin.milestone.edit','uses'=>'Admin\MilestoneController@edit']);
-		Route::get('/project/{project}/{milestone}/edit2',['as'=>'admin.milestone.edit2','uses'=>'Admin\MilestoneController@edit2']);
+		Route::get('/project/{project}/milestone/nieuw',['as'=>'admin.milestone.create','uses'=>'Admin\MilestoneController@create2']);
+		Route::post('/project/{project}/milestone/',['as'=>'admin.milestone.store','uses'=>'Admin\MilestoneController@store2']);
+		Route::get('/project/{project}/{milestone}/edit',['as'=>'admin.milestone.edit','uses'=>'Admin\MilestoneController@edit2']);
 		Route::get('/project/{project}/{milestone}',['as'=>'admin.milestone.show','uses'=>'Admin\MilestoneController@show']);
-		Route::patch('/project/{project}/{milestone}',['as'=>'admin.milestone.update','uses'=>'Admin\MilestoneController@update']);
-		Route::patch('/project2/{project}/{milestone}',['as'=>'admin.milestone.update2','uses'=>'Admin\MilestoneController@update2']);
+		Route::patch('/project/{project}/{milestone}',['as'=>'admin.milestone.update','uses'=>'Admin\MilestoneController@update2']);
 
 		// Themas
 		Route::get('/themas',['as'=>'admin.thema.index','uses'=>'Admin\ThemaController@index']);

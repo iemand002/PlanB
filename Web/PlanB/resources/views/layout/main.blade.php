@@ -32,7 +32,7 @@
 <body>
 
     @include('layout.navigatie')
-    <div class="container">
+    <div class="container" id="content">
         @include('partials.success')
         @include('errors.list')
 
@@ -49,7 +49,6 @@
     {!! Html::script('js/admin.js') !!}
     @endif
     <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
-    {!! Html::script('js/jquery.geocomplete.js') !!}
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     {{--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>--}}
     {!! Html::script('js/kristof.js') !!}

@@ -65,7 +65,6 @@ class MilestoneController extends Controller
      */
     public function store2(MilestoneRequest $request, $project)
     {
-//        dd($request->all());
         $milestone = new Milestone();
         $this->saveMilestone($request, $project, $milestone);
 
@@ -131,12 +130,14 @@ class MilestoneController extends Controller
         $positions = explode(',', $request->input('positions'));
         for ($i = 1; $i <= $request->input('count'); $i++) {
             if (!$request->has('del-' . $i)) {
-                if ($request->input('id-'.$i)===0) {
+                if ($request->input('id-'.$i)==0) {
                     $section = new Section();
                 }else{
                     $section=Section::find($request->input('id-'.$i));
                 }
                 $this->saveSection($request, $i, $section, $positions, $milestone);
+            }else{
+                Section::destroy($request->input('del-'.$i));
             }
 
         }

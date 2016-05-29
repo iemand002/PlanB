@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProjectRequest;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 use App\Milestone;
 use App\Project;
+use App\Section;
 use App\Thema;
 use Auth;
 use Illuminate\Http\Request;
@@ -49,25 +49,18 @@ class ProjectController extends Controller
     public function store(ProjectStoreRequest $request)
     {
         $project = new Project();
-        $project->naam = $request->input('projectnaam');
-        $project->beschrijving = $request->input('projectbeschrijving');
-        $project->thema_id = $request->input('thema_id');
-        $project->user_id = Auth::id();
-        $project->publish_from = $request->input('project_publish_from');
-        $project->publish_till = $request->input('project_publish_till');
-        $project->save();
+        $this->saveProject($request, $project);
 
         $milestone = new Milestone();
-        $milestone->naam = $request->input('naam');
-        $milestone->locatie = $request->input('locatie');
-        $milestone->coordinaten = $request->input('coordinaten');
-        $milestone->beschrijving = $request->input('beschrijving');
-        $milestone->afbeelding = $request->input('afbeelding');
-//        $milestone->publish_from = $request->input('publish_from'); //auto fill
-        $milestone->publish_till = $request->input('publish_till');
-        $milestone->project_id = $project->id;
-        $milestone->user_id = Auth::id();
-        $milestone->save();
+        $this->saveMilestone($request, $milestone, $project);
+
+        $positions = explode(',', $request->input('positions'));
+        for ($i = 1; $i <= $request->input('count'); $i++) {
+            if (!$request->has('del-' . $i)) {
+                $section = new Section();
+                $this->saveSection($request, $i, $section, $positions, $milestone);
+            }
+        }
 
         if($request->input('submit')=='nieuw'){
             return redirect()->back()->with(['success' => 'Project "' . $project->naam . '" is opgeslagen']);
@@ -112,13 +105,7 @@ class ProjectController extends Controller
      */
     public function update(ProjectUpdateRequest $request, $project)
     {
-        $project->naam = $request->input('projectnaam');
-        $project->beschrijving = $request->input('projectbeschrijving');
-        $project->thema_id = $request->input('thema_id');
-        $project->user_id = Auth::id();
-        $project->publish_from = $request->input('project_publish_from');
-        $project->publish_till = $request->input('project_publish_till');
-        $project->save();
+        $this->updateProject($request, $project);
 
         return redirect(route('admin'))->with(['success' => 'Project "' . $project->naam . '" is gewijzigd']);
     }
@@ -132,6 +119,72 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param ProjectStoreRequest $request
+     * @param $i
+     * @param $section
+     * @param $positions
+     * @param $milestone
+     */
+    private function saveSection(ProjectStoreRequest $request, $i, $section, $positions, $milestone)
+    {
+        $section->tekst = $request->input('tekst-' . $i);
+        $section->url = $request->input('url-' . $i);
+        $section->position = array_search($i, $positions);
+        $section->type_id = $request->input('type_id-' . $i);
+        $section->milestone_id = $milestone->id;
+        $section->save();
+    }
+
+    /**
+     * @param ProjectUpdateRequest $request
+     * @param $project
+     */
+    private function updateProject(ProjectUpdateRequest $request, $project)
+    {
+        $project->naam = $request->input('projectnaam');
+        $project->beschrijving = $request->input('projectbeschrijving');
+        $project->thema_id = $request->input('thema_id');
+        $project->user_id = Auth::id();
+        $project->publish_from = $request->input('project_publish_from');
+        $project->publish_till = $request->input('project_publish_till');
+        $project->save();
+    }
+
+    /**
+     * @param ProjectStoreRequest $request
+     * @param $project
+     */
+    private function saveProject(ProjectStoreRequest $request, $project)
+    {
+        $project->naam = $request->input('projectnaam');
+        $project->beschrijving = $request->input('projectbeschrijving');
+        $project->thema_id = $request->input('thema_id');
+        $project->user_id = Auth::id();
+        $project->publish_from = $request->input('project_publish_from');
+        $project->publish_till = $request->input('project_publish_till');
+        $project->save();
+    }
+
+    /**
+     * @param ProjectStoreRequest $request
+     * @param $milestone
+     * @param $project
+     */
+    private function saveMilestone(ProjectStoreRequest $request, $milestone, $project)
+    {
+        $milestone->naam = $request->input('naam');
+        $milestone->locatie = $request->input('locatie');
+        $milestone->coordinaten = $request->input('coordinaten');
+        $milestone->beschrijving = $request->input('beschrijving');
+        $milestone->afbeelding = $request->input('afbeelding');
+//        $milestone->publish_from = $request->input('publish_from'); //auto fill
+        $milestone->publish_till = $request->input('publish_till');
+        $milestone->project_id = $project->id;
+        $milestone->user_id = Auth::id();
+        $milestone->save();
     }
 
 }
