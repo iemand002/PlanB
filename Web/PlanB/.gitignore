@@ -8,3 +8,5 @@ Homestead.json
 /bower_components
 _ide_helper.php
 /public/img
+/public/js
+/public/css

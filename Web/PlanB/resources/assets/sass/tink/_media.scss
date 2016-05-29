@@ -59,7 +59,7 @@
 
 // For images and videos, set to block
 .media-object {
-  @extend img.non-responsive;
+  @extend img.non-responsive !optional;
   display: block;
 }
 

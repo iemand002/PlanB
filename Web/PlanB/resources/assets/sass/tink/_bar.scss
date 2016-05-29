@@ -38,7 +38,7 @@
     flex-wrap: wrap;
 
     img {
-      @extend img.non-responsive;
+      @extend img.non-responsive !optional;
     }
   }
 

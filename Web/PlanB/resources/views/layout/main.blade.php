@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta content="utf-8" http-equiv="encoding">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -42,6 +43,7 @@
     @include('layout.footer')
 
 
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     {!! Html::script('js/all.js') !!}
     @if(Auth::check()&&Auth::user()->admin)
     {!! Html::script('js/admin.js') !!}
