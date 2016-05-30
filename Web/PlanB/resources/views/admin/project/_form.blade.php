@@ -11,15 +11,13 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('publish_from', trans("project.publish.vanaf"), ['class'=>'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::text('project_publish_from',null,['id'=>'publish_from','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
+    {!! Form::label('project_publish_from', trans("project.publish.vanaf"), ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-4">
+        {!! Form::text('project_publish_from',null,['id'=>'project_publish_from','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
     </div>
-</div>
-<div class="form-group">
-    {!! Form::label('publish_till', trans("project.publish.tot"), ['class'=>'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-        {!! Form::text('project_publish_till',null,['id'=>'publish_till','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
+    {!! Form::label('project_publish_till', trans("project.publish.tot"), ['class'=>'col-sm-2 control-label']) !!}
+    <div class="col-sm-4">
+        {!! Form::text('project_publish_till',null,['id'=>'project_publish_till','class'=>'form-control datetimepicker','placeholder'=>trans("common.datumformaatInclTijd")]) !!}
     </div>
 </div>
 <div class="form-group">
@@ -46,19 +44,19 @@
 @section('js-sub2')
     <script>
         $(function () {
-            $('#publish_from').datetimepicker({
+            $('#project_publish_from').datetimepicker({
                 locale: 'nl',
                 format: 'DD/MM/YYYY HH:mm:ss',
                 sideBySide: true
             }).on("dp.change", function (e) {
-                $('#publish_till').data("DateTimePicker").minDate(e.date);
+                $('#project_publish_till').data("DateTimePicker").minDate(e.date);
             });
-            $('#publish_till').datetimepicker({
+            $('#project_publish_till').datetimepicker({
                 locale: 'nl',
                 format: 'DD/MM/YYYY HH:mm:ss',
                 sideBySide: true
             }).on("dp.change", function (e) {
-                $('#publish_from').data("DateTimePicker").maxDate(e.date);
+                $('#project_publish_from').data("DateTimePicker").maxDate(e.date);
             });
         });
     </script>

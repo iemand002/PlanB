@@ -209,10 +209,22 @@
 @section('js-sub')
     <script>
         $(function () {
-            $('.datepicker').datetimepicker({
+            $('#publish_from').datetimepicker({
                 locale: 'nl',
                 format: 'DD/MM/YYYY HH:mm:ss',
                 sideBySide: true
+            }).on("dp.change", function (e) {
+                $('#publish_till').data("DateTimePicker").minDate(e.date);
+            });
+            $('#publish_till').datetimepicker({
+                locale: 'nl',
+                format: 'DD/MM/YYYY HH:mm:ss',
+                sideBySide: true,
+                @if(isset($projectcreate))
+                minDate: Date()
+                @endif
+            }).on("dp.change", function (e) {
+                $('#publish_from').data("DateTimePicker").maxDate(e.date);
             });
         });
     </script>
