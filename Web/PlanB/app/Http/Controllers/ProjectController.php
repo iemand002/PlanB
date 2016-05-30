@@ -17,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projecten = Project::all();
+        $projecten = Project::published()->orderBy('publish_from','desc')->get();
         $active = 'projecten';
         return view('project.index', compact('projecten','active'));
     }

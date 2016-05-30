@@ -46,6 +46,10 @@ class Project extends Model implements SluggableInterface
 	{
 		return $this->attributes['updated_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
 	}
+	
+	public function scopePublished($query){
+		$query->where('publish_from','<',Carbon::now())->where('publish_till','>=',Carbon::now());
+	}
 
 	public function gebruikers()
 	{
@@ -54,7 +58,12 @@ class Project extends Model implements SluggableInterface
 
 	public function milestones()
 	{
-		return $this->hasMany('App\Milestone')->orderBy('id','desc');;
+		return $this->hasMany('App\Milestone')->orderBy('id','desc');
+	}
+
+	public function milestonesPublished()
+	{
+		return $this->hasMany('App\Milestone')->orderBy('id','desc')->published();
 	}
 
 	public function thema()

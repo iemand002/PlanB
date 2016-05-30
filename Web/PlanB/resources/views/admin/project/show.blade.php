@@ -37,7 +37,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="milestones-table">
+                <table class="table table-striped table-bordered" id="milestones-table" data-order="[[ 4, &quot;desc&quot; ]]">
                     <thead>
                     <tr>
                         <th data-sortable="false">Afbeelding</th>

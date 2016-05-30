@@ -56,6 +56,10 @@ class Milestone extends Model implements SluggableInterface
         return $this->attributes['updated_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
     }
 
+    public function scopePublished($query){
+        $query->where('publish_from','<',Carbon::now());
+    }
+
     public function project()
     {
         return $this->belongsTo('App\Project');

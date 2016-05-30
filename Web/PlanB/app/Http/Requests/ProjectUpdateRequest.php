@@ -26,8 +26,8 @@ class ProjectUpdateRequest extends Request
         return [
             'projectnaam'=>'required|max:250',
             'projectbeschrijving'=>'required|min:10',
-            'publish_from'=>'required|date_format:d/m/Y H:i:s',
-            'publish_till'=>'required|date_format:d/m/Y H:i:s',
+            'project_publish_from'=>'required|date_format:d/m/Y H:i:s',
+            'project_publish_till'=>'required|date_format:d/m/Y H:i:s',
             'thema_id'=>'required'
         ];
     }

@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="projecten-table">
+                <table class="table table-striped table-bordered" id="projecten-table" data-order="[[ 3, &quot;desc&quot; ]]">
                     <thead>
                     <tr>
                         <th>Naam</th>

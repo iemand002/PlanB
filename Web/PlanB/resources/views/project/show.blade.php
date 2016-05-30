@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-8">
             @if($project->milestones->count()!=0)
-                @foreach($project->milestones[0]->sections as $section)
+                @foreach($project->milestonesPublished[0]->sections as $section)
                     <?php switch ($section->type_id){
                     case 1:?>
                     @include('section.h1',['tekst'=>$section->tekst])
@@ -42,12 +42,14 @@
             @endif
             <div class="row">
                 <div class="projectVragen col-sm-12">
-                    @if($project->milestones[0]->vragen->count() == 0)
-                        <h3>Er zijn nog geen vragen voor deze milestone</h3>
+                    <h3>Vragen</h3>
+                    @if($project->milestones[0]->publish_till<=\Carbon\Carbon::now()->format('d/m/Y H:i:s'))
+                        <p>Vragen bij deze milestone kunnen niet meer beantwoord worden</p>
+                    @elseif($project->milestones[0]->vragen->count() == 0)
+                        <p>Er zijn nog geen vragen voor deze milestone</p>
                     @else
                         <?php $slideCounter = 0 ?>
                         <div class="slider">
-                            <h3>Vragen</h3>
                             <div class="slide-container">
                                 @foreach ($project->milestones[0]->vragen as $vraag)
                                     <?php $slideCounter++ ?>
@@ -144,7 +146,7 @@
                                     </div>
                                     <div class="card">
                                         <div class="card-body">
-                                            <p class="milestoneTitles">{{ $milestone->naam }}</p>
+                                            <p class="milestoneTitles"><strong>{{ $milestone->naam }}</strong></p>
                                             <p>{{ str_limit($milestone->beschrijving, $limit = 120, $end = '...')}}</p>
                                         </div>
                                     </div>

@@ -79,7 +79,7 @@ class MilestoneController extends Controller
         if ($request->input('submit') == 'nieuw') {
             return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         } elseif ($request->input('submit') == 'opslaan') {
-            return redirect(route('admin.milestone.edit2',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
+            return redirect(route('admin.milestone.edit',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         }
         return redirect(route('admin.project.show', $project->slug))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
     }
@@ -142,7 +142,7 @@ class MilestoneController extends Controller
 
         }
         if ($request->input('submit') == 'opslaan') {
-            return redirect(route('admin.milestone.edit2',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is gewijzigd']);
+            return redirect(route('admin.milestone.edit',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is gewijzigd']);
         }
         return redirect(route('admin.project.show', [$project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
     }

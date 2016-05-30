@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +8,9 @@
     <title>@yield('pagetitle') - {{trans('common.sitenaam')}}</title>
 
     {!! Html::style('/css/app.css') !!}
-{{--    @if(Auth::check())--}}
+    @if(Auth::check())
         {!! Html::style('/css/admin.css') !!}
-    {{--@endif--}}
+    @endif
 
 </head>
 <body id="blank">
@@ -18,9 +18,9 @@
 @yield('content')
 
 {!! Html::script('/js/all.js') !!}
-{{--@if(Auth::check())--}}
+@if(Auth::check())
     {!! Html::script('/js/admin.js') !!}
-{{--@endif--}}
+@endif
 @yield('javascript')
 </body>
 </html>

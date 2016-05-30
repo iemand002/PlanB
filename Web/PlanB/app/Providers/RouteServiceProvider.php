@@ -7,8 +7,11 @@ use App\Project;
 use App\Thema;
 use App\User;
 use App\Vraag;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Request;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,26 +27,29 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function boot(Router $router)
     {
         parent::boot($router);
 
-        $router->bind('project',function($slug){
-            return Project::where('slug',$slug)->first();
+        $router->bind('projectPublic', function ($slug)  {
+            return Project::where('slug', $slug)->published()->firstOrFail();
         });
-        $router->bind('milestone',function($slug){
-            return Milestone::where('slug',$slug)->first();
+        $router->bind('project', function ($slug)  {
+            return Project::where('slug', $slug)->first();
         });
-        $router->bind('thema',function($id){
+        $router->bind('milestone', function ($slug) {
+            return Milestone::where('slug', $slug)->first();
+        });
+        $router->bind('thema', function ($id) {
             return Thema::findOrFail($id);
         });
-        $router->bind('user', function($id) {
+        $router->bind('user', function ($id) {
             return User::find($id);
         });
-        $router->bind('vraag', function($id) {
+        $router->bind('vraag', function ($id) {
             return Vraag::find($id);
         });
     }
@@ -51,7 +57,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router $router
      * @return void
      */
     public function map(Router $router)
