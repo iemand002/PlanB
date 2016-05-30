@@ -1,47 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>404 - Not Found</title>
+@extends('layout.main')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Sorry! De door u gevraagde pagina bestaat niet (meer)...</div>
-            </div>
+@section('pagetitle')
+    Error 404 - Not Found
+@endsection
+@section('content')
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>Sorry!</h1>
+            <p>We konden de door u gevraagde pagina niet (meer) vinden...</p>
+            <p><a href="{{route('home')}}" class="btn btn-success">Klik hier om naar de homepagina te gaan</a> </p>
         </div>
-    </body>
-</html>
+    </div>
+@endsection
