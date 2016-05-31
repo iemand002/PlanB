@@ -43,7 +43,9 @@ function addOne(id) {
 // piechart
 
 var dataset = [6, 14, 5, 26, 49];
+
 var labels = ['Love it', 'Interesting', 'No Opinion', 'Rubs wrong, but...', 'DO NOT LIKE']
+
 var colors = ['#9e0142', '#f46d43', '#fdae61', '#e6f598', '#66c2a5'];
 
 var width = document.querySelector('.chart-wrapper').offsetWidth,
@@ -112,7 +114,7 @@ var draw = function() {
     .enter().append('path')
     .attr({
       'fill': function(d, i) {
-        // slice color 								
+        // slice color                              
         return colors[i];
       },
       'd': arc,
@@ -160,7 +162,7 @@ var draw = function() {
     .attr('transform', function(d) {
       // calculate outerArc centroid for 'this' slice
       var pos = outerArc.centroid(d);
-      // define left and right alignment of text labels 							
+      // define left and right alignment of text labels                             
       pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
       return "translate(" + pos + ")";
     })
