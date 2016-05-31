@@ -52,4 +52,6 @@ function addOne(id) {
 	$.get('/antwoord/'+id);
 }
 
+
+
 //# sourceMappingURL=all.js.map

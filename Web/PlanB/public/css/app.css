@@ -9908,6 +9908,9 @@ body#blank {
 .likeDislike {
   margin-top: 20px; }
 
+.justify {
+  text-justify: inter-word; }
+
 .bootstrap-datetimepicker-widget > .row {
   margin-right: 0; }
 

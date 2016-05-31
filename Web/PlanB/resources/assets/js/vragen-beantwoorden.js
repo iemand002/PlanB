@@ -39,3 +39,5 @@ function addOne(id) {
   //maakt een GET request naar uw backend (laravel)
 	$.get('/antwoord/'+id);
 }
+
+

@@ -138,10 +138,17 @@
                 <div class="col-sm-6" style="text-align:right"><p class="text-danger" style="font-weight:bold">Dislikes</p></div>
             </div>
             <div>
-                <?php $likesPercentage = round(($project->milestones[0]->likes/($project->milestones[0]->likes+$project->milestones[0]->dislikes))*100); 
+                @if ((($project->milestones[0]->likes+$project->milestones[0]->dislikes)) != 0)
+                <?php $likesPercentage = round(($project->milestones[0]->likes/($project->milestones[0]->likes+$project->milestones[0]->dislikes))*100);
                 if ($likesPercentage > 90) {
                     $likesPercentage = 90;
+                }
+                else if ($likesPercentage < 10) {
+                    $likesPercentage = 10;
                 }?>
+                @else
+                <?php $likesPercentage = 50 ?>
+                @endif
                 <div class="progress">
                     <div class="progress-bar progress-bar-success" style="width: {{$likesPercentage}}%">
                         <p>{{ $project->milestones[0]->likes }}</p>
