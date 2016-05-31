@@ -117,67 +117,64 @@
             </div>
             @endif
         </div>
+        <div class="col-sm-12">
+            <!-- hier -->
+        </div>
     </div>
-</div>
-</div>
 </div>
 
 <div class="col-sm-4">
     <div class="row">
         <div class="col-sm-12">
-            <h2>Projectinfo</h2>
             <h3>{{$project->naam}}</h3>
             <div>{{$project->beschrijving}}</div>
-            <div class="likeDislike">
-                <?php $likesPercentage = round(($project->milestones[0]->likes/($project->milestones[0]->likes+$project->milestones[0]->dislikes))*100) ?>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: {{$likesPercentage}}%">
-                        <p>Likes: {{ $project->milestones[0]->likes }}</p>
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: {{100-$likesPercentage}}%">
-                        <p>Dislikes: {{ $project->milestones[0]->dislikes }}</p>
-                    </div>
-                </div>
-            </div>
             <div>
                 <p>Looptijd project:</p>
                 <p>van: {{ $project->publish_from }}</p>
                 <p>tot: {{ $project->publish_till }}</p>
-                <div class="col-sm-4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h2>Projectinfo</h2>
-                            <h3>{{$project->naam}}</h3>
-                            <div>{{$project->beschrijving}}</div>
-                            <div>
-                                <p>Looptijd project:</p>
-                                <p>van: {{ $project->publish_from }}</p>
-                                <p>tot: {{ $project->publish_till }}</p>
-                            </div>
-                        </div>
+            </div>
+            <div class="row likeDislike">
+                <div class="col-sm-6"><p class="text-success" style="font-weight:bold">Likes</p></div>
+                <div class="col-sm-6" style="text-align:right"><p class="text-danger" style="font-weight:bold">Dislikes</p></div>
+            </div>
+            <div>
+                <?php $likesPercentage = round(($project->milestones[0]->likes/($project->milestones[0]->likes+$project->milestones[0]->dislikes))*100); 
+                if ($likesPercentage > 90) {
+                    $likesPercentage = 90;
+                }?>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" style="width: {{$likesPercentage}}%">
+                        <p>{{ $project->milestones[0]->likes }}</p>
                     </div>
-                    <div class="row">
-                        <div class="projectMilestones col-sm-12">
-                            <div class="timeline">
-                                <div class="timeline-label">Milestones</div>
-                                <ul class="timeline-list">
-                                    @foreach ($project->milestones as $milestone)
-                                    <li>
-                                        <div class="timeline-list-label">
-                                            <time datetime="{{ $milestone->publish_from_date_only}}">{{ $milestone->publish_from_date_only }}</time>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <p class="milestoneTitles"><strong>{{ $milestone->naam }}</strong></p>
-                                                <p>{{ str_limit($milestone->beschrijving, $limit = 120, $end = '...')}}</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="progress-bar progress-bar-danger" style="width: {{100-$likesPercentage}}%">
+                        <p>{{ $project->milestones[0]->dislikes }}</p>
                     </div>
                 </div>
             </div>
-            @endsection
+        </div>
+    </div>
+    <div class="row">
+        <div class="projectMilestones col-sm-12">
+            <div class="timeline">
+                <div class="timeline-label">Milestones</div>
+                <ul class="timeline-list">
+                    @foreach ($project->milestones as $milestone)
+                    <li>
+                        <div class="timeline-list-label">
+                            <time datetime="{{ $milestone->publish_from_date_only}}">{{ $milestone->publish_from_date_only }}</time>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="milestoneTitles"><strong>{{ $milestone->naam }}</strong></p>
+                                <p>{{ str_limit($milestone->beschrijving, $limit = 120, $end = '...')}}</p>
+                            </div>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+@endsection
