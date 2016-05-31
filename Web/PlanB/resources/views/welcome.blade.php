@@ -27,9 +27,6 @@ Start
         minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
         id illo nobis qui.
     </div>
-    <div class="embed-responsive embed-responsive-16by9">
-        <div class="chart-wrapper embed-responsive-item"></div>
-    </div>
 </div>
 
 @endsection

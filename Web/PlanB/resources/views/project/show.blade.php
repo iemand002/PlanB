@@ -118,9 +118,6 @@
             </div>
             @endif
         </div>
-        <div class="col-sm-12">
-            <!-- hier -->
-        </div>
     </div>
 </div>
 
@@ -130,6 +127,17 @@
             <h2>Projectinfo</h2>
             <h3>{{$project->naam}}</h3>
             <div>{{$project->beschrijving}}</div>
+            <div class="likeDislike">
+            <?php $likesPercentage = round(($project->milestones[0]->likes/($project->milestones[0]->likes+$project->milestones[0]->dislikes))*100) ?>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" style="width: {{$likesPercentage}}%">
+                    <p>Likes: {{ $project->milestones[0]->likes }}</p>
+                    </div>
+                    <div class="progress-bar progress-bar-danger" style="width: {{100-$likesPercentage}}%">
+                    <p>Dislikes: {{ $project->milestones[0]->dislikes }}</p>
+                    </div>
+                </div>
+            </div>
             <div>
                 <p>Looptijd project:</p>
                 <p>van: {{ $project->publish_from }}</p>
