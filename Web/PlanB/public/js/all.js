@@ -54,12 +54,9 @@ function addOne(id) {
 
 // piechart
 
-// var dataset = [6, 14, 5, 26, 49];
-// var labels = ['Love it', 'Interesting', 'No Opinion', 'Rubs wrong, but...', 'DO NOT LIKE']
-
-var dataset = [50, 50];
-var labels = ['Like', 'Dislike'];
-var colors = ['#5cb85c', '#f0ad4e'];
+var dataset = [6, 14, 5, 26, 49];
+var labels = ['Love it', 'Interesting', 'No Opinion', 'Rubs wrong, but...', 'DO NOT LIKE']
+var colors = ['#9e0142', '#f46d43', '#fdae61', '#e6f598', '#66c2a5'];
 
 var width = document.querySelector('.chart-wrapper').offsetWidth,
   height = document.querySelector('.chart-wrapper').offsetHeight,
