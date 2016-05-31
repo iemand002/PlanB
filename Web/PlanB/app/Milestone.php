@@ -15,7 +15,8 @@ class Milestone extends Model implements SluggableInterface
         'build_from' => 'naam',
     ];
 
-    protected $dates = ['publish_from', 'publish_till'];
+    protected $dates = ['publish_from', 'publish_till','publish_from_date_only'];
+    protected $appends = ['publish_from_date_only'];
 
     protected $table = 'milestones';
     public $timestamps = true;
@@ -26,39 +27,45 @@ class Milestone extends Model implements SluggableInterface
         return $this->attributes['publish_from'] = Carbon::createFromFormat('d/m/Y H:i:s', $date)->format('Y-m-d H:i:s');
     }
 
-    public function setPublishTillAttribute($date)
-    {
-        return $this->attributes['publish_till'] = Carbon::createFromFormat('d/m/Y H:i:s', $date)->format('Y-m-d H:i:s');
-    }
-
     public function getPublishFromAttribute($date)
     {
-        return $this->attributes['publish_from'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
     }
 
-    public function getPublishFromDateOnlyAttribute($date)
+
+
+    public function setPublishTillAttribute($date)
     {
-        return $this->attributes['publish_from_date_only'] = Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['publish_from'])->format('d/m/Y');
+//        dd(Carbon::createFromFormat('d/m/Y H:i:s', $date));
+        return $this->attributes['publish_till'] = Carbon::createFromFormat('d/m/Y H:i:s', $date)->format('Y-m-d H:i:s');
     }
 
     public function getPublishTillAttribute($date)
     {
-        return $this->attributes['publish_till'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
+    }
+
+
+
+    public function getPublishFromDateOnlyAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['publish_from'])->format('d/m/Y');
     }
 
     public function getCreatedAtAttribute($date)
     {
-        return $this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
     }
 
     public function getUpdatedAtAttribute($date)
     {
-        return $this->attributes['updated_at'] = Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y H:i:s');
     }
 
     public function scopePublished($query){
         $query->where('publish_from','<',Carbon::now());
     }
+
 
     public function project()
     {

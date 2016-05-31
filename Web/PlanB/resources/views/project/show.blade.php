@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="projectVragen col-sm-12">
                     <h3>Vragen</h3>
-                    @if($project->milestones[0]->publish_till<=\Carbon\Carbon::now()->format('d/m/Y H:i:s'))
+                    @if(\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$project->milestones[0]->publish_till)->lt(\Carbon\Carbon::now()))
                         <p>Vragen bij deze milestone kunnen niet meer beantwoord worden</p>
                     @elseif($project->milestones[0]->vragen->count() == 0)
                         <p>Er zijn nog geen vragen voor deze milestone</p>

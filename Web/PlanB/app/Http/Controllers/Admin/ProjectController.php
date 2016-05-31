@@ -107,7 +107,7 @@ class ProjectController extends Controller
     {
         $this->updateProject($request, $project);
 
-        return redirect(route('admin.projecten.index'))->with(['success' => 'Project "' . $project->naam . '" is gewijzigd']);
+        return redirect(route('admin.project.show',$project->slug))->with(['success' => 'Project "' . $project->naam . '" is gewijzigd']);
     }
 
     /**
