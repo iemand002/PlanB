@@ -25,8 +25,9 @@ class ProjectController extends Controller
     {
         $projecten = Project::all();
         $themas = Thema::all();
+        $active='a-projecten';
 
-        return view('admin.project.index', compact('projecten', 'themas'));
+        return view('admin.project.index', compact('projecten', 'themas','active'));
     }
 
     /**
@@ -36,7 +37,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $themas = Thema::lists('naam', 'id');
+        $themas = Thema::orderBy('naam')->lists('naam', 'id');
         return view('admin.project.create', compact('themas'));
     }
 

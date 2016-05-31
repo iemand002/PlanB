@@ -20,7 +20,8 @@ class ThemaController extends Controller
     public function index()
     {
         $themas = Thema::all();
-        return view('admin.thema.index', compact('themas'));
+        $active='a-themas';
+        return view('admin.thema.index', compact('themas','active'));
     }
 
     /**

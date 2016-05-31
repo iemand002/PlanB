@@ -30,12 +30,12 @@
                     <li><a href="{{route('auth.logout')}}" class="visible-xs-block">Uitloggen</a></li>
                     <li role="separator" class="divider visible-xs-block"></li>
                     @if($user->admin)
-                        <li class="dropdown@if(isset($active)&&$active=='admin') active@endif">
+                        <li class="dropdown @if(isset($active)&&($active=='admin'||$active=='a-projecten'||$active=='a-themas'||$active=='a-users')) active @endif">
                             <a href="{{route('admin')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adminpanel <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{route('admin.projecten.index')}}">Projecten</a></li>
-                                <li><a href="{{route('admin.thema.index')}}">Themas</a></li>
-                                <li><a href="{{route('admin.user.index')}}">Gebruikers</a></li>
+                                <li @if(isset($active)&&$active=='a-projecten')class="active"@endif><a href="{{route('admin.projecten.index')}}">Projecten</a></li>
+                                <li @if(isset($active)&&$active=='a-themas')class="active"@endif><a href="{{route('admin.thema.index')}}">Themas</a></li>
+                                <li @if(isset($active)&&$active=='a-users')class="active"@endif><a href="{{route('admin.user.index')}}">Gebruikers</a></li>
                             </ul>
                         </li>
                         <li @if(isset($active)&&$active=='filemanager')class="active"@endif><a

@@ -15,6 +15,7 @@
     "datatables": "^1.10.11",
     "datatables-plugins": "^1.10.11",
     "tink-theme-stad": "^1.12.1",
-    "tink-core": "^1.12.4"
+    "tink-core": "^1.12.4",
+    "isotope": "^3.0.0"
   }
 }

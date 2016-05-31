@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use App\Thema;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,8 +19,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projecten = Project::published()->orderBy('publish_from','desc')->get();
+        $themas=Thema::has('projecten','>',0)->orderBy('naam')->get();
         $active = 'projecten';
-        return view('project.index', compact('projecten','active'));
+        return view('project.index', compact('projecten','active','themas'));
     }
 
     /**

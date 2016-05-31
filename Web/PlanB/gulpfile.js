@@ -34,10 +34,12 @@ elixir(function(mix) {
     // mix.copy('bower_components/tink-theme-stad/dist/tink/', 'resources/assets/sass/tink');
     // mix.copy('bower_components/tink-core/dist/tink/', 'resources/assets/sass/tink');
 
+    // mix.copy('bower_components/isotope/dist/isotope.pkgd.js', 'resources/assets/js/');
+
     mix.sass('app.scss');
     mix.sass('admin.scss');
 
-    mix.scripts(['jquery.min.js','bootstrap.min.js','vragen-beantwoorden.js']);
+    mix.scripts(['jquery.min.js','bootstrap.min.js','vragen-beantwoorden.js','isotope.pkgd.js']);
     mix.scripts(['moment.min.js','moment-nl.js','bootstrap-datetimepicker.min.js','datatables/jquery.dataTables.js','datatables/dataTables.bootstrap.js','Sortable.min.js','jquery.geocomplete.js'],'public/js/admin.js');
     
     mix.browserSync({
