@@ -13,22 +13,28 @@ class ThemaSeeder extends Seeder
     public function run()
     {
         Thema::create([
-            'naam' => 'Natuur',
-            'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
-            minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
-            id illo nobis qui.'
+            'naam'=>'Antwerpen Noord',
+            'beschrijving'=>'Projecten in gebied Antwerpen Noord'
         ]);
         Thema::create([
-            'naam' => 'Infrastructuur',
-            'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
-            minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
-            id illo nobis qui.'
+            'naam'=>'Merksem',
+            'beschrijving'=>'Projecten in gebied Merksem'
         ]);
         Thema::create([
-            'naam' => 'Mobiliteit',
-            'beschrijving' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem illo, incidunt inventore ipsum
-            minus nesciunt numquam, perferendis perspiciatis quis veniam voluptate voluptates voluptatum! Alias eveniet
-            id illo nobis qui.'
+            'naam'=>'Antwerpen',
+            'beschrijving'=>'Projecten in gebied Antwerpen'
+        ]);
+        Thema::create([
+            'naam'=>'Berchem',
+            'beschrijving'=>'Projecten in gebied Berchem'
+        ]);
+        Thema::create([
+            'naam'=>'Hoboken',
+            'beschrijving'=>'Projecten in gebied Hoboken'
+        ]);
+        Thema::create([
+            'naam'=>'Wilrijk',
+            'beschrijving'=>'Projecten in gebied Wilrijk'
         ]);
 //        Thema::create([
 //            'naam'=>'',
