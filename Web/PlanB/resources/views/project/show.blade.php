@@ -64,7 +64,6 @@
                                 <?php $slideCounter++ ?>
                                 <div class="slide {{$slideCounter}}">
                                     @foreach ($project->milestones[0]->vragen as $vraag)
-
                                         <?php $barColorCounter = 1 ?>
                                         <p class="mediumTitles">{{ ucfirst($vraag->vraag) }}</p>
 
@@ -117,6 +116,9 @@
                             </div>
                         </div>
                     @endif
+                </div>
+                <div class="col-sm-12">
+                    <!-- hier -->
                 </div>
             </div>
         </div>
