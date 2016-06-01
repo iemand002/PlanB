@@ -49,13 +49,32 @@
                                 {!! reset_form($user->email) !!}
                             </td>
                             <td>
-                                <a href="" class="btn btn-xs btn-danger" disabled=""><i class="fa fa-trash"></i>
-                                    Verwijder</a>
+                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#del-user-modal" data-username="{{$user->fullname}}" data-userid="{{$user->id}}"><i class="fa fa-trash"></i>
+                                    Verwijder</button>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="del-user-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ben je zeker?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Ben je zeker dat je gebruiker "<span id="username"></span>" wilt verwijderen?</p>
+                    {!! Form::open(['route'=>['admin.user.destroy',0],'method'=>'delete','id'=>'delete-form']) !!}
+                    {!! Form::close() !!}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Annuleer</button>
+                    <button type="button" class="btn btn-danger" id="really-delete">Verwijder</button>
+                </div>
             </div>
         </div>
     </div>
@@ -68,6 +87,20 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Dutch.json"
                 }
             });
+        });
+        $('#del-user-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var username = button.data('username') // Extract info from data-* attributes
+            var userid = button.data('userid') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('#username').text(username)
+            var url = '{{route('admin.user.destroy',':user')}}'.replace(':user', userid);
+            modal.find('#delete-form').attr('action', url);
+        })
+        jQuery('#really-delete').click(function () {
+            jQuery('#del-user-modal form').submit();
         });
     </script>
 @endsection

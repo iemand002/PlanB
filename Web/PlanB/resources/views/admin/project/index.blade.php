@@ -30,6 +30,7 @@
                         <th>Gemaakt door</th>
                         <th data-sortable="false">Acties</th>
                         <th data-sortable="false">&nbsp;</th>
+                        <th data-sortable="false">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,6 +46,10 @@
                             <td>{{$project->creator!=null?$project->creator->fullname:'-'}}</td>
                             <td><a href="{{route('admin.project.edit',$project->slug)}}" class="btn btn-xs btn-warning"><i
                                             class="fa fa-pencil"></i> Wijzigen</a></td>
+                            <td>
+                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#del-project-modal" data-projectnaam="{{$project->naam}}" data-projectslug="{{$project->slug}}"><i class="fa fa-trash"></i>
+                                    Verwijder</button>
+                            </td>
                             <td><a href="{{ route('admin.milestone.create', $project->slug) }}"
                                    class="btn btn-xs btn-default"><i
                                             class="fa fa-plus"></i> Milestone toevoegen</a></td>
@@ -55,6 +60,7 @@
             </div>
         </div>
     </div>
+    @include('admin.project._modal_del_project')
 @endsection
 
 @section('js')
@@ -67,4 +73,5 @@
             });
         });
     </script>
+    @include('admin.project._modal_del_project_js')
 @endsection

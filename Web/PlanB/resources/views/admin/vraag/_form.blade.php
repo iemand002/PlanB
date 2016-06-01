@@ -1,7 +1,7 @@
 <div class="form-group">
     {!! Form::label('vraag', "Vraag/stelling", ['class'=>'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::text('vraag',null,['id'=>'vraag','class'=>'form-control','placeholder'=>"De vraag/stelling"]) !!}
+        {!! Form::text('vraag',null,['id'=>'vraag','class'=>'form-control','placeholder'=>"De vraag/stelling",'autofocus']) !!}
     </div>
 </div>
 <div id="antwoorden">

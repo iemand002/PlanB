@@ -48,7 +48,7 @@ class ThemaController extends Controller
         if ($request->input('submit') == 'nieuw') {
             return redirect()->back()->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
         }
-        return redirect(route('admin'))->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
+        return redirect(route('admin.thema.index'))->with(['success' => 'Thema "' . $thema->naam . '" is opgeslagen']);
     }
 
     /**
@@ -72,7 +72,7 @@ class ThemaController extends Controller
     public function update(ThemaRequest $request, $thema)
     {
         $this->saveThema($request, $thema);
-        return redirect(route('admin'))->with(['success' => 'Thema "' . $thema->naam . '" is gewijzigd']);
+        return redirect(route('admin.thema.index'))->with(['success' => 'Thema "' . $thema->naam . '" is gewijzigd']);
     }
 
     /**
@@ -81,9 +81,13 @@ class ThemaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($thema)
     {
-        //
+        if ($thema->projecten->count()==0){
+            $thema->delete();
+            return redirect(route('admin.thema.index'))->with(['success' => 'Thema "' . $thema->naam . '" verwijderd!']);
+        }
+        return redirect(route('admin.thema.index'))->withErrors(['Thema "' . $thema->naam . '" heeft nog gekoppelde projecten! Verwijder eerst de projecten...']);
     }
 
     /**

@@ -13,7 +13,7 @@
 
 {!! Html::style('css/app.css') !!}
 {!! Html::style('css/kristof.css') !!}
-@if($user&&$user->admin)
+@if($loggedInUser&&$loggedInUser->admin)
     {!! Html::style('css/admin.css') !!}
 @endif
 @yield('css')
@@ -44,7 +44,7 @@
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 {!! Html::script('js/all.js') !!}
-@if($user&&$user->admin)
+@if($loggedInUser&&$loggedInUser->admin)
     {!! Html::script('js/admin.js') !!}
 @endif
 <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
@@ -52,5 +52,21 @@
 {{--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>--}}
 {!! Html::script('js/kristof.js') !!}
 @yield('js')
+<script>
+    $(function() {
+        $('a[href*="#"]:not([href="#"])').click(function() {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>

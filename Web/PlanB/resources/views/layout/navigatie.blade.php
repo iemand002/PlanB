@@ -23,13 +23,13 @@
                 </li>
                 <li><a href="{{route('map.show')}}">Kaart</a></li>
                 <li role="separator" class="divider visible-xs-block"></li>
-                @if(!$user)
+                @if(!$loggedInUser)
                     <li><a href="{{route('auth.login')}}" class="visible-xs-block">Login</a></li>
                     <li><a href="{{route('auth.register')}}" class="visible-xs-block">Registreer</a></li>
                 @else
                     <li><a href="{{route('auth.logout')}}" class="visible-xs-block">Uitloggen</a></li>
                     <li role="separator" class="divider visible-xs-block"></li>
-                    @if($user->admin)
+                    @if($loggedInUser->admin)
                         <li class="dropdown @if(isset($active)&&($active=='admin'||$active=='a-projecten'||$active=='a-themas'||$active=='a-users')) active @endif">
                             <a href="{{route('admin')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Adminpanel <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -45,7 +45,7 @@
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right text-right hidden-xs">
-                @if(!$user)
+                @if(!$loggedInUser)
                     <li><a href="{{route('auth.login')}}">Login</a></li>
                     <li><a href="{{route('auth.register')}}">Registreer</a></li>
                 @else

@@ -117,9 +117,23 @@ class ProjectController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($project)
     {
-        //
+        foreach ($project->milestones as $milestone) {
+            foreach ($milestone->sections as $section){
+                $section->delete();
+            }
+            foreach ($milestone->vragen as $vraag){
+                foreach ($vraag->antwoorden as $antwoord){
+                    $antwoord->delete();
+                }
+                $vraag->delete();
+            }
+            $milestone->delete();
+        }
+        $project->delete();
+
+        return redirect(route('admin.projecten.index'))->with(['success' => 'Project "' . $project->naam . '", met alle bijhorende milestones en vragen, verwijderd!']);
     }
 
     /**

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Message;
 
@@ -91,9 +92,13 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user)
     {
-        //
+        if ($user!=Auth::user()){
+            $user->delete();
+            return redirect(route('admin.user.index'))->with(['success' => 'Gebruiker "' . $user->fullname . '" verwijderd!']);
+        }
+        return redirect(route('admin.user.index'))->withErrors(['Je kunt jezelf niet verwijderen!']);
     }
 
     /**

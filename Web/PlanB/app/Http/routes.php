@@ -63,6 +63,7 @@ Route::group(['middleware' => ['web']], function () {
 
 		// Projecten
 		Route::get('/project/nieuw', ['as' => 'admin.project.create', 'uses' => 'Admin\ProjectController@create']);
+		Route::delete('/project/delete/{project}', ['as' => 'admin.project.destroy', 'uses' => 'Admin\ProjectController@destroy']);
 		Route::get('/project/{project}/edit', ['as' => 'admin.project.edit', 'uses' => 'Admin\ProjectController@edit']);
 		Route::get('/project/{project}', ['as' => 'admin.project.show', 'uses' => 'Admin\ProjectController@show']);
 		Route::post('/project', ['as' => 'admin.project.store', 'uses' => 'Admin\ProjectController@store']);
@@ -75,11 +76,13 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('/project/{project}/{milestone}/edit',['as'=>'admin.milestone.edit','uses'=>'Admin\MilestoneController@edit2']);
 		Route::get('/project/{project}/{milestone}',['as'=>'admin.milestone.show','uses'=>'Admin\MilestoneController@show']);
 		Route::patch('/project/{project}/{milestone}',['as'=>'admin.milestone.update','uses'=>'Admin\MilestoneController@update2']);
+		Route::delete('milestone/delete/{milestone}',['as'=>'admin.milestone.destroy','uses'=>'Admin\MilestoneController@destroy']);
 
 		// Themas
 		Route::get('/themas',['as'=>'admin.thema.index','uses'=>'Admin\ThemaController@index']);
 		Route::get('/thema/nieuw',['as'=>'admin.thema.create','uses'=>'Admin\ThemaController@create']);
 		Route::post('/thema/',['as'=>'admin.thema.store','uses'=>'Admin\ThemaController@store']);
+		Route::delete('thema/delete/{thema}',['as'=>'admin.thema.destroy','uses'=>'Admin\ThemaController@destroy']);
 		Route::get('thema/{thema}/edit',['as'=>'admin.thema.edit','uses'=>'Admin\ThemaController@edit']);
 		Route::patch('thema/{thema}',['as'=>'admin.thema.update','uses'=>'Admin\ThemaController@update']);
 
@@ -88,6 +91,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('/project/{project}/{milestone}/{vraag}/edit',['as'=>'admin.vraag.edit','uses'=>'Admin\VraagController@edit']);
 		Route::post('/project/{project}/{milestone}/vraag/',['as'=>'admin.vraag.store','uses'=>'Admin\VraagController@store']);
 		Route::patch('/project/{project}/{milestone}/{vraag}',['as'=>'admin.vraag.update','uses'=>'Admin\VraagController@update']);
+		Route::delete('vraag/delete/{vraag}',['as'=>'admin.vraag.destroy','uses'=>'Admin\VraagController@destroy']);
 
 		// Upload routes
 		Route::get('/upload', ['as' => 'upload.index', 'uses' => 'Admin\UploadController@index']);
@@ -103,18 +107,19 @@ Route::group(['middleware' => ['web']], function () {
 		Route::post('gebruiker',['as'=>'admin.user.store','uses'=>'Admin\UserController@store']);
 		Route::get('gebruiker/{user}/edit',['as'=>'admin.user.edit','uses'=>'Admin\UserController@edit']);
 		Route::patch('gebruiker/{user}',['as'=>'admin.user.update','uses'=>'Admin\UserController@update']);
+		Route::delete('gebruiker/delete/{user}',['as'=>'admin.user.destroy','uses'=>'Admin\UserController@destroy']);
 		Route::post('reset-wachtwoord', ['as'=>'admin.reset-wachtwoord','uses'=>'Admin\UserController@sendResetLinkEmail']);
 
 
 	});
-	Route::group(['prefix' => 'api'], function () {
-		Route::get('project/{id}', 'APIController@getProject');
-		Route::get('themas', 'APIController@getAlleThemas');
-		Route::get('projecten','APIController@getProjecten');
-		Route::get('thema/{id}','APIController@getProjectenOpThema');
-		Route::post('like/{milestone_id}', 'APIController@likeMilestone');
-		Route::post('dislike/{milestone_id}', 'APIController@dislikeMilestone');
-	});
 
+});
+Route::group(['prefix' => 'api'], function () {
+	Route::get('project/{id}', 'APIController@getProject');
+	Route::get('themas', 'APIController@getAlleThemas');
+	Route::get('projecten','APIController@getProjecten');
+	Route::get('thema/{id}','APIController@getProjectenOpThema');
+	Route::get('like/{milestone_id}', 'APIController@likeMilestone'); // UNITY post werkt niet
+	Route::get('dislike/{milestone_id}', 'APIController@dislikeMilestone'); // UNITY post werkt niet
 });
 

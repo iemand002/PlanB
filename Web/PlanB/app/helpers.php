@@ -27,7 +27,7 @@ function is_image($mimeType)
  * @param string $submitIconClasses
  * @return string
  */
-function delete_form($formParamsArray, $label = 'Delete', $submitClasses = 'btn btn-danger', $submitIconClasses = 'fa fa-trash-o')
+function delete_form($formParamsArray, $label = 'Verwijder', $submitClasses = 'btn btn-danger', $submitIconClasses = 'fa fa-trash-o')
 {
     $form = Form::open(array_merge(['method' => 'delete'], $formParamsArray));
     $form .= "<button type='submit' class='$submitClasses'><i class='$submitIconClasses' aria-hidden='true'></i> $label</button>";

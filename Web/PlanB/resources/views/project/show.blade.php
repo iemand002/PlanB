@@ -40,7 +40,7 @@
         @else
 
         @endif
-        <div class="row">
+        <div class="row" id="vragen">
             <div class="projectVragen col-sm-12">
                 <h3>Vragen</h3>
                 @if(\Carbon\Carbon::createFromFormat('d/m/Y H:i:s',$project->milestones[0]->publish_till)->lt(\Carbon\Carbon::now()))
@@ -158,6 +158,7 @@
                     </div>
                 </div>
             </div>
+            <a class="btn btn-info btn-xs btn-block" href="#vragen">Vragen beantwoorden</a>
         </div>
     </div>
     <div class="row">

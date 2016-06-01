@@ -79,7 +79,7 @@ class MilestoneController extends Controller
         if ($request->input('submit') == 'nieuw') {
             return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         } elseif ($request->input('submit') == 'opslaan') {
-            return redirect(route('admin.milestone.edit',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
+            return redirect(route('admin.milestone.edit', [$project->slug, $milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         }
         return redirect(route('admin.project.show', $project->slug))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
     }
@@ -105,6 +105,7 @@ class MilestoneController extends Controller
     {
         return view('admin.milestone.edit', compact('project', 'milestone'));
     }
+
     public function edit2($project, $milestone)
     {
         return view('admin.milestone.edit2', compact('project', 'milestone'));
@@ -123,6 +124,7 @@ class MilestoneController extends Controller
 
         return redirect(route('admin.project.show', [$project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
     }
+
     public function update2(MilestoneRequest $request, $project, $milestone)
     {
         $this->saveMilestone($request, $project, $milestone);
@@ -130,19 +132,19 @@ class MilestoneController extends Controller
         $positions = explode(',', $request->input('positions'));
         for ($i = 1; $i <= $request->input('count'); $i++) {
             if (!$request->has('del-' . $i)) {
-                if ($request->input('id-'.$i)==0) {
+                if ($request->input('id-' . $i) == 0) {
                     $section = new Section();
-                }else{
-                    $section=Section::find($request->input('id-'.$i));
+                } else {
+                    $section = Section::find($request->input('id-' . $i));
                 }
                 $this->saveSection($request, $i, $section, $positions, $milestone);
-            }else{
-                Section::destroy($request->input('del-'.$i));
+            } else {
+                Section::destroy($request->input('del-' . $i));
             }
 
         }
         if ($request->input('submit') == 'opslaan') {
-            return redirect(route('admin.milestone.edit',[$project->slug,$milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is gewijzigd']);
+            return redirect(route('admin.milestone.edit', [$project->slug, $milestone->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" is gewijzigd']);
         }
         return redirect(route('admin.project.show', [$project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
     }
@@ -153,9 +155,20 @@ class MilestoneController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($milestone)
     {
-        //
+        foreach ($milestone->sections as $section) {
+            $section->delete();
+        }
+        foreach ($milestone->vragen as $vraag) {
+            foreach ($vraag->antwoorden as $antwoord) {
+                $antwoord->delete();
+            }
+            $vraag->delete();
+        }
+        $milestone->delete();
+
+        return redirect(route('admin.project.show',[$milestone->project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '", met alle bijhorende vragen, verwijderd!']);
     }
 
     /**

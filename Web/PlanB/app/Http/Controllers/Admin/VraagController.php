@@ -53,7 +53,7 @@ class VraagController extends Controller
         if ($request->input('submit') == 'nieuw') {
             return redirect()->back()->with(['success' => 'Vraag "' . $vraag->vraag . '" is opgeslagen']);
         }
-        return redirect(route('admin.project.show', $project->slug))->with(['success' => 'Vraag "' . $vraag->vraag . '" is opgeslagen']);
+        return redirect(route('admin.milestone.show', [$project->slug,$milestone->slug]))->with(['success' => 'Vraag "' . $vraag->vraag . '" is opgeslagen']);
     }
 
     /**
@@ -109,9 +109,13 @@ class VraagController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($vraag)
     {
-        //
+        foreach ($vraag->antwoorden as $antwoord){
+            $antwoord->delete();
+        }
+        $vraag->delete();
+        return redirect(route('admin.milestone.show',[$vraag->milestone->project->slug,$vraag->milestone->slug]))->with(['success' => 'Vraag "' . $vraag->vraag . '", met alle bijhorende antwoorden, verwijderd!']);
     }
 
     /**

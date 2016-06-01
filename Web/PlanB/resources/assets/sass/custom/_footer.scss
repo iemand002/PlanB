@@ -23,9 +23,10 @@ footer {
 @media (max-width: $container-sm) {
   footer {
     span.break, .pull-right {
-      display: block;
-      padding-top: 5px;;
-      float: left !important;
+      //display: block;
+      //padding-top: 5px;;
+      //float: left !important;
+      //margin-left:50px;
     }
     .foot-logo{
       float: left;
@@ -44,24 +45,26 @@ footer {
   padding-right: 2px;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
+//@media (max-width: $container-sm) {
+  /* Sticky footer styles
+  -------------------------------------------------- */
+  html {
+    position: relative;
+    min-height: 100%;
+  }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: $foot-height+20;
-  position: static;
-  height: auto;
-}
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: $foot-height+20;
+    position: static;
+    height: auto;
+  }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  min-height: $foot-height;
-}
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    min-height: $foot-height;
+  }
+//}

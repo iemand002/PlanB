@@ -57,13 +57,13 @@ class APIController extends Controller
     {
         $milestone = Milestone::find($milestoneid);
         $milestone->likes += 1;
-        $milestone->save;
+        $milestone->save();
     }
 
     function dislikeMilestone($milestoneid)
     {
         $milestone = Milestone::find($milestoneid);
         $milestone->dislikes += 1;
-        $milestone->save;
+        $milestone->save();
     }
 }

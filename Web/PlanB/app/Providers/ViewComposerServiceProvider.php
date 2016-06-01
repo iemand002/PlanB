@@ -15,7 +15,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot(Guard $auth)
     {
         view()->composer('layout.main',function($view)use ($auth){
-            $view->with('user',$auth->check()?$auth->user():false);
+            $view->with('loggedInUser',$auth->check()?$auth->user():false);
         });
     }
 
