@@ -21,7 +21,7 @@
                 <li @if(isset($active)&&$active=='projecten')class="active"@endif><a
                             href="{{route('projecten.index')}}">Projecten</a>
                 </li>
-                <li><a href="{{route('map.show')}}">Kaart</a></li>
+                <!-- <li><a href="{{route('map.show')}}">Kaart</a></li> -->
                 <li role="separator" class="divider visible-xs-block"></li>
                 @if(!$loggedInUser)
                     <li><a href="{{route('auth.login')}}" class="visible-xs-block">Login</a></li>
