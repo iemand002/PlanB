@@ -25,7 +25,8 @@
 
 Route::group(['middleware' => ['web']], function () {
 	Route::get('/', ['as'=>'home',function () {
-		return view('welcome');
+		$projecten=\App\Project::limit(2)->get();
+		return view('welcome',compact('projecten'));
 	}]);
 
 	// Authentication Routes...
@@ -55,10 +56,8 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::group(['prefix' => 'admin','middleware'=>'auth.admin'], function () {
 		Route::get('/', ['as' => 'admin', function(){
-			$projecten=\App\Project::all();
-			$themas=\App\Thema::all();
 			$active='admin';
-			return view('admin.admin',compact('projecten','themas','active'));
+			return view('admin.admin',compact('active'));
 		}]);
 
 		// Projecten
