@@ -5,7 +5,12 @@ Projecten
 @endsection
 
 @section('css')
-@yield('css-sub')
+    <style>
+        #my_map {
+            height: 500px;
+            width: 500px;
+        }
+    </style>
 @endsection
 
 @section('content')

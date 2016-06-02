@@ -226,6 +226,10 @@
             }).on("dp.change", function (e) {
                 $('#publish_from').data("DateTimePicker").maxDate(e.date);
             });
+            $("#locatie").geocomplete({
+                details: "form",
+                detailsAttribute: "data-geo"
+            });
         });
     </script>
     <script>

@@ -12,7 +12,6 @@
     <title>@yield('pagetitle') - {{trans('common.sitenaam')}}</title>
 
 {!! Html::style('css/app.css') !!}
-{!! Html::style('css/kristof.css') !!}
 @if($loggedInUser&&$loggedInUser->admin)
     {!! Html::style('css/admin.css') !!}
 @endif
@@ -41,8 +40,6 @@
 
 @include('layout.footer')
 
-
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 {!! Html::script('js/all.js') !!}
 @if($loggedInUser&&$loggedInUser->admin)
     {!! Html::script('js/admin.js') !!}
@@ -50,7 +47,6 @@
 <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {{--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>--}}
-{!! Html::script('js/kristof.js') !!}
 @yield('js')
 </body>
 </html>
