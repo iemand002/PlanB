@@ -6,8 +6,7 @@ Start
 
 <div class="row">
     <div class="col-md-4 col-sm-3">
-        <img src="http://placehold.it/350x350" class="img-responsive">
-        <img src="http://placehold.it/350x150/000/fff?text=Google+Play+Store+Logo" class="img-responsive">
+        <img src="/img/hotelfirean_antwerpen_02.jpg" class="img-responsive">
     </div>
     <div class="col-md-8 col-sm-9">
         <h1>Inspraak in Antwerpen</h1>

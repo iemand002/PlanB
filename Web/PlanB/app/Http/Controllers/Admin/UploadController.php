@@ -16,6 +16,10 @@ class UploadController extends Controller
 {
     protected $manager;
 
+    /**
+     * UploadController constructor.
+     * @param UploadsManager $manager
+     */
     public function __construct(UploadsManager $manager)
     {
         $this->manager = $manager;
@@ -23,6 +27,8 @@ class UploadController extends Controller
 
     /**
      * Show page of files / subfolders
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -35,6 +41,8 @@ class UploadController extends Controller
 
     /**
      * Show page of files / subfolders
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function picker(Request $request)
     {
@@ -46,6 +54,8 @@ class UploadController extends Controller
 
     /**
      * Create a new folder
+     * @param UploadNewFolderRequest $request
+     * @return $this
      */
     public function createFolder(UploadNewFolderRequest $request)
     {
@@ -68,6 +78,8 @@ class UploadController extends Controller
 
     /**
      * Delete a file
+     * @param Request $request
+     * @return $this
      */
     public function deleteFile(Request $request)
     {
@@ -90,6 +102,8 @@ class UploadController extends Controller
 
     /**
      * Delete a folder
+     * @param Request $request
+     * @return $this
      */
     public function deleteFolder(Request $request)
     {
@@ -112,6 +126,8 @@ class UploadController extends Controller
 
     /**
      * Upload new file
+     * @param UploadFileRequest $request
+     * @return $this|\Illuminate\Http\JsonResponse
      */
     public function uploadFile(UploadFileRequest $request)
     {

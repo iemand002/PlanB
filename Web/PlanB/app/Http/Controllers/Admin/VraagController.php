@@ -13,18 +13,10 @@ use App\Vraag;
 class VraagController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
+     * @param $project
+     * @param $milestone
      * @return \Illuminate\Http\Response
      */
     public function create($project, $milestone)
@@ -35,7 +27,9 @@ class VraagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param VraagAntwoordRequest|Request $request
+     * @param $project
+     * @param $milestone
      * @return \Illuminate\Http\Response
      */
     public function store(VraagAntwoordRequest $request, $project, $milestone)
@@ -57,21 +51,12 @@ class VraagController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @param $project
+     * @param $milestone
+     * @param $vraag
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($project, $milestone, $vraag)
     {
@@ -80,10 +65,12 @@ class VraagController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @param VraagAntwoordRequest $request
+     * @param $project
+     * @param $milestone
+     * @param $vraag
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(VraagAntwoordRequest $request, $project, $milestone, $vraag)
     {
@@ -105,9 +92,9 @@ class VraagController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @param $vraag
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($vraag)
     {

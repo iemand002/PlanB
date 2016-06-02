@@ -38,9 +38,9 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * 
+     * @param UserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserRequest $request)
     {
@@ -51,21 +51,11 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param $user
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function edit($user)
     {
@@ -74,10 +64,10 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @param UserRequest $request
+     * @param $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UserRequest $request, $user)
     {
@@ -88,9 +78,9 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @param $user
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function destroy($user)
     {

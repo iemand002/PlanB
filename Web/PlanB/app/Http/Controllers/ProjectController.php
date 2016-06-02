@@ -18,16 +18,16 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projecten = Project::published()->orderBy('publish_from','desc')->get();
-        $themas=Thema::has('projecten','>',0)->orderBy('naam')->get();
+        $projecten = Project::published()->orderBy('publish_from', 'desc')->get();
+        $themas = Thema::has('projecten', '>', 0)->orderBy('naam')->get(); // give all themas with projects
         $active = 'projecten';
-        return view('project.index', compact('projecten','active','themas'));
+        return view('project.index', compact('projecten', 'active', 'themas'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param $project
      * @return \Illuminate\Http\Response
      */
     public function show($project)

@@ -37,8 +37,8 @@ class ThemaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param ThemaRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ThemaRequest $request)
     {
@@ -54,8 +54,9 @@ class ThemaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param $thema
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function edit($thema)
     {
@@ -65,9 +66,10 @@ class ThemaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param ThemaRequest|Request $request
+     * @param $thema
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function update(ThemaRequest $request, $thema)
     {
@@ -77,9 +79,9 @@ class ThemaController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * 
+     * @param $thema
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function destroy($thema)
     {

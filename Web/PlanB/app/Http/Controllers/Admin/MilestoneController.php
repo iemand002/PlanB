@@ -16,25 +16,11 @@ use App\Http\Controllers\Controller;
 class MilestoneController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
+     * @param $project
      * @return \Illuminate\Http\Response
      */
-    public function create($project)
-    {
-        return view('admin.milestone.create', compact('project'));
-    }
-
     public function create2($project)
     {
         return view('admin.milestone.create2', compact('project'));
@@ -43,24 +29,8 @@ class MilestoneController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(MilestoneRequest $request, $project)
-    {
-        $milestone = new Milestone();
-        $this->saveMilestone($request, $project, $milestone);
-
-        if ($request->input('submit') == 'nieuw') {
-            return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
-        }
-        return redirect(route('admin.project.show', $project->slug))->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
+     * @param MilestoneRequest|Request $request
+     * @param $project
      * @return \Illuminate\Http\Response
      */
     public function store2(MilestoneRequest $request, $project)
@@ -74,8 +44,8 @@ class MilestoneController extends Controller
                 $section = new Section();
                 $this->saveSection($request, $i, $section, $positions, $milestone);
             }
-
         }
+
         if ($request->input('submit') == 'nieuw') {
             return redirect()->back()->with(['success' => 'Milestone "' . $milestone->naam . '" is opgeslagen']);
         } elseif ($request->input('submit') == 'opslaan') {
@@ -87,8 +57,10 @@ class MilestoneController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param $project
+     * @param $milestone
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function show($project, $milestone)
     {
@@ -98,14 +70,11 @@ class MilestoneController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param $project
+     * @param $milestone
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($project, $milestone)
-    {
-        return view('admin.milestone.edit', compact('project', 'milestone'));
-    }
-
     public function edit2($project, $milestone)
     {
         return view('admin.milestone.edit2', compact('project', 'milestone'));
@@ -114,17 +83,12 @@ class MilestoneController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param MilestoneRequest|Request $request
+     * @param $project
+     * @param $milestone
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(MilestoneRequest $request, $project, $milestone)
-    {
-        $this->saveMilestone($request, $project, $milestone);
-
-        return redirect(route('admin.project.show', [$project->slug]))->with(['success' => 'Milestone "' . $milestone->naam . '" van project "' . $project->naam . '" is gewijzigd']);
-    }
-
     public function update2(MilestoneRequest $request, $project, $milestone)
     {
         $this->saveMilestone($request, $project, $milestone);
@@ -152,8 +116,9 @@ class MilestoneController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param $milestone
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function destroy($milestone)
     {

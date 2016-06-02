@@ -44,7 +44,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ProjectStoreRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(ProjectStoreRequest $request)
@@ -73,8 +73,9 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param $project
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function show($project)
     {
@@ -84,8 +85,9 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param $project
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function edit($project)
     {
@@ -100,9 +102,10 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param ProjectUpdateRequest|Request $request
+     * @param $project
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function update(ProjectUpdateRequest $request, $project)
     {
@@ -114,8 +117,9 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param $project
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function destroy($project)
     {

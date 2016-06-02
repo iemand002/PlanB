@@ -43,8 +43,6 @@ Route::group(['middleware' => ['web']], function () {
 	$this->post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 	$this->post('password/reset', 'Auth\PasswordController@reset');
 
-	Route::get('/home', 'HomeController@index');
-
 	Route::get('projecten', ['as' => 'projecten.index', 'uses' => 'ProjectController@index']);
 	Route::get('project/{projectPublic}',['as'=>'project.show','uses'=>'ProjectController@show']);
 
