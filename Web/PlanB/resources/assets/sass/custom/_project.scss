@@ -2,8 +2,9 @@
   //border: solid 1px black;
 }
 
-.projectImage {
-  //width: 100%;
+.projectImage, .projectText {
+  height: 175px;
+  overflow: hidden;
 }
 
 .projectVragen {
@@ -17,4 +18,10 @@
 
 .justify {
 	text-justify: inter-word;
+}
+
+.projectTitle{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

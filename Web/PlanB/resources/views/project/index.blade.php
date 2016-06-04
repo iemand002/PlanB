@@ -36,15 +36,15 @@
             <div class="row projecten">
                 @foreach ($projecten as $project)
                     <div class="col-sm-6 project {{$project->thema->slug}}">
-                        <a href="{{ route('project.show', $project->slug) }}"><h1>{{ ucfirst($project->naam) }}</h1>
+                        <a href="{{ route('project.show', $project->slug) }}"><h2 class="projectTitle">{{ ucfirst($project->naam) }}</h2>
                         </a>
                         <div class="row">
                             <?php $url = $project->milestones[0]->afbeelding ?>
-                            <div class="col-sm-6"><img
+                            <div class="col-sm-6 projectImage"><img
                                         src="{{((strpos($url,'http')===0||strpos($url,'/images')===0)?'':'/img').$url}}"
                                         alt="" class='img-responsive'></div>
-                            <div class="col-sm-6"><p
-                                        class="justify">{{ str_limit($project->beschrijving, $limit = 200, $end = '...') }}</p>
+                            <div class="col-sm-6 projectText"><p
+                                        class="justify">{{ $project->beschrijving }}</p>
                             </div>
                         </div>
                         <p>Looptijd: {{ $project->publish_from }} t.e.m. {{$project->publish_till}}</p>
@@ -95,5 +95,6 @@
                 $(this).addClass('active');
             });
         });
+        $('.projectText').ellipsis();
     </script>
 @endsection
